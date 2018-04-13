@@ -11,7 +11,7 @@ passport.deserializeUser(function(id, done) {
   console.log('called deserializeUser - pg');
 
   pool.connect(function (err, client, release) {
-    if(err) {
+    if (err) {
       console.log('connection err ', err);
       release();
       done(err);
@@ -22,7 +22,7 @@ passport.deserializeUser(function(id, done) {
     client.query("SELECT * FROM users WHERE id = $1", [id], function(err, result) {
 
       // Handle Errors
-      if(err) {
+      if (err) {
         console.log('query err ', err);
         done(err);
         release();
@@ -31,7 +31,7 @@ passport.deserializeUser(function(id, done) {
       user = result.rows[0];
       release();
 
-      if(!user) {
+      if (!user) {
           // user not found
           return done(null, false, {message: 'Incorrect credentials.'});
       } else {
@@ -67,11 +67,11 @@ passport.use('local', new localStrategy({
 
             release();
 
-            if(result.rows[0] != undefined) {
+            if (result.rows[0] != undefined) {
               user = result.rows[0];
               console.log('User obj', user);
               // Hash and compare
-              if(encryptLib.comparePassword(password, user.password)) {
+              if (encryptLib.comparePassword(password, user.password)) {
                 // all good!
                 console.log('passwords match');
                 done(null, user);

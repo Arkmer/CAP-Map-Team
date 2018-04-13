@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool.js');
 const router = express.Router();
 
-router.get('/get', (req,res)=>{
+router.get('/get', (req,res) => {
     pool.query(`SELECT * FROM information ORDER BY id;`)
     .then(function(result){
         res.send(result.rows);
@@ -11,8 +11,8 @@ router.get('/get', (req,res)=>{
     })
 })
 
-router.post('/post', (req,res)=>{
-    if(req.isAuthenticated()){
+router.post('/post', (req,res) => {
+    if (req.isAuthenticated()){
         const guideline = req.body;
         pool.query('INSERT INTO information (description, category) VALUES ($1, $2);',
         [guideline.description, guideline.category])
@@ -21,12 +21,12 @@ router.post('/post', (req,res)=>{
         }).catch(function(error){
             res.sendStatus(500);
         })
-    }else{
+    } else {
         res.sendStatus(403);
     }
 })
 
-router.put('/edit/:id', (req,res)=>{
+router.put('/edit/:id', (req,res) => {
     if (req.isAuthenticated()){
         const guideline = req.body;
         pool.query('UPDATE information SET description = $1, category = $2 WHERE id = $3;',
@@ -41,8 +41,8 @@ router.put('/edit/:id', (req,res)=>{
     }
 })
 
-router.delete('/delete/:id', (req, res)=>{
-    if(req.isAuthenticated()){
+router.delete('/delete/:id', (req, res) => {
+    if (req.isAuthenticated()){
         const id = req.params
         pool.query(`delete from information where id = $1;`, [req.params.id])
         .then(function(result){
@@ -50,7 +50,7 @@ router.delete('/delete/:id', (req, res)=>{
         }).catch(function(error){
             res.sendStatus(500);
         })
-    }else{
+    } else {
         res.sendStatus(403);
     }
 });

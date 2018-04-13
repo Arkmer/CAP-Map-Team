@@ -31,12 +31,12 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
             method: 'POST',
             url:'/api/user/guest',
             data: guest,
-        }).then((result)=>{
+        }).then((result) => {
             // console.log('guest email added');
             self.emptyGuestInputs();
             alert("Thank you for joining the Caponi Art Park Email List!");
             // self.emptyGuestInputs();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('Could not add guest email'); 
         })
     }
@@ -51,10 +51,10 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: `/information/get`,
-        }).then((result)=>{
+        }).then((result) => {
             console.log('Information:', result.data);
             self.information.guidelines = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('guidelines', error);
         })
     }
@@ -64,10 +64,10 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: `/events/get`,
-        }).then((result)=>{
+        }).then((result) => {
             console.log('Events:', result.data);
             self.information.allEvents = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('getEvents', error);
         })
     }
@@ -77,7 +77,7 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: `map/artifact/${locationid}`
-        }).then((result)=>{
+        }).then((result) => {
             self.information.allArtifactsForLocation = result.data;
             self.information.currentLocationId = locationid;
             console.log('current location id:', self.information.currentLocationId);
@@ -91,7 +91,7 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
             self.indLocation.indVideos = [];
             self.indLocation.isBeingEdited = false;
             self.determineType();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('error getting all locations', error);
         })
     }

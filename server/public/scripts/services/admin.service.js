@@ -55,8 +55,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             alert("successful upload!");
             self.newMultimedia.media_url = result.filesUploaded[0].url;
             self.locations.newEvent.photo_url = result.filesUploaded[0].url;
-   
-        }).catch((error)=>{
+        }).catch((error) => {
             alert("Please try again.");
         })
     }
@@ -81,11 +80,11 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
                 media_url: newMultimedia.media_url,
                 description: newMultimedia.description
             }
-        }).then((result)=>{
+        }).then((result) => {
             console.log('new multimedia saved');
             self.newMultimedia = {}
             history.back();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('error saving new multimedia', error);
         })
     }
@@ -96,10 +95,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method:'GET', 
             url:`/events/get`,
-        }).then((result)=>{
+        }).then((result) => {
             console.log('Events:', result.data);
             self.locations.allEvents = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('getEvents', error);
         })
     }
@@ -113,12 +112,12 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             method: 'POST',
             url:`/events/post`,
             data: dataObj
-        }).then((result)=>{
+        }).then((result) => {
             console.log('Event added');
             self.getEvents();
             self.emptyEventsInputs();
-        }).catch((error)=>{
-            console.log('addEvent error', error);
+        }).catch((error) => {
+            console.log('addEvent', error);
         })
     }
 
@@ -128,10 +127,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             method: 'PUT',
             url: `/events/edit`,
             data: dataObj
-        }).then((result)=>{
+        }).then((result) => {
             // Redisplay DOM
             self.getEvents();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('editEvent', error);
         })
     }
@@ -140,10 +139,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'DELETE',
             url: `/events/delete/${dataObj.id}`
-        }).then((result)=>{
+        }).then((result) => {
             // Redisplay DOM
             self.getEvents();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('Delete Event', error);
         })
     }
@@ -181,11 +180,11 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/map/all'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allLocations = result.data;
             self.indLocation.isBeingEdited = false;
             console.log('success getting all locations', self.locations.allLocations);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('error getting all locations');
         })
     }
@@ -195,9 +194,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             method: 'POST',
             url: '/map/post',
             data: postObj
-        }).then((result)=>{
+        }).then((result) => {
             self.getAllLocations();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/map/location/post', error);
         })
     } // ---------------------I don't have a button---------------------
@@ -206,9 +205,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'DELETE',
             url: `/map/delete/${id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getAllLocations();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/map/delete/:id', error);
         })
     } // ---------------------I don't have a button---------------------
@@ -218,9 +217,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             method: 'PUT',
             url: `/map/edit`,
             data: putObj
-        }).then((result)=>{
+        }).then((result) => {
             self.getAllLocations();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/map/edit', error);
         })
     } // ---------------------I don't have a button---------------------
@@ -230,7 +229,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: `map/artifact/${id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allArtifactsForLocation = result.data;
             self.locations.currentLocationId = id;
             console.log('current location id:', self.locations.currentLocationId)
@@ -243,7 +242,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             self.indLocation.indAnecdotes = [];
             self.indLocation.indVideos = [];
             self.determineType();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('error getting all locations');
         })
     }
@@ -254,10 +253,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             method:'POST', 
             url: `/information/post`,
             data: dataObj
-        }).then((result)=>{
+        }).then((result) => {
             console.log('Information added');
             self.getInformation();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('Add information', error);
         })
     }
@@ -266,10 +265,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: `/information/get`,
-        }).then((result)=>{
+        }).then((result) => {
             console.log('Information:', result.data);
             self.locations.information = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('guidelines', error);
         })
     }
@@ -279,10 +278,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             method: 'PUT',
             url: `/information/edit/${dataObj.id}`,
             data: dataObj,
-        }).then((result)=>{
+        }).then((result) => {
             console.log('Information updated');
             self.getInformation();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('Information', error);
         })
     }
@@ -291,9 +290,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'DELETE',
             url: `/information/delete/${dataObj.id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getInformation();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('delete information', error);
         })
     }
@@ -311,10 +310,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
                 media_url: newMultimedia.media_url,
                 description: newMultimedia.description
             }
-        }).then((result)=>{
+        }).then((result) => {
             console.log('new multimedia saved');
             history.back();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('error saving new multimedia', error);
         })
     }
@@ -324,9 +323,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/media'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allMultimedia = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/media', error);
         })
     }
@@ -369,13 +368,13 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
                 extended_description: newSculpture.extended_description,
                 type: 'sculpture',
             }
-        }).then((result)=>{
+        }).then((result) => {
             console.log('new sculpture saved');
             alert('sculpture added!');
             let artifact_id = result.data[0].id //return id from database!!!!
             console.log('artifact_id:' , artifact_id)
             self.saveAssociation(artifact_id, false);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('error saving new sculpture', error);
         })
     }
@@ -384,9 +383,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/sculpture'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allSculptures = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/sculpture', error);
         })
     }
@@ -404,11 +403,11 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
                 description: newText.description,
                 type: newText.type,
             }
-        }).then((result)=>{
+        }).then((result) => {
             console.log('new text saved');
             self.clearArtifact();
             history.back();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('error saving new text', error);
         })
     }
@@ -418,9 +417,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/writing'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allWritings = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/writing', error);
         })
     }
@@ -430,9 +429,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/anecdote'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allAnecdotes = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/anecdote', error);
         })
     }
@@ -442,10 +441,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/poem'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allPoems = result.data;
             console.log(self.locations.allPoems);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/poem', error);
         })
     }
@@ -459,12 +458,12 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             method: 'PUT',
             url: '/artifacts/edit',
             data: artifact
-        }).then((result)=>{
+        }).then((result) => {
             self.getDecider(artifact);
             console.log('Artifact updated', result);
             self.clearArtifact();
             history.back();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/edit', error);
         })
     }
@@ -487,19 +486,19 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
     
     self.determineType = function(){
         for(let artifact of self.locations.allArtifactsForLocation){
-            if(artifact.type == 'sculpture'){
+            if (artifact.type == 'sculpture'){
                 self.indLocation.indSculpture = artifact;
-            }else if(artifact.type == 'photo' && !artifact.main_photo){
+            }else if (artifact.type == 'photo' && !artifact.main_photo){
                 self.indLocation.indPhotos.push(artifact);
-            }else if(artifact.type == 'poem'){
+            }else if (artifact.type == 'poem'){
                 self.indLocation.indPoems.push(artifact);
-            }else if(artifact.type == 'writing'){
+            }else if (artifact.type == 'writing'){
                 self.indLocation.indWritings.push(artifact);
-            }else if(artifact.type == 'anecdote'){
+            }else if (artifact.type == 'anecdote'){
                 self.indLocation.indAnecdotes.push(artifact);
-            }else if(artifact.type == 'video'){
+            }else if (artifact.type == 'video'){
                 self.indLocation.indVideos.push(artifact);
-            }else if(artifact.main_photo){
+            }else if (artifact.main_photo){
                 self.indLocation.indMainPhoto = artifact;
             }
         }
@@ -510,9 +509,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/media'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allMultimedia = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/media', error);
         })
     }
@@ -522,9 +521,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/writing'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allWritings = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/writing', error);
         })
     }
@@ -534,9 +533,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/anecdote'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allAnecdotes = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/anecdote', error);
         })
     }
@@ -546,10 +545,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: '/artifacts/poem'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allPoems = result.data;
             console.log(self.locations.allPoems);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/poem', error);
         })
     }
@@ -565,10 +564,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
                 location_id: self.locations.currentLocationId,
                 main_photo: self.isMainPhoto.boolean,
             }
-        }).then((result)=>{
+        }).then((result) => {
             console.log('association saved');
             history.back();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('error saving association', error);
         })
     }
@@ -579,9 +578,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'DELETE',
             url: `/artifacts/join/delete/${artifact_id}/${location_id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getIndividualLocation(location_id);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(`/artifacts/join/delete/${id}: ${result}`);
         })
     }
@@ -590,9 +589,9 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'DELETE',
             url: `/artifacts/delete/${artifact.id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getDecider(artifact);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('/artifacts/delete/:id', error);
         })
     }
@@ -637,7 +636,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method: 'GET',
             url: `/artifacts/single/${id}`,
-        }).then((result)=>{
+        }).then((result) => {
             console.log('individual result:', result.data);
             self.newText.id = result.data[0].id;
             self.newText.type = result.data[0].type;
@@ -665,7 +664,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             self.newSculpture.editing = true;
 
             self.formDecider(result.data[0]);
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('Could not get individual artifact', error);
         })
     }
@@ -676,10 +675,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method:'GET', 
             url: `/api/user/guest/all`
-        }).then((result)=>{
+        }).then((result) => {
             console.log('guest emails', result.data);
             self.locations.guestList = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('could not get guest emails', error);
         })
     }
@@ -688,10 +687,10 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $http({
             method:'DELETE',
             url:`/api/user/guest/delete/${guest.id}`
-        }).then((result)=>{
+        }).then((result) => {
             console.log('Guest deleted',);
             self.getAllGuests();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('Could not delete guest');
         })
     }
@@ -703,11 +702,11 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             method: 'POST',
             url: '/api/user/guest',
             data: guest,
-        }).then((result)=>{
+        }).then((result) => {
             console.log('guest email added');
             self.getAllGuests();
             self.emptyGuestInputs();
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('Could not add guest email');
         })
     }
@@ -725,8 +724,19 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         }).then((result) => {
             console.log('Got all admins', result.data);
             self.locations.allAdmins = result.data;
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log('Error getting all admins');
+        })
+    }
+
+    self.deleteAdmin = function(admin){
+        $http({
+          method: 'DELETE',
+          url: `/api/user/delete/${admin.id}`
+        }).then((result) => {
+            self.getAllAdmins();
+        }).catch((error) => {
+          cnosole.log(`/api/user/delete/${admin}: ${error}`);
         })
     }
 //-----End Admin Management----
