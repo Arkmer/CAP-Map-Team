@@ -103,9 +103,9 @@ router.post('/save', (req, res) => {
         let obj = req.body;
         pool.query('INSERT INTO artifact (type, year, material, artist_name, title, description, extended_description, media_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;',
         [obj.type, obj.year, obj.material, obj.artist_name, obj.title, obj.description, obj.extended_description, obj.media_url])
-        .then(function(result){
+        .then(function(result) {
             res.send(result.rows);
-        }).catch(function(error){
+        }).catch(function(error) {
             res.sendStatus(500);
         })
     } else {

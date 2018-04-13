@@ -1,4 +1,4 @@
-capApp.service('GuestService', ['$http', '$location', function($http, $location){
+capApp.service('GuestService', ['$http', '$location', function($http, $location) {
     console.log('GuestService Loaded');
     var self = this;
     
@@ -24,7 +24,7 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         isBeingEdited: false,
     }
     
-    self.addGuest = function(guest){
+    self.addGuest = function(guest) {
         console.log('In addGuest');
         console.log(guest);
         $http({
@@ -41,12 +41,12 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.emptyGuestInputs = function(){
+    self.emptyGuestInputs = function() {
         self.user.guest.name = '';
         self.user.guest.email = '';
     }
 
-    self.getInformation = function(){
+    self.getInformation = function() {
         console.log('Get Guidelines');
         $http({
             method: 'GET',
@@ -59,7 +59,7 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getEvents = function(){
+    self.getEvents = function() {
         console.log('getEvents');
         $http({
             method: 'GET',
@@ -72,7 +72,7 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getIndividualLocation = function(locationid){
+    self.getIndividualLocation = function(locationid) {
         console.log('in getIndividualLocation function');
         $http({
             method: 'GET',

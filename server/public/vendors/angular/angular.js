@@ -4314,7 +4314,7 @@ function annotate(fn, strictDi, name) {
  *
  * ```js
  *   // inferred (only works if code not minified/obfuscated)
- *   $injector.invoke(function(serviceA){});
+ *   $injector.invoke(function(serviceA) {});
  *
  *   // annotated
  *   function explicit(serviceA) {};
@@ -4322,7 +4322,7 @@ function annotate(fn, strictDi, name) {
  *   $injector.invoke(explicit);
  *
  *   // inline
- *   $injector.invoke(['serviceA', function(serviceA){}]);
+ *   $injector.invoke(['serviceA', function(serviceA) {}]);
  * ```
  *
  * ### Inference
@@ -11788,7 +11788,7 @@ function $HttpProvider() {
      *  data: { test: 'test' }
      * }
      *
-     * $http(req).then(function(){...}, function(){...});
+     * $http(req).then(function() {...}, function() {...});
      * ```
      *
      * ## Transforming Requests and Responses
@@ -14883,7 +14883,7 @@ Lexer.prototype = {
         this.readNumber();
       } else if (this.isIdentifierStart(this.peekMultichar())) {
         this.readIdent();
-      } else if (this.is(ch, '(){}[].,;:?')) {
+      } else if (this.is(ch, '() {}[].,;:?')) {
         this.tokens.push({index: this.index, text: ch});
         this.index++;
       } else if (this.isWhitespace(ch)) {
@@ -15682,7 +15682,7 @@ ASTCompiler.prototype = {
   },
 
   generateFunction: function(name, params) {
-    return 'function(' + params + '){' +
+    return 'function(' + params + ') {' +
         this.varsPrefix(name) +
         this.body(name) +
         '};';
@@ -15972,7 +15972,7 @@ ASTCompiler.prototype = {
       alternate();
     } else {
       var body = this.current().body;
-      body.push('if (', test, '){');
+      body.push('if (', test, ') {');
       alternate();
       body.push('}');
       if (consequent) {
@@ -18527,7 +18527,7 @@ function $RootScopeProvider() {
            scope.b = 2;
 
            expect(scope.$eval('a+b')).toEqual(3);
-           expect(scope.$eval(function(scope){ return scope.a + scope.b; })).toEqual(3);
+           expect(scope.$eval(function(scope) { return scope.a + scope.b; })).toEqual(3);
        * ```
        *
        * @param {(string|function())=} expression An AngularJS expression to be executed.
@@ -20846,13 +20846,13 @@ function $$CookieReaderProvider() {
  *   // Filter registration
  *   function MyModule($provide, $filterProvider) {
  *     // create a service to demonstrate injection (not always needed)
- *     $provide.value('greet', function(name){
+ *     $provide.value('greet', function(name) {
  *       return 'Hello ' + name + '!';
  *     });
  *
  *     // register a filter factory which uses the
  *     // greet service to demonstrate DI.
- *     $filterProvider.register('greet', function(greet){
+ *     $filterProvider.register('greet', function(greet) {
  *       // return the filter function which uses the greet service
  *       // to generate salutation
  *       return function(text) {
@@ -20869,7 +20869,7 @@ function $$CookieReaderProvider() {
  * ```js
  *   it('should be the same instance', inject(
  *     function($filterProvider) {
- *       $filterProvider.register('reverse', function(){
+ *       $filterProvider.register('reverse', function() {
  *         return ...;
  *       });
  *     },
@@ -32667,7 +32667,7 @@ var ngSwitchDefaultDirective = ngDirective({
  *   <file name="index.html">
  *     <script>
  *       angular.module('transcludeExample', [])
- *        .directive('pane', function(){
+ *        .directive('pane', function() {
  *           return {
  *             restrict: 'E',
  *             transclude: true,
@@ -32712,7 +32712,7 @@ var ngSwitchDefaultDirective = ngDirective({
  * <file name="index.html">
  * <script>
  * angular.module('transcludeFallbackContentExample', [])
- * .directive('myButton', function(){
+ * .directive('myButton', function() {
  *             return {
  *               restrict: 'E',
  *               transclude: true,
@@ -34356,4 +34356,4 @@ $provide.value("$locale", {
 
 })(window);
 
-!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
+!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate) {display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');

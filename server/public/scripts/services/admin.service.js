@@ -1,4 +1,4 @@
-capApp.service('AdminService', ['$http', '$location', function($http, $location){
+capApp.service('AdminService', ['$http', '$location', function($http, $location) {
     console.log('AdminService Loaded');
     var self = this;
     self.locations = {
@@ -44,13 +44,13 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
 
     self.client = filestack.init("AI5OhtlsWSsiO7mmCbw06z");
 
-    self.uploadnewPhoto = function(){
+    self.uploadnewPhoto = function() {
         console.log('in uploadNewPhoto');
         self.newMultimedia.type = 'photo';
         self.client.pick({
             accept: 'image/*',
             maxFiles: 1
-        }).then(function(result){
+        }).then(function(result) {
             console.log('in upload,', result.filesUploaded[0].url);
             alert("successful upload!");
             self.newMultimedia.media_url = result.filesUploaded[0].url;
@@ -59,7 +59,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.uploadNewVideo = function(url){
+    self.uploadNewVideo = function(url) {
         console.log('in uploadNewVideo', url);
         self.newMultimedia.type = 'video';
         self.newMultimedia.uploaded = true;
@@ -68,7 +68,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         // document.getElementById( 'vidThing' ).innerHTML = '<iframe width="420" height="315" ng-src="https://www.youtube.com/embed/IAFS1gwzTTs" frameborder="0" allowfullscreen></iframe>';
     }
 
-    self.saveMultimedia = function(){
+    self.saveMultimedia = function() {
         let newMultimedia = self.newMultimedia;
         console.log('in saveMultimedia,', newMultimedia);
         $http({
@@ -89,7 +89,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
     }
 
 //---START EVENTS AJAX---
-    self.getEvents = function(){
+    self.getEvents = function() {
         console.log('getEvents');
         $http({
             method:'GET', 
@@ -102,7 +102,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.addEvent = function(dataObj){
+    self.addEvent = function(dataObj) {
         console.log('Add Event', dataObj);
         console.log(self.locations.newEvent);
         
@@ -120,7 +120,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.editEvent = function(dataObj){
+    self.editEvent = function(dataObj) {
         console.log('Edited item', dataObj);
         $http({
             method: 'PUT',
@@ -134,7 +134,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.deleteEvent = function(dataObj){
+    self.deleteEvent = function(dataObj) {
         $http({
             method: 'DELETE',
             url: `/events/delete/${dataObj.id}`
@@ -146,7 +146,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.emptyEventsInputs = function(){
+    self.emptyEventsInputs = function() {
         self.locations.newEvent.title = '';
         self.locations.newEvent.date = '';
         self.locations.newEvent.time = '';
@@ -159,13 +159,13 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
     }
     //-----END EVENTS AJAX----
     //-----Start Locations----
-    self.addNewLocation = function(latitude, longitude){
+    self.addNewLocation = function(latitude, longitude) {
         console.log('Latitude:', latitude, ', Longitude:', longitude);
         //send latitude and longitude to DB, get back ID, replace 1 in location url with id.
         $location.url('/admin/namelocation/1');
     }
 
-    self.saveLocationName = function(){
+    self.saveLocationName = function() {
         let newName = self.locations.newLocation.name;
         let newId = self.locations.newLocation.id;
         console.log('newLocation name:', newName, 'newLocation id', newId);
@@ -174,7 +174,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         $location.url('/admin/addlocation');
     }
 
-    self.getAllLocations = function(){
+    self.getAllLocations = function() {
         console.log('in getAllLocations function');
         $http({
             method: 'GET',
@@ -188,7 +188,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.addLocationToDB = function(postObj){
+    self.addLocationToDB = function(postObj) {
         $http({
             method: 'POST',
             url: '/map/post',
@@ -200,7 +200,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     } // ---------------------I don't have a button---------------------
 
-    self.deleteLocation = function(){
+    self.deleteLocation = function() {
         $http({
             method: 'DELETE',
             url: `/map/delete/${id}`
@@ -211,7 +211,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     } // ---------------------I don't have a button---------------------
 
-    self.editLocation = function(){
+    self.editLocation = function() {
         $http({
             method: 'PUT',
             url: `/map/edit`,
@@ -223,7 +223,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     } // ---------------------I don't have a button---------------------
 
-    self.getIndividualLocation = function(id){
+    self.getIndividualLocation = function(id) {
         console.log('in getIndividualLocation function');
         $http({
             method: 'GET',
@@ -247,7 +247,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
     }
     //-----End Locations----
     //----BEGIN Information AJAX-----//
-    self.addInformation = function(dataObj){
+    self.addInformation = function(dataObj) {
         $http({
             method:'POST', 
             url: `/information/post`,
@@ -260,7 +260,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getInformation = function(){
+    self.getInformation = function() {
         $http({
             method: 'GET',
             url: `/information/get`,
@@ -272,7 +272,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.editInformation = function(dataObj){
+    self.editInformation = function(dataObj) {
         $http({
             method: 'PUT',
             url: `/information/edit/${dataObj.id}`,
@@ -285,7 +285,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.deleteInformation = function(dataObj){
+    self.deleteInformation = function(dataObj) {
         $http({
             method: 'DELETE',
             url: `/information/delete/${dataObj.id}`
@@ -298,7 +298,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
 //-----END INFORMATION AJAX-------
 //-----Start Artifacts-------
     //-----Start Multimedia------
-    self.saveMultimedia = function(){
+    self.saveMultimedia = function() {
         let newMultimedia = self.newMultimedia;
         console.log('in saveMultimedia,', newMultimedia);
         $http({
@@ -317,7 +317,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getAllMultimedia = function(){
+    self.getAllMultimedia = function() {
         console.log('in getAllMultimedia function');
         $http({
             method: 'GET',
@@ -329,20 +329,20 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.uploadnewPhoto = function(){
+    self.uploadnewPhoto = function() {
         console.log('in uploadNewPhoto');
         self.newMultimedia.type = 'photo';
         self.client.pick({
             accept: 'image/*',
             maxFiles: 1
-        }).then(function(result){
+        }).then(function(result) {
             console.log('in upload,', result.filesUploaded[0].url)
             alert("successful upload!");
             self.newMultimedia.media_url = result.filesUploaded[0].url;
         })
     }
 
-    self.uploadNewVideo = function(url){
+    self.uploadNewVideo = function(url) {
         console.log('in uploadNewVideo', url);
         self.newMultimedia.type = 'video';
         self.newMultimedia.media_url = url;
@@ -351,7 +351,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
    
     //-----End Multimedia------
     //-----Start Sculptures------
-    self.saveSculpture = function(){
+    self.saveSculpture = function() {
         let newSculpture = self.newSculpture; 
         console.log('in saveSculpture,', newSculpture);
         $http({
@@ -377,7 +377,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getAllSculptures = function(){
+    self.getAllSculptures = function() {
         $http({
             method: 'GET',
             url: '/artifacts/sculpture'
@@ -389,7 +389,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
     }
     //-----End Sculptures------
     //-----Start Other Artifacts-----
-    self.saveText = function(){
+    self.saveText = function() {
         let newText = self.newText;
         console.log('in saveText,', newText);
         $http({
@@ -410,7 +410,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getAllWritings = function(){
+    self.getAllWritings = function() {
         console.log('in getAllWritings function');
         $http({
             method: 'GET',
@@ -422,7 +422,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getAllAnecdotes = function(){
+    self.getAllAnecdotes = function() {
         console.log('in getAllAnecdotes function');
         $http({
             method: 'GET',
@@ -434,7 +434,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getAllPoems = function(){
+    self.getAllPoems = function() {
         console.log('in getAllPoems function');
         $http({
             method: 'GET',
@@ -449,7 +449,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
     //-----End Other Artifacts-----
     //-----Start Misc Artifact Functions-----
 
-    self.editArtifact = function(artifact){
+    self.editArtifact = function(artifact) {
         console.log('Edit Artifact', artifact);
         
         $http({
@@ -466,7 +466,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.clearArtifact = function(){
+    self.clearArtifact = function() {
         // self.newText.type = '';
         self.newText.year = '';
         self.newText.material = '';
@@ -482,27 +482,27 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         self.newMultimedia.editing = false;
     }
     
-    self.determineType = function(){
-        for(let artifact of self.locations.allArtifactsForLocation){
-            if (artifact.type == 'sculpture'){
+    self.determineType = function() {
+        for(let artifact of self.locations.allArtifactsForLocation) {
+            if (artifact.type == 'sculpture') {
                 self.indLocation.indSculpture = artifact;
-            }else if (artifact.type == 'photo' && !artifact.main_photo){
+            }else if (artifact.type == 'photo' && !artifact.main_photo) {
                 self.indLocation.indPhotos.push(artifact);
-            }else if (artifact.type == 'poem'){
+            }else if (artifact.type == 'poem') {
                 self.indLocation.indPoems.push(artifact);
-            }else if (artifact.type == 'writing'){
+            }else if (artifact.type == 'writing') {
                 self.indLocation.indWritings.push(artifact);
-            }else if (artifact.type == 'anecdote'){
+            }else if (artifact.type == 'anecdote') {
                 self.indLocation.indAnecdotes.push(artifact);
-            }else if (artifact.type == 'video'){
+            }else if (artifact.type == 'video') {
                 self.indLocation.indVideos.push(artifact);
-            }else if (artifact.main_photo){
+            }else if (artifact.main_photo) {
                 self.indLocation.indMainPhoto = artifact;
             }
         }
     }
 
-    self.getAllMultimedia = function(){
+    self.getAllMultimedia = function() {
         console.log('in getAllMultimedia function');
         $http({
             method: 'GET',
@@ -514,7 +514,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getAllWritings = function(){
+    self.getAllWritings = function() {
         console.log('in getAllWritings function');
         $http({
             method: 'GET',
@@ -526,7 +526,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getAllAnecdotes = function(){
+    self.getAllAnecdotes = function() {
         console.log('in getAllAnecdotes function');
         $http({
             method: 'GET',
@@ -538,7 +538,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getAllPoems = function(){
+    self.getAllPoems = function() {
         console.log('in getAllPoems function');
         $http({
             method: 'GET',
@@ -551,7 +551,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.saveAssociation = function(artifact_id, main_photo){
+    self.saveAssociation = function(artifact_id, main_photo) {
         let location_id = Number(self.locations.currentLocationId);
         console.log('in saveAssociation function--artifact_id, main_photo, location_id:', artifact_id, main_photo, location_id);
         $http({
@@ -570,7 +570,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.deleteAssociation = function(artifact_id){
+    self.deleteAssociation = function(artifact_id) {
         let location_id = Number(self.locations.currentLocationId);
         console.log('in deleteAssociation', artifact_id, location_id);
         $http({
@@ -583,7 +583,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.deleteArtifact = function(artifact){
+    self.deleteArtifact = function(artifact) {
         $http({
             method: 'DELETE',
             url: `/artifacts/delete/${artifact.id}`
@@ -594,8 +594,8 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.getDecider = function(artifact){
-        switch(artifact.type){
+    self.getDecider = function(artifact) {
+        switch(artifact.type) {
             case 'photo':
             case 'video':
                 self.getAllMultimedia();
@@ -612,8 +612,8 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         }
     }
 
-    self.formDecider = function(artifact){
-        switch(artifact.type){
+    self.formDecider = function(artifact) {
+        switch(artifact.type) {
             case 'photo':
             case 'video':
                 $location.path('/admin/multimediaform');
@@ -629,7 +629,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         }
     }
 
-    self.getArtifactToEdit = function(id){
+    self.getArtifactToEdit = function(id) {
         console.log('Editing artifact', id);
         $http({
             method: 'GET',
@@ -671,7 +671,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
     //-----End Misc Artifact Functions-----
 //-----End Artifacts-------
 //----Start Guest Management----
-    self.getAllGuests = function(){
+    self.getAllGuests = function() {
         $http({
             method:'GET', 
             url: `/api/user/guest/all`
@@ -683,7 +683,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.deleteGuest = function(guest){
+    self.deleteGuest = function(guest) {
         $http({
             method:'DELETE',
             url:`/api/user/guest/delete/${guest.id}`
@@ -695,7 +695,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.addGuest = function(guest){
+    self.addGuest = function(guest) {
         console.log('In addGuest');
         console.log(guest);
         $http({
@@ -711,13 +711,13 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.emptyGuestInputs = function(){
+    self.emptyGuestInputs = function() {
         self.locations.newGuest.name = '';
         self.locations.newGuest.email = '';
     }
 //------End Guest Management----
 //-----Begin Admin Management----
-    self.getAllAdmins = function(){
+    self.getAllAdmins = function() {
         $http({
             method: 'GET',
             url: '/api/user/admin/all',
@@ -729,7 +729,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
         })
     }
 
-    self.deleteAdmin = function(admin){
+    self.deleteAdmin = function(admin) {
         $http({
           method: 'DELETE',
           url: `/api/user/delete/${admin.id}`

@@ -12,7 +12,7 @@ router.get('/get', (req, res) => {
 });
 
 router.put('/edit', (req, res) => {
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         let event = req.body;
         pool.query(`UPDATE events SET title = $1, date = $2, time = $3, description = $4, notes = $5, category = $6, photo_url = $7, age_group = $8, price = $9 WHERE id = $10;`,
         [event.title, event.date, event.time, event.description, event.notes, event.category, event.photo_url, event.age_group, event.price, event.id])
@@ -27,7 +27,7 @@ router.put('/edit', (req, res) => {
 });
 
 router.delete('/delete/:id', (req, res) => {
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         pool.query(`DELETE FROM events where id = $1;`, [req.params.id])
         .then(function (result) {
             res.sendStatus(201);
@@ -40,13 +40,13 @@ router.delete('/delete/:id', (req, res) => {
 });
 
 router.post('/post', (req, res) =>{
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         const event = req.body;
         pool.query('INSERT INTO events (title, date, time, description, notes, category, photo_url, age_group, price) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);',
         [event.title, event.date, event.time, event.description, event.notes, event.category, event.photo_url, event.age_group, event.price])
-        .then(function(result){
+        .then(function(result) {
             res.sendStatus(201);
-        }).catch(function(error){
+        }).catch(function(error) {
             res.sendStatus(500);
         })
     } else {

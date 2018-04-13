@@ -4,7 +4,7 @@ capApp.controller('EditEventsController', ['UserService', 'AdminService', functi
     self.userService = UserService;
     self.adminService = AdminService;
 
-    self.viewEditEvents = function(event){
+    self.viewEditEvents = function(event) {
         event.editing=true;
     }
     

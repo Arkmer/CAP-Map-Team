@@ -224,7 +224,7 @@ capApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as vm',
       resolve: {
-        getuser : function(UserService){
+        getuser : function(UserService) {
           return UserService.getuser();
         }
       }
@@ -234,7 +234,7 @@ capApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
     //   templateUrl: '/views/templates/info.html',
     //   controller: 'InfoController as vm',
     //   resolve: {
-    //     getuser : function(UserService){
+    //     getuser : function(UserService) {
     //       return UserService.getuser();
     //     }
     //   }

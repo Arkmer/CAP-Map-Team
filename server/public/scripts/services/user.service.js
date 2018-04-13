@@ -1,13 +1,13 @@
-capApp.service('UserService', ['$http', '$location', function($http, $location){
+capApp.service('UserService', ['$http', '$location', function($http, $location) {
   console.log('UserService Loaded');
   var self = this;
   self.userObject = {};
   
 
-  self.getuser = function(){
+  self.getuser = function() {
     console.log('UserService -- getuser');
-    $http.get('/api/user').then(function(response){
-        if (response.data.username){
+    $http.get('/api/user').then(function(response) {
+        if (response.data.username) {
             // user has a curret session on the server
             self.userObject.userName = response.data.username;
             console.log('UserService -- getuser -- User Data: ', self.userObject.userName);
@@ -16,15 +16,15 @@ capApp.service('UserService', ['$http', '$location', function($http, $location){
             // user has no session, bounce them back to the login page
             $location.path("/admin/menu");
         }
-    },function(response){
+    },function(response) {
       console.log('UserService -- getuser -- failure: ', response);
       $location.path("/admin");
     });
   },
 
-  self.logout = function(){
+  self.logout = function() {
     console.log('UserService -- logout');
-    $http.get('/api/user/logout').then(function(response){
+    $http.get('/api/user/logout').then(function(response) {
       console.log('UserService -- logout -- logged out');
       $location.path("/admin");
     });
