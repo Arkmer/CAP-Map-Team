@@ -1,7 +1,10 @@
 all multimedia
 <a onClick="javascript:history.go(-1);"><i class="material-icons">clear</i></a>
 
-<div ng-repeat="multimedia in vm.locations.allMultimedia">
+Search:
+<input type="text" ng-model="vm.searchMultimedia">
+
+<div ng-repeat="multimedia in vm.locations.allMultimedia|filter:vm.searchMultimedia">
         <div ng-if="multimedia.type == 'photo'">
                 <img src="{{multimedia.media_url}}" />
                 <div ng-bind-html="multimedia.description">{{multimedia.description}}</div>

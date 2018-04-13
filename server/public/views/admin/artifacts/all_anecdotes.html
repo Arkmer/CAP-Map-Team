@@ -1,7 +1,10 @@
 all anecdotes
 <a onClick="javascript:history.go(-1);"><i class="material-icons">clear</i></a>
 
-<div ng-repeat="anecdote in vm.locations.allAnecdotes">
+Search:
+<input type="text" ng-model="vm.searchAnecdotes">
+
+<div ng-repeat="anecdote in vm.locations.allAnecdotes|filter:vm.searchAnecdotes">
     
         {{anecdote.title}}
         {{anecdote.year}}

@@ -1,7 +1,10 @@
 all writings
 <a onClick="javascript:history.go(-1);"><i class="material-icons">clear</i></a>
 
-<div ng-repeat="writing in vm.locations.allWritings">
+Search:
+<input type="text" ng-model="vm.searchWritings">
+
+<div ng-repeat="writing in vm.locations.allWritings|filter:vm.searchWritings">
     
         {{writing.title}}
         {{writing.year}}
