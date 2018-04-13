@@ -15972,7 +15972,7 @@ ASTCompiler.prototype = {
       alternate();
     } else {
       var body = this.current().body;
-      body.push('if(', test, '){');
+      body.push('if (', test, '){');
       alternate();
       body.push('}');
       if (consequent) {
