@@ -8,11 +8,13 @@ manage admins
 <th>Last Name</th>
 <th>Email</th>
 <th>Username</th>
+<th></th>
 </thead>
 <tbody ng-repeat="admin in vm.locations.allAdmins">
     <td>{{admin.first_name}}</td>
     <td>{{admin.last_name}}</td>
     <td>{{admin.email}}</td>
     <td>{{admin.username}}</td>
+    <td ng-if="vm.locations.allAdmins > 1"><button ng-click="vm.deleteAdmin(admin)">Delete Administrator</button></td>
 </tbody>
 </table>

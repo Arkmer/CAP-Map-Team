@@ -17,4 +17,6 @@ capApp.controller('EditEventsController', ['UserService', 'AdminService', functi
     self.emptyEventsInputs = AdminService.emptyEventsInputs;
    
     self.getEvents();
+
+    self.uploadnewPhoto = AdminService.uploadnewPhoto;
 }]);

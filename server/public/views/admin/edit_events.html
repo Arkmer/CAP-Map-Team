@@ -10,12 +10,17 @@ edit events
            Description: <input ng-model="vm.locations.newEvent.description" placeholder="Description" /><br>
            Notes: <input ng-model="vm.locations.newEvent.notes" placeholder="Notes" /><br>
            Category: <input ng-model="vm.locations.newEvent.category" placeholder="Category" /><br>
-           Photo: <input ng-model="vm.locations.newEvent.photo_url" placeholder="Photo" /><br>
+           <!-- Photo: <input ng-model="vm.locations.newEvent.photo_url" placeholder="Photo" /><br> -->
+           Photo:  <button ng-click="vm.uploadnewPhoto()">Choose Photo</button><br>
            Age Group: <input ng-model="vm.locations.newEvent.age_group" placeholder="Age Group" /><br>
            Price: <input ng-model="vm.locations.newEvent.price" placeholder="Price" /><br>
            <input type="submit" ng-click="vm.addEvent(vm.locations.newEvent)" value="Submit" /><br>
         </form>
     </div>
+
+Search:
+<input type="text" ng-model="vm.searchEvents">
+
     <div>
         <table>
             <thread>
@@ -32,7 +37,7 @@ edit events
                 <th></th>
             </thread>
             <tbody>
-                <tr ng-repeat="event in vm.locations.allEvents">
+                <tr ng-repeat="event in vm.locations.allEvents|filter:vm.searchEvents">
                     <td>
                         <div ng-hide="event.editing">{{event.title}}</div>
                         <input ng-show="event.editing" ng-model="event.title" ng-value="event.title">
@@ -58,7 +63,7 @@ edit events
                         <input ng-show="event.editing" ng-model="event.category" ng-value="event.category">
                     </td>
                     <td>
-                        <div ng-hide="event.editing">{{event.photo_url}}</div>
+                        <div ng-hide="event.editing"><img src="{{event.photo_url}}" altSrc="favicon.icn"/></div>
                         <input ng-show="event.editing" ng-model="event.photo_url" ng-value="event.photo_url">
                     </td>
                     <td>

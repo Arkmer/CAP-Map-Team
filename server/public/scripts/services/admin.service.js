@@ -54,6 +54,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             console.log('in upload,', result.filesUploaded[0].url);
             alert("successful upload!");
             self.newMultimedia.media_url = result.filesUploaded[0].url;
+            self.locations.newEvent.photo_url = result.filesUploaded[0].url;
         }).catch((error) => {
             alert("Please try again.");
         })
@@ -339,6 +340,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             console.log('in upload,', result.filesUploaded[0].url)
             alert("successful upload!");
             self.newMultimedia.media_url = result.filesUploaded[0].url;
+            self.locations.newEvent.photo_url = result.filesUploaded[0].url;
         })
     }
 
@@ -648,7 +650,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             self.newMultimedia.description = result.data[0].description;
             self.newMultimedia.extended_description = result.data[0].extended_description;
             self.newMultimedia.editing = true;
-// <<<<<<< HEAD
+
             self.newSculpture.id = result.data[0].id;
             self.newSculpture.title = result.data[0].title;
             self.newSculpture.artist_name = result.data[0].artist_name;
@@ -660,9 +662,7 @@ capApp.service('AdminService', ['$http', '$location', function($http, $location)
             self.newSculpture.type = result.data[0].type;
             self.newSculpture.media_url = result.data[0].media_url;
             self.newSculpture.editing = true;
-// =======
-//             // self.newStatue.id = result.data[0].id;
-// >>>>>>> master
+
             self.formDecider(result.data[0]);
         }).catch((error) => {
             console.log('Could not get individual artifact', error);
