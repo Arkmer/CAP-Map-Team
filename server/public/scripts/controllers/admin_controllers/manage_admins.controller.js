@@ -27,4 +27,6 @@ capApp.controller('ManageAdminsController', ['UserService', 'AdminService', '$ht
     
     self.getAllAdmins();
 
+    self.deleteAdmin = AdminService.deleteAdmin;
+
 }]);
