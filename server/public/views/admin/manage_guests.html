@@ -40,4 +40,29 @@
             </tr>
         </tbody>
     </table>
+
+    <!-- <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex layout="row">
+            <md-card class="guestCard" ng-repeat="guest in vm.locations.guestList" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
+                md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{guest.name}}</span>
+                        <span class="md-subhead">{{guest.email}}</span>
+                    </md-card-title-text>
+    
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <div ng-if="vm.locations.currentLocationId !== null">
+                        <div ng-click="vm.saveAssociation(writing.id, 'false')">
+                            <i class="material-icons">add</i>
+                        </div>
+                    </div>
+                    <div ng-click="vm.deleteGuest(guest)">
+                        <i class="material-icons">delete</i>
+                    </div>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content> -->
 </div>

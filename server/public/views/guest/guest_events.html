@@ -7,7 +7,7 @@
         <div ng-repeat="event in vm.information.allEvents" class="event">
                 <div><img class="eventPhoto" src="{{event.photo_url}}"></div>
                 <div class="eventDate">{{event.date | date: short }}</div>
-                <div class="eventTitle">{{event.title}}</div>
+                <div class="eventTitle"><strong>{{event.title}}</strong></div>
             
             <div  ng-if="vm.information.allEvents.showMore == false">
                 <div class="eventDetails" ng-click="vm.information.allEvents.showMore = true">DETAILS</div>
@@ -16,7 +16,7 @@
 
             <div ng-if="vm.information.allEvents.showMore == true">
                 <div class="eventDetails" ng-click="vm.information.allEvents.showMore = false">LESS</div>
-                <div>Event Details:{{event.description}}</div>
+                <div><strong>Event Details:</strong>{{event.description}}</div>
                 <div>{{event.time}}</div>
                 <div> Adaptable for ages {{event.age_group}},  {{event.price}}/person</div> 
             </div>
