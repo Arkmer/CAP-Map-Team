@@ -169,6 +169,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
                 swal("Location successfully uploaded!", "", "success");
                 location.name = '';
                 self.currentLocationId = response.data[0].id;
+                self.indLocation.indTitle = response.data[0].location_name; //FROM LIZ!!!!!
                 console.log(response.data[0].id);
                 $location.url(`admin/location/${self.currentLocationId}`);
             })

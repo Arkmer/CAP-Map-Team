@@ -53,7 +53,7 @@ router.post('/join/insert', (req, res)=>{
 router.post('/post', (req, res)=>{
     if(req.isAuthenticated()){
         let location = req.body;
-        pool.query('INSERT INTO map (location_name, lat, long, reveal_type) VALUES ($1, $2, $3, $4) returning id;', [location.location_name, location.lat, location.long, location.reveal_type])
+        pool.query('INSERT INTO map (location_name, lat, long, reveal_type) VALUES ($1, $2, $3, $4) returning id, location_name;', [location.location_name, location.lat, location.long, location.reveal_type])
         .then(function(result){
             res.send(result.rows);
         }).catch(function(error){
