@@ -19,7 +19,7 @@
 
   <div class="indent">
 
-    <md-content class="md-padding" layout-xs="column" layout="row">
+    <md-content class="md-padding" layout-xs="column" layout="row" flex> 
       <div flex-xs flex layout="row" layout-wrap>
         <md-card class="indCard" ng-repeat="poem in vm.locations.allPoems|filter:vm.searchPoems" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
           md-theme-watch>
@@ -27,7 +27,7 @@
             <md-card-title-text>
               <span class="md-headline textTitle">{{poem.title}}</span>
               <span class="md-subhead">{{poem.year}}</span>
-              <span ng-bind-html="poem.description">{{poem.description}}</span>
+              <span style="overflow:scroll; height:150px;" ng-bind-html="poem.description">{{poem.description}}</span>
             </md-card-title-text>
 
           </md-card-title>
