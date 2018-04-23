@@ -149,7 +149,7 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
 
             //--------------source image for the overlay--------------
 
-            let srcImage = '../../styles/CaponiArtParkOverlay2_Transparent.png';
+            let srcImage = '../../styles/CaponiArtParkOverlay2_Transparent_Resized.png';
 
             //--------------loops through all the locations and displays locations that should be displayed--------------
             for (let i = 0; i < self.locations.allLocations.length; i++) {

@@ -42,7 +42,7 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
 
             //--------------source image for the overlay--------------
 
-            let srcImage = '../../styles/CaponiArtParkOverlay2_Transparent.PNG';
+            let srcImage = '../../styles/CaponiArtParkOverlay2_Transparent_Resized.PNG';
     
             if (self.locations.currentLocationId !== null ) {
               
