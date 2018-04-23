@@ -26,7 +26,7 @@
             <md-card-title-text>
               <span class="md-headline textTitle">{{anecdote.title}}</span>
               <span class="md-subhead">{{anecdote.year}}</span>
-              <span ng-bind-html="anecdote.description">{{anecdote.description}}</span>
+              <span ng-bind-html="anecdote.description" style="overflow:scroll; height:150px;">{{anecdote.description}}</span>
             </md-card-title-text>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center">
