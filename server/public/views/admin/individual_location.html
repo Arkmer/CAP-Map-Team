@@ -42,7 +42,7 @@
         </div>
         <hr class="short">
         <br>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="bottomMargin">
                 <div layout="row" layout-align="center center">
                 <strong>OTHER PHOTOS</strong><br>
                 <a href="/#!/admin/multimedia">
@@ -52,7 +52,7 @@
                 </a>
                 </div>
 
-                <div layout="row" layout-align="center center">
+                <div layout="row" layout-align="center center" class="bottomMargin">
                 <div ng-repeat="photo in vm.indLocation.indPhotos" layout="column" layout-align="center center">
                         <img src="{{photo.media_url}}" height="100px" width="100px" />
                         <div class="minus" ng-click="vm.deleteAssociation(photo.id)">
@@ -63,7 +63,7 @@
         </div><br> 
         <hr class="short">
         <br>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="bottomMargin" >
                 <div layout="row" layout-align="center center">
                         <strong>POEMS</strong><br>
                         <a href="/#!/admin/poems">
@@ -73,10 +73,11 @@
                         </a>
                 </div>
         </div>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="bottomMargin">
                 <div ng-repeat="poem in vm.indLocation.indPoems" layout="column" layout-align="center center">
-                        <div>{{poem.title}}</div>
+                        <div><strong>{{poem.title}}</strong></div>
                         <div>{{poem.artist_name}}</div>
+                        <div>{{poem.year}}</div>
                         <div ng-bind-html="poem.description">{{poem.description}}</div>
                         <div class="minusWriting" ng-click="vm.deleteAssociation(poem.id)">
                                 <i class="material-icons">remove_circle</i>
@@ -87,7 +88,7 @@
         <br>
         <hr class="short">
         <br>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="bottomMargin">
                 <div layout="row" layout-align="center center">
                         <strong>WRITINGS</strong><br>
                         <a href="/#!/admin/writings">
@@ -97,10 +98,11 @@
                         </a>
                 </div>
         </div>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="bottomMargin">
                 <div ng-repeat="writing in vm.indLocation.indWritings" layout="column" layout-align="center center">
-                        <div>{{writing.title}}</div>
+                        <div><strong>{{writing.title}}</strong></div>
                         <div>{{writing.artist_name}}</div>
+                        <div>{{writing.year}}</div>
                         <div ng-bind-html="writing.description">{{writing.description}}</div>
                         <div class="minusWriting" ng-click="vm.deleteAssociation(writing.id)">
                                 <i class="material-icons">remove_circle</i>
@@ -111,7 +113,7 @@
         <br>
         <hr class="short">
         <br>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="bottomMargin">
                 <div layout="row" layout-align="center center">
                         <strong>ANECDOTES</strong><br>
                         <a href="/#!/admin/anecdotes">
@@ -121,10 +123,11 @@
                         </a>
                 </div>
         </div>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" >
                 <div ng-repeat="anecdote in vm.indLocation.indAnecdotes" layout="column" layout-align="center center">
-                        <div>{{anecdote.title}}</div>
+                        <div><strong>{{anecdote.title}}</strong></div>
                         <div>{{anecdote.artist_name}}</div>
+                        <div>{{anecdote.year}}</div>
                         <div ng-bind-html="anecdote.description">{{anecdote.description}}</div>
                         <div class="minusWriting" ng-click="vm.deleteAssociation(anecdote.id)">
                                 <i class="material-icons">remove_circle</i>
@@ -135,7 +138,7 @@
         <br>
         <hr class="short">
         <br>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="bottomMargin">
                 <div layout="row" layout-align="center center">
                         <strong>VIDEOS</strong>
                         <a href="/#!/admin/multimedia">
@@ -145,7 +148,7 @@
                         </a>
                 </div>
         </div><br>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="bottomMargin">
                 <div ng-repeat="video in vm.indLocation.indVideos" layout="column" layout-align="center center">
                         <iframe width="200" height="200" ng-src="{{vm.trustSrc(video.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
                         <div  ng-click="vm.deleteAssociation(video.id)">
