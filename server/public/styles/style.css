@@ -523,7 +523,7 @@ img{
   }
   
 .headerLine{
-  margin-top: 80px;
+  margin-top: 90px;
 }
 
 .headerBackground{
@@ -786,13 +786,14 @@ md-content{
   font-weight: bold;
   height: 10px;
   width: 80%;
-  margin: 0;
+  padding: -10px;
+  
 }
 
 .artifactIcon{
   float:right;
   color:grey;
   top: -8px;
-  right: -50px;
+  right: -45px;
   position: absolute;
 }
