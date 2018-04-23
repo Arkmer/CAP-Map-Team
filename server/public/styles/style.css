@@ -313,7 +313,7 @@ img{
   margin-right: 35px;
 }
 
-.banner {
+/* .banner {
   text-align:left;
   font-size: 25px;
   position: relative;
@@ -322,7 +322,7 @@ img{
   left: 30px;
   font-weight: bold;
   letter-spacing: 1px;
-}
+} */
 
 .menu {
   font-size: 30px;
@@ -374,7 +374,7 @@ img{
     margin-right: 35px;
   }
   
-  .banner {
+  /* .banner {
     text-align:left;
     font-size: 25px;
     position: fixed;
@@ -384,7 +384,7 @@ img{
     font-weight: bold;
     letter-spacing: 1px;
     /* background-color: orange; */
-  }
+  } */
 
   .headerBackground{
     width:100%;
@@ -439,13 +439,6 @@ img{
   width: 100%;
   border-radius: 4px;
   margin: auto;
-}
-
-.redDiv {
-  /* border-style: solid; */
-  /* border-color:red; */
-  margin: 0;
-  height: 90px;
 }
 
 .navBardemoBasicUsage md-content .ext-content {
@@ -506,12 +499,12 @@ img{
 
 .banner {
   text-align:left;
-  font-size: 25px;
+  font-size: 20px;
   position: fixed;
   text-align: center;
   top: 27px;
   left: 28px;
-  font-weight: bold;
+  font-weight: bolder;
   letter-spacing: 1px;
   height: 10px;
   width: 100%;
@@ -810,4 +803,8 @@ md-content{
 #limitWidth{
   margin-left: 80px;
   margin-right: 775px;
+}
+
+.eventCard {
+  width: 30%;
 }
