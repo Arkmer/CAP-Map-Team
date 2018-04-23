@@ -31,6 +31,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         indWritings: [],
         indAnecdotes: [],
         indVideos: [],
+        indTitle: '',
         isBeingEdited: false,
         reveal_type: '',
     }
@@ -229,6 +230,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.indLocation.indWritings = [];
             self.indLocation.indAnecdotes = [];
             self.indLocation.indVideos = [];
+            self.indLocation.indTitle= '';
             self.determineType();
         }).catch((error)=>{
             console.log(`map/artifact/${id}`, error);
@@ -430,7 +432,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
     }
     
     self.determineType = function(){
-        console.log('in determineType');
+        console.log('in determineType', self.locations.allArtifactsForLocation[0]);
+        self.indLocation.indTitle = self.locations.allArtifactsForLocation[0].location_name;
         self.indLocation.reveal_type = self.locations.allArtifactsForLocation[0].reveal_type;
         for(let artifact of self.locations.allArtifactsForLocation){
             if(artifact.type == 'sculpture'){
@@ -447,7 +450,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
                 self.indLocation.indVideos.push(artifact);
             }else if(artifact.main_photo){
                 self.indLocation.indMainPhoto = artifact;
-            }
+            } 
+
         }
         console.log('main photo:',self.indLocation.indMainPhoto);
     }

@@ -801,3 +801,11 @@ md-content{
 .bottomMargin {
   margin-bottom: 10px;
 }
+
+.locationTitle {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+}
