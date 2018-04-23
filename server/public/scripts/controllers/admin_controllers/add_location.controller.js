@@ -17,7 +17,6 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
     CaponiOverlay.prototype = new google.maps.OverlayView();
 
     self.initMap = () => {
-
         if (self.locations.currentLocationId !== null )  {
             self.getMapLocation(self.locations.currentLocationId);      
         }
@@ -51,7 +50,7 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
 
             //--------------source image for the overlay--------------
 
-            let srcImage = '../../styles/CaponiArtParkOverlay_Transparent.png';
+            let srcImage = '../../styles/CaponiArtParkOverlay2_Transparent.PNG';
     
             if (self.locations.currentLocationId !== null ) {
               
@@ -107,7 +106,6 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
             overlay = new CaponiOverlay(bounds, srcImage, map);
 
         },150)
-        
     }
     /** @constructor */
     function CaponiOverlay(bounds, image, map) {
