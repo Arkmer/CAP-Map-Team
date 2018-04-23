@@ -18,7 +18,7 @@
 <div class="indent">
 
 <md-content class="md-padding" layout-xs="column" layout="row">
-        <div flex-xs flex layout="row">
+        <div flex-xs flex layout="row" layout-wrap>
           <md-card ng-repeat="multimedia in vm.locations.allMultimedia|filter:vm.searchMultimedia" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch class="indMultimediaCard margin">
             <md-card-title>
               <md-card-title-media >
