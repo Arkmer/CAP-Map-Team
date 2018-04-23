@@ -38,7 +38,8 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
             new google.maps.LatLng(44.8000250, -93.157400000),
             new google.maps.LatLng(44.8080250, -93.1460700));
 
-        let srcImage = '../../styles/CaponiArtParkOverlay_Transparent.png';
+        let srcImage = '../../styles/CaponiArtParkOverlay2_Transparent.PNG';
+
 
         let marker = new google.maps.Marker({
             position: new google.maps.LatLng(44.8049741120178, -93.1529663690302),
