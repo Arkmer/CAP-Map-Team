@@ -1,23 +1,54 @@
+<div ng-include="'/views/admin/admin_menu.html'">
 
-<div ng-include="'/views/admin/admin_menu.html'"></div>
+</div>
 <div class="pageDown"></div>
-Title:
-<input ng-model="vm.newSculpture.title"/><br>
-Year:
-<input ng-model="vm.newSculpture.year"/><br>
-Artist Name:
-<input ng-model="vm.newSculpture.artist_name"/><br>
-Materials:
-<input ng-model="vm.newSculpture.material"/><br>
-Description:
-<!-- <input ng-model="vm.newSculpture.description"/><br> --><br>
-<text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]" ng-model="vm.newSculpture.description"></text-angular>
-Extended Description:
-<!-- <input ng-model="vm.newSculpture.extended_description"/><br> --><br>
-<text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]" ng-model="vm.newSculpture.extended_description"></text-angular>
+<div class="textFormPage">
+    <a class="rightFloat" onClick="javascript:history.go(-1);">
+        <i class="material-icons">clear</i>
+    </a>
+    <br>
+    <br>
+    <md-input-container>
+        <label>Title</label>
+        <input type="text" ng-model="vm.newSculpture.title" required>
+    </md-input-container>
+    <md-input-container>
+        <label>Year</label>
+        <input type="text" ng-model="vm.newSculpture.year">
+    </md-input-container>
+    <md-input-container>
+        <label>Materials</label>
+        <input type="text" ng-model="vm.newSculpture.material">
+    </md-input-container>
+    <md-input-container>
+        <label>Artist Name</label>
+        <input type="text" ng-model="vm.newSculpture.artist_name">
+    </md-input-container>
+    <br>
+    <!-- <input placeholder="Title" ng-model="vm.newText.title"/>
+<input placeholder="Year" ng-model="vm.newText.year"/> -->
+    <!-- <input ng-model="vm.newText.description"/> -->
+    <p class="greyText">Description:</p>
+    <text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]"
+        ng-model="vm.newSculpture.description"></text-angular>
+    <br>
+    <div ng-if="vm.locations.showMore == false">
+        <div class="moreSculptureDetails" ng-click="vm.locations.showMore = true">ADD EXTENDED DESCRIPTION</div>
+    </div>
 
+    <div ng-if="vm.locations.showMore == true">
+        <div class="moreSculptureDetails" ng-click="vm.locations.showMore = false">LESS</div>
+        <p class="greyText">Extended Description:</p>
+        <text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]"
+            ng-model="m.newSculpture.extended_description"></text-angular>
+    </div>
 
+    <br>
+    <div ng-if="!vm.newSculpture.editing" ng-click="vm.saveSculpture()">
+        <i class="material-icons">add_circle</i>
+    </div>
+    <div ng-if="vm.newSculpture.editing" ng-click="vm.editArtifact(vm.newSculpture)">
+        <i class="material-icons">save</i>
+    </div>
 
-
-<button ng-if="!vm.newSculpture.editing" ng-click="vm.saveSculpture()">Add</button>
-<button ng-if="vm.newSculpture.editing" ng-click="vm.editArtifact(vm.newSculpture)">Save Edit</button>
+</div>

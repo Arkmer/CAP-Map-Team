@@ -1,18 +1,16 @@
 
 <div ng-include="'/views/admin/admin_menu.html'"></div>
+<div id="fixPage">
 <div class="pageDown"></div>
 <br>
-
 <h3 class="indent editLocation">EDIT LOCATION</h3>
-
 <hr>
-
 <!-- search bar with ng-repeat and filter -->
-
 <i class="material-icons indent extra-indent searchIcon">search</i>
 <input class="indent searchBar" type="text" ng-model="vm.searchLocations">
-
-<div style="overflow:scroll; height:100%; width: 100%;" flex layout="column" >
+</div>
+<div id="limitWidth">
+<div style="overflow:scroll; height:500px;" flex layout="column" >
         <md-content>
           <md-list flex>
             <md-list-item class="md-3-line" ng-repeat="location in vm.locations.allLocations|filter:vm.searchLocations">
@@ -25,6 +23,7 @@
           </md-list>
         </md-content>
       </div>
+</div>
 
     
     

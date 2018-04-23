@@ -19,4 +19,6 @@ capApp.controller('SculpturesController', ['UserService', 'AdminService', functi
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.locations = AdminService.locations;
 }]);

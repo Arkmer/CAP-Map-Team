@@ -17,7 +17,6 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
     CaponiOverlay.prototype = new google.maps.OverlayView();
 
     self.initMap = () => {
-
         if (self.locations.currentLocationId !== null )  {
             self.getMapLocation(self.locations.currentLocationId);      
         }
@@ -37,21 +36,13 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
                 tilt: 0
             })
     
-            // this is the original map
-            // let bounds = new google.maps.LatLngBounds(
-            //     new google.maps.LatLng(44.8047000, -93.1550000),
-            //     new google.maps.LatLng(44.8090000, -93.1488500));
-    
-            // let srcImage = '../../styles/northMap.png';
-    
-            // this is the trail only map using google maps as the background
             let bounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(44.8000250, -93.157400000),
                 new google.maps.LatLng(44.8080250, -93.1460700));
 
             //--------------source image for the overlay--------------
 
-            let srcImage = '../../styles/CaponiArtParkOverlay_Transparent.png';
+            let srcImage = '../../styles/CaponiArtParkOverlay2_Transparent_Resized.PNG';
     
             if (self.locations.currentLocationId !== null ) {
               
@@ -107,7 +98,6 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
             overlay = new CaponiOverlay(bounds, srcImage, map);
 
         },150)
-        
     }
     /** @constructor */
     function CaponiOverlay(bounds, image, map) {

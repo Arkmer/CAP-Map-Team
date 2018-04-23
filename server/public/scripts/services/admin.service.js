@@ -19,6 +19,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         newGuest:{},
         allAdmins: [],
         allRevealTypes: [{type:'static'}, {type:'proximity'}, {type:'bathroom'}],
+        showMore: false,
         locationToEdit: {}
     }
     
@@ -310,6 +311,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
     //-----Start Sculptures------
     self.saveSculpture = function(){
         let newSculpture = self.newSculpture;
+        console.log(newSculpture);
         $http({
             method: 'POST',
             url: `/artifacts/save`,
@@ -326,6 +328,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             swal("sculpture added!", "", "success")
             let artifact_id = result.data[0].id //return id from database!!!!
             self.saveAssociation(artifact_id, false);
+            self.newSculpture = {};
         }).catch((error)=>{
             console.log('/artifacts/save', error);
         })
@@ -578,7 +581,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.newText.editing = true;
             self.newMultimedia.id = result.data[0].id;
             self.newMultimedia.type = result.data[0].type;
-            self.newMultimedia.media_url = result.data[0].media_url;
+            // self.newMultimedia.media_url = result.data[0].media_url;
             self.newMultimedia.description = result.data[0].description;
             self.newMultimedia.extended_description = result.data[0].extended_description;
             self.newMultimedia.editing = true;
