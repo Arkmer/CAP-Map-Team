@@ -1,4 +1,4 @@
-<div ng-include="'/views/admin/admin_menu.html'"></div>
+<!-- <div ng-include="'/views/admin/admin_menu.html'"></div>
 <div class="pageDown"></div>
 <div class="divHeight">
     <i onClick="javascript:history.go(-1);" class="material-icons xIcon leftFloat">clear</i>
@@ -25,6 +25,40 @@
 <br>Caption:<br>
 <text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]" ng-model="vm.newMultimedia.description"></text-angular>
 <button ng-if="!vm.newMultimedia.editing" ng-click="vm.saveMultimedia()">Add</button>
-<button ng-if="vm.newMultimedia.editing" ng-click="vm.editArtifact(vm.newMultimedia)">Save Edit</button>
+<button ng-if="vm.newMultimedia.editing" ng-click="vm.editArtifact(vm.newMultimedia)">Save Edit</button> -->
 
 
+
+
+
+<div ng-include="'/views/admin/admin_menu.html'"></div>
+<div class="pageDown"></div>
+<div class="textFormPage">
+<a class="rightFloat" onClick="javascript:history.go(-1);"><i class="material-icons">clear</i></a>
+<br>
+<br>
+<div layout="row">
+<md-button class="md-raised" ng-click="vm.uploadnewPhoto()">Choose Photo</md-button>
+<div class="greyText" id="or">Or</div>
+</div>
+<br>
+<md-input-container>
+    <label>https://www.youtube.com/embed/</label>
+    <input type="text" style="width:auto;" size="50" ng-model="vm.newMultimedia.media_url">
+</md-input-container>
+<md-button class="md-raised" ng-click="vm.uploadNewVideo()">Preview Video</md-button><br>
+<div ng-if="vm.newMultimedia.uploaded && vm.newMultimedia.type=='video'">
+    <p class="greyText">Preview</p>
+    <iframe width="420" height="315" ng-src="{{vm.trustSrc(vm.newMultimedia.media_url)}}" frameborder="0" allowfullscreen></iframe>
+</div>
+<div ng-if="vm.newMultimedia.uploaded && vm.newMultimedia.type=='photo'">
+    <p class="greyText">Preview</p>
+    <img src="{{vm.newMultimedia.media_url}}">
+</div>
+
+<p class="greyText">Caption:</p>
+<text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]" ng-model="vm.newMultimedia.description"></text-angular>
+<br>
+<div ng-if="!vm.newMultimedia.editing" ng-click="vm.saveMultimedia()"><i class="material-icons">add_circle</i></div>
+<div ng-if="vm.newMultimedia.editing" ng-click="vm.editArtifact(vm.newMultimedia)"><i class="material-icons">save</i></div>
+</div>

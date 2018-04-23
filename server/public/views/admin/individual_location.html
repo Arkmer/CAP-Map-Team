@@ -1,6 +1,11 @@
 <div ng-include="'/views/admin/admin_menu.html'"></div>
+
 <div class="pageDown"></div>
-        <hr>
+        
+        <div layout="row" layout-align="center center">
+                      
+                        </div>
+                        <hr>
         <div class="divCoverPhoto" layout="column" layout-align="center center" ng-if="vm.indLocation.indMainPhoto.media_url != undefined">
                 <img layout="row" layout-align="center center" class="coverPhoto" src="{{vm.indLocation.indMainPhoto.media_url}}" />
                 <div layout="row" layout-align="center end">
@@ -21,7 +26,7 @@
         <br>
         <hr>
         <br>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="limitWidthDescription">
                 <div layout="row" layout-align="center center">
                         <strong>SCULPTURE INFORMATION</strong>
                         <a ng-if="!vm.indLocation.indSculpture.title" class="add" href="/#!/admin/sculptures">
@@ -147,8 +152,11 @@
                                 <i class="material-icons">remove_circle</i>
                         </div>
                 </div>
-        </div>
-
+        </div><br>
+        <md-divider></md-divider>
+        <br>
+        <div layout="column" layout-align="center center"><a href="/#!/admin/addlocation"> 
+                <md-button class="md-raised">Edit Map Location</md-button></a></div>
         <br>
 
         <div layout="column" layout-align="center center">

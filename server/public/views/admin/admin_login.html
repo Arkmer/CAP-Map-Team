@@ -1,17 +1,24 @@
 <div class="container">
-  <h1 class="lead">Login</h1>
+    <div class="adminWelcome"><h1>WELCOME  TO  CAPONI  ART  PARK</h1></div>
+
+ 
     <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
-    <form ng-submit="vm.login()">
+    <form ng-submit="vm.login()" class="eventInput">
       <div>
+        <h1 class="guestBody">Login</h1>
+        <md-input-container>
           <label for="username">Username:</label>
           <input type="text" ng-model="vm.user.username" />
+        </md-input-container>
       </div>
       <div>
+        <md-input-container>
           <label for="password">Password:</label>
           <input type="password" ng-model="vm.user.password" />
+        </md-input-container>
       </div>
       <div>
-          <input class="btn btn-default" type="submit" name="submit" value="Log In"/>
+          <md-button class="btn btn-default md-raised" type="submit" name="submit" value="Log In">Log In</md-button>
           <!-- <a href="#!register">Register</a> -->
       </div>
     </form>

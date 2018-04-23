@@ -1,26 +1,26 @@
 
 
 <div ng-include="'/views/admin/admin_menu.html'"></div>
-<div class="pageDown"></div>
-<h3>EDIT GUIDELINES</h3>
+<div class="pageDown"></div><br>
+<h3 class="indent">EDIT GUIDELINES</h3>
 <md-divider></md-divider>
 <br>
-<div>
+<div class="indent">
     <form>
         <md-input-container class="md-block">
-        <label>Guideline</label>
-        <input ng-model="vm.locations.information.newInformation.description"/>
+        <label>NEW GUIDELINE</label>
+        <input style="width:auto;" size="50" ng-model="vm.locations.information.newInformation.description"/>
         </md-input-container>
         <!-- Category:<input ng-model="vm.locations.information.newInformation.category"/> -->
         <md-button  class="md-raised" type="submit" ng-click="vm.addInformation(vm.locations.information.newInformation)">Submit</md-button>
     </form>
-</div>
+</div><br>
 <md-divider></md-divider>
-<br>
+<br><br>
 <div>
-    <table>
+    <table class="indent">
         <thread>
-            <th>Guideline</th>
+            <th class="guidelineTitle"><h3>ALL GUIDELINES</h3></th>
             <!-- <th>Category</th> -->
             <th></th>
             <th></th>

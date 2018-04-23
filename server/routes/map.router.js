@@ -82,7 +82,7 @@ router.delete('/delete/:id', (req, res)=>{
 router.put('/edit', (req, res)=>{
     if(req.isAuthenticated()){
         let loc = req.body;
-        pool.query('UPDATE events SET location_name = $1, lat = $2, long = $3, reveal_type = $4;', [loc.location_name, loc.lat, loc.long, loc.reveal_type])
+        pool.query('UPDATE map SET location_name = $1, lat = $2, long = $3, reveal_type = $4 WHERE id = $5;', [loc.location_name, loc.lat, loc.long, loc.reveal_type, loc.id])
         .then((result)=>{
             res.sendStatus(201);
         }).catch((error)=>{
@@ -92,5 +92,19 @@ router.put('/edit', (req, res)=>{
         res.sendStatus(403);
     }
 });
+
+router.get('/:id', (req, res) => {
+    if(req.isAuthenticated()) {
+        let id = req.params.id;
+        pool.query('SELECT * FROM map where id =$1', [id])
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log(error);
+            
+            res.sendStatus(500);
+        })
+    }
+})
 
 module.exports = router;

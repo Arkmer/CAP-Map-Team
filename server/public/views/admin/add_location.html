@@ -1,16 +1,31 @@
 <div ng-include="'/views/admin/admin_menu.html'"></div>
 <div class="pageDown">
-    <md-input-container class="md-indent add-location">
-        <input type="text" placeholder="Name Location" ng-model="vm.locations.newLocation.name">
-    </md-input-container>
-    <md-input-container class="markerType">
+    <div ng-if="vm.locations.currentLocationId == null">
+        <md-input-container class="md-indent add-location">
+            <input type="text" placeholder="Name Location" ng-model="vm.locations.newLocation.name">
+        </md-input-container>
+        <md-input-container class="markerType" ng-if="vm.locations.currentLocationId == null">
             <label>Marker Type</labeL>
-           <md-select ng-model="vm.locations.newLocation.reveal_type">
-                    <md-option ng-repeat="types in vm.locations.allRevealTypes"
-                    ng-value="types.type">{{ types.type }}</md-option>
+            <md-select ng-model="vm.locations.newLocation.reveal_type">
+                <md-option ng-repeat="types in vm.locations.allRevealTypes" ng-value="types.type">{{ types.type }}</md-option>
             </md-select>
-          </md-input-container>
-    <md-button ng-click='vm.addLocation(vm.locations.newLocation)' class="md-raised md-indent">Submit Location</md-button>
+        </md-input-container>
+        <md-button ng-click='vm.addLocation(vm.locations.newLocation)' class="md-raised md-indent">Submit Location</md-button>
+    </div>
+    <div class="row" align-content="center center" ng-if="vm.locations.currentLocationId !== null">
+        <md-input-container class="md-indent add-location">
+            <input type="text" value="vm.locations.locationToEdit[0].location_name" ng-model="vm.locations.locationToEdit[0].location_name">
+        </md-input-container>
+
+        <md-input-container class="markerType" ng-if="vm.locations.currentLocationId !== null">
+            <label>Marker Type</labeL>
+            <md-select ng-model="vm.locations.locationToEdit[0].reveal_type">
+                <md-option ng-repeat="types in vm.locations.allRevealTypes" ng-value="types.type">{{ types.type }}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-button ng-click='vm.editLocation(vm.locations.locationToEdit[0])' class="md-raised md-indent">Submit Location</md-button>
+        <h3 class="editLocationLable">You are editing a location</h3>
+    </div>
     <div id="map-container-admin">
         <div id="map"></div>
     </div>

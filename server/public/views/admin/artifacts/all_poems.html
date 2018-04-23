@@ -4,7 +4,7 @@
 <div class="pageDown"></div>
 <div class="adminBody">
     <div layout="row">
-    <h2 class="indent">POEMS</h2>
+    <h3 class="indent">POEMS</h3>
     <a class="addArtifact" href="/#!/admin/textform">
         <i class="material-icons">add_circle</i>
     </a>
@@ -29,8 +29,8 @@
         
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="end center">
-                        <div ng-if="vm.locations.currentLocationId != ''">
-                                <button ng-click="vm.saveAssociation(poem.id, 'false')"><i class="material-icons">add</i></button>
+                        <div ng-if="vm.locations.currentLocationId !==  null">
+                                <div ng-click="vm.saveAssociation(poem.id, 'false')"><i class="material-icons">add</i></div>
                         </div>
                         <div ng-click="vm.getArtifactToEdit(poem.id)"><i class="material-icons">mode_edit</i></div>
                         <div ng-click="vm.deleteArtifact(poem)"><i class="material-icons">delete</i></div>

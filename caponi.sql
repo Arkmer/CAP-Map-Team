@@ -88,5 +88,3 @@ INSERT INTO information (description) VALUES ('Buildings located on park propert
 
 --ADD USERS
 INSERT INTO users (first_name, last_name, username, password, email) VALUES ('Steven', 'Read', 'psychosuzi', '$2a$10$T21OgP/JnpLSFYuakLcPk.feCc9xy6.YGkFlkgt23tRxT59VeWQuO', 'steven@caponiartpark.org');
-
-

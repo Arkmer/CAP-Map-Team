@@ -12,6 +12,8 @@ capApp.controller('IndividualLocationController', ['UserService', 'AdminService'
     let locationid = $routeParams.locationid;
     self.getIndividualLocation(locationid);
     console.log('locationid', locationid);
+    console.log(self.locations);
+    
 
     self.trustSrc = function(src) {
         return $sce.trustAsResourceUrl(src);

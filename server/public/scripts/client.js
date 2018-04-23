@@ -64,6 +64,15 @@ capApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
         }
       }
     })
+    .when('/admin/addlocation/:locationid', {
+      templaceUrl: '/views/admin/add_location.html',
+      controller: 'AddLocationController as vm',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
     .when('/admin/poems', {
       templateUrl: '/views/admin/artifacts/all_poems.html',
       controller: 'PoemsController as vm',

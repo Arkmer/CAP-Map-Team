@@ -1,6 +1,6 @@
-  <h3 class="lead indent">REGISTER AN ADMIN</h3><md-divider></md-divider>
-  <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
-  <form class="indent" ng-submit="vm.registerUser()">
+<h3 class="lead indent">REGISTER AN ADMIN</h3><md-divider></md-divider>
+<h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
+<form class="indent" ng-submit="vm.registerUser()">
     <md-input-container>
         <label for="username">Username</label>
         <input type="text" ng-model="vm.user.username" />
@@ -21,6 +21,5 @@
         <label for="password">Email</label>
         <input  type="text" ng-model="vm.user.email" />
     </md-input-container>
-
     <input type="submit" name="submit" value="Register" />
-  </form>
+</form>

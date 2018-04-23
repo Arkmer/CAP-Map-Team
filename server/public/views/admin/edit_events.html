@@ -1,11 +1,11 @@
 
 <div ng-include="'/views/admin/admin_menu.html'"></div>
 <div class="pageDown"></div>
-
-<h3 class="indent">EVENTS</h3>
+<br>
+<h3 class="indent">ADD A NEW EVENT</h3>
 <md-divider></md-divider>
 <br>
-<div class="guestBody">
+
     <div class="eventInput">
         <form>
             <md-input-container>
@@ -52,13 +52,14 @@
            <md-button class="md-raised" ng-click="vm.addEvent(vm.locations.newEvent)" value="Submit">Submit</md-button>
         </form>
     </div>
-
-
+<br>
+<h3 class="indent">ALL EVENTS</h3>
+<md-divider></md-divider><br><br>
 <i class="material-icons indent extra-indent searchIcon">search</i>
 <input class="indent" type="text" ng-model="vm.searchLocations">
-
+<br>
     <div>
-        <table>
+        <table id="eventsTable">
             <thread>
                 <th class="tableFit">Photo</th>
                 <th>Event Title</th>
@@ -148,6 +149,5 @@
                     </td>
             </tbody>
         </table>
-    </div>
 </div>
 

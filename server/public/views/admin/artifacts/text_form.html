@@ -1,11 +1,23 @@
 
 <div ng-include="'/views/admin/admin_menu.html'"></div>
 <div class="pageDown"></div>
-<a onClick="javascript:history.go(-1);"><i class="material-icons">clear</i></a>
-<input placeholder="Title" ng-model="vm.newText.title"/>
-<input placeholder="Year" ng-model="vm.newText.year"/>
+<div class="textFormPage">
+<a class="rightFloat" onClick="javascript:history.go(-1);"><i class="material-icons">clear</i></a>
+<br>
+<br>
+<md-input-container>
+    <label>Title</label>
+    <input type="text" ng-model="vm.newText.title" required>
+</md-input-container>
+<md-input-container>
+    <label>Year</label>
+    <input type="text" ng-model="vm.newText.year">
+</md-input-container><br>
+<!-- <input placeholder="Title" ng-model="vm.newText.title"/>
+<input placeholder="Year" ng-model="vm.newText.year"/> -->
 <!-- <input ng-model="vm.newText.description"/> -->
 <text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]" ng-model="vm.newText.description"></text-angular>
-
-<button ng-if="!vm.newText.editing" ng-click="vm.saveText()">Add</button>
-<button ng-if="vm.newText.editing" ng-click="vm.editArtifact(vm.newText)">Save Edit</button>
+<br>
+<div ng-if="!vm.newText.editing" ng-click="vm.saveText()"><i class="material-icons">add_circle</i></div>
+<div ng-if="vm.newText.editing" ng-click="vm.editArtifact(vm.newText)"><i class="material-icons">save</i></div>
+</div>
