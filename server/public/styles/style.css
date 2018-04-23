@@ -796,3 +796,7 @@ md-content{
   right: -50px;
   position: absolute;
 }
+
+#submitLocation{
+  transform: translateY(11px);
+}

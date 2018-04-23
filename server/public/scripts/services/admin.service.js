@@ -168,6 +168,9 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }).then((response) =>{
                 swal("Location successfully uploaded!", "", "success");
                 location.name = '';
+                self.currentLocationId = response.data[0].id;
+                console.log(response.data[0].id);
+                $location.url(`admin/location/${self.currentLocationId}`);
             })
             .catch((error) => {
                 console.log('/map/post', error);
