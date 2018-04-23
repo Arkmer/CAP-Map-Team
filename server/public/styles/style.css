@@ -166,10 +166,6 @@ img{
   margin-top: 20px;
 }
 
-.menuIcon{
-  float:right;
-}
-
 .guestMenu {
   /* background-color: #A7C463; */
   /* background-color: #EFE32F; */
@@ -306,24 +302,6 @@ img{
   line-height: 1.6rem;
 }
 
-.menuIcon{
-  float:right;
-  color: grey;
-  margin-top: -10px;
-  margin-right: 35px;
-}
-
-/* .banner {
-  text-align:left;
-  font-size: 25px;
-  position: relative;
-  text-align: center;
-  top: 27px; 
-  left: 30px;
-  font-weight: bold;
-  letter-spacing: 1px;
-} */
-
 .menu {
   font-size: 30px;
   font-weight: 800;
@@ -366,25 +344,14 @@ img{
     margin-top: -10px;
     margin-right: 35px;
   }
-  .menuIcon{
+  /* .menuIcon{
     float:right;
     color: grey;
     z-index: 2;
     margin-top: -10px;
     margin-right: 35px;
-  }
-  
-  /* .banner {
-    text-align:left;
-    font-size: 25px;
-    position: fixed;
-    text-align: center;
-    top: 25px; 
-    left: 30px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    /* background-color: orange; */
   } */
+  
 
   .headerBackground{
     width:100%;
@@ -498,7 +465,7 @@ img{
 }
 
 .banner {
-  text-align:left;
+  /* text-align:left; */
   font-size: 20px;
   position: fixed;
   text-align: center;
@@ -510,6 +477,7 @@ img{
   width: 100%;
   margin: 0;
 }
+
 
 .menuIcon{
   float:right;
@@ -807,4 +775,24 @@ md-content{
 
 .eventCard {
   width: 30%;
+}
+
+.guestArtifact {
+  font-size: 20px;
+  position: fixed;
+  text-align: left;
+  top: 27px;
+  left: 24px;
+  font-weight: bold;
+  height: 10px;
+  width: 80%;
+  margin: 0;
+}
+
+.artifactIcon{
+  float:right;
+  color:grey;
+  top: -8px;
+  right: -50px;
+  position: absolute;
 }
