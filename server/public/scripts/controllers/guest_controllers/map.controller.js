@@ -45,6 +45,12 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
                         icon: found,
                         animation: google.maps.Animation.DROP
                     })
+                    google.maps.event.addListener(newMarker, 'click', (function (newMarker, i) {
+                        return function () {
+                            self.infowindow.setContent(self.generateLink(self.locations.allLocations[i]));
+                            self.infowindow.open(self.map, newMarker);
+                        }
+                    })(newMarker, i));
                 }
             }
         }
@@ -64,7 +70,7 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
                         map: self.map,
                         icon: self.locations.allLocations[i].reveal_type
                     })
-                    google.maps.event.addListener(marker, 'click', (function (newMarker, i) {
+                    google.maps.event.addListener(newMarker, 'click', (function (newMarker, i) {
                         return function () {
                             self.infowindow.setContent(self.generateLink(self.locations.allLocations[i]));
                             self.infowindow.open(self.map, newMarker);
@@ -99,21 +105,20 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
                 })
                 markerStore.marker = personMarker;
             }
+            $scope.$apply();
             self.triggerMarkerShow(crd);
             self.triggerMarkerHide(crd);
-            $scope.$apply();
+           
         }
         error = (err) => {
             console.log('error in finding location: ', err);
-            swal("We were\'t able to get your location. Make sure you\'re on an HTTPS webpage!", "", "error");
+            alert("We were\'t able to get your location. Make sure you\'re on an HTTPS webpage!", "", "error");
         }
         options = {
             enableHighAccuracy: true,
-            timeout: 7500,
-            frequency: 1
         }
 
-        navigator.geolocation.watchPosition(success, error);
+        navigator.geolocation.watchPosition(success, error, options);
     }
 
     self.findLocation();
@@ -138,31 +143,24 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
             })
             ////--------------sets bounds for the overlay--------------
 
-            // this is the original map
-            // let bounds = new google.maps.LatLngBounds(
-            //     new google.maps.LatLng(44.8047000, -93.1550000),
-            //     new google.maps.LatLng(44.8090000, -93.1488500));
-
-            // let srcImage = '../../styles/northMap.png';
-
-            // this is the trail only map using google maps as the background
             let bounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(44.8000250, -93.157400000),
                 new google.maps.LatLng(44.8080250, -93.1460700));
 
             //--------------source image for the overlay--------------
 
-            let srcImage = '../../styles/CaponiArtParkOverlay_Transparent.png';
+            let srcImage = '../../styles/CaponiArtParkOverlay2_Transparent_Resized.png';
 
             //--------------loops through all the locations and displays locations that should be displayed--------------
             for (let i = 0; i < self.locations.allLocations.length; i++) {
                 if (self.locations.allLocations[i].reveal_type == 'static') {
                     self.locations.allLocations[i].reveal_type = static;
-                } else if (self.locations.allLocations[i].reveal_type == 'hidden') {
+                } else if (self.locations.allLocations[i].reveal_type == 'proximity') {
                     self.locations.allLocations[i].reveal_type = hiddenMarker;
                 } else {
                     self.locations.allLocations[i].reveal_type = facility;
                 }
+                
                 //--------------creates markers for each location--------------
                 let marker = new google.maps.Marker({
                     position: new google.maps.LatLng(self.locations.allLocations[i].lat, self.locations.allLocations[i].long),
@@ -181,6 +179,7 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
             //--------------overlay function for the overlay--------------
             overlay = new CaponiOverlay(bounds, srcImage, self.map);
         }, 100)
+
     }
     //--------------everything from here- ln 258 is for the map overlay --------------
 

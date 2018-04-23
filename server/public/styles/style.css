@@ -801,3 +801,13 @@ md-content{
   margin-top: 14px;
   margin-left: 10px;
 }
+
+.limitWidthDescription{
+  margin-left:350px;
+  margin-right: 350px;
+}
+
+#limitWidth{
+  margin-left: 80px;
+  margin-right: 775px;
+}

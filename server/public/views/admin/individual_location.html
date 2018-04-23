@@ -1,4 +1,5 @@
 <div ng-include="'/views/admin/admin_menu.html'"></div>
+
 <div class="pageDown"></div>
         
         <div layout="row" layout-align="center center">
@@ -25,7 +26,7 @@
         <br>
         <hr>
         <br>
-        <div layout="column" layout-align="center center">
+        <div layout="column" layout-align="center center" class="limitWidthDescription">
                 <div layout="row" layout-align="center center">
                         <strong>SCULPTURE INFORMATION</strong>
                         <a ng-if="!vm.indLocation.indSculpture.title" class="add" href="/#!/admin/sculptures">

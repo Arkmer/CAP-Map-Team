@@ -311,6 +311,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
     //-----Start Sculptures------
     self.saveSculpture = function(){
         let newSculpture = self.newSculpture;
+        console.log(newSculpture);
         $http({
             method: 'POST',
             url: `/artifacts/save`,
@@ -327,6 +328,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             swal("sculpture added!", "", "success")
             let artifact_id = result.data[0].id //return id from database!!!!
             self.saveAssociation(artifact_id, false);
+            self.newSculpture = {};
         }).catch((error)=>{
             console.log('/artifacts/save', error);
         })

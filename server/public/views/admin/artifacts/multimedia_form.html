@@ -34,6 +34,7 @@
 <div ng-include="'/views/admin/admin_menu.html'"></div>
 <div class="pageDown"></div>
 <div class="textFormPage">
+
 <a class="rightFloat" onClick="javascript:history.go(-1);"><i class="material-icons">clear</i></a>
 <br>
 <br>
@@ -56,9 +57,15 @@
     <img src="{{vm.newMultimedia.media_url}}">
 </div>
 
-<p class="greyText">Caption:</p>
-<text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]" ng-model="vm.newMultimedia.description"></text-angular>
-<br>
-<div ng-if="!vm.newMultimedia.editing" ng-click="vm.saveMultimedia()"><i class="material-icons">add_circle</i></div>
-<div ng-if="vm.newMultimedia.editing" ng-click="vm.editArtifact(vm.newMultimedia)"><i class="material-icons">save</i></div>
+
+    <p class="greyText">Caption:</p>
+    <text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]"
+        ng-model="vm.newMultimedia.description"></text-angular>
+    <br>
+    <div ng-if="!vm.newMultimedia.editing" ng-click="vm.saveMultimedia()">
+        <i class="material-icons">add_circle</i>
+    </div>
+    <div ng-if="vm.newMultimedia.editing" ng-click="vm.editArtifact(vm.newMultimedia)">
+        <i class="material-icons">save</i>
+    </div>
 </div>

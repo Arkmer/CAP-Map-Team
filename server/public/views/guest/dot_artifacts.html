@@ -1,48 +1,48 @@
 <div class="headerBackground"><div class="banner">
-    {{vm.indLocation.sculptureTitle}}
-<a onClick="javascript:history.go(-1);"><i class="material-icons menuIcon" style="font-size: 50px">clear</i></a></div><hr class="headerLine"></div>
-
-<div class="guestBody indLocationGuestBody">
-        
-        <br>
-
+        {{vm.indLocation.sculptureTitle}}
+    <a onClick="javascript:history.go(-1);"><i class="material-icons menuIcon" style="font-size: 50px">clear</i></a></div><hr class="headerLine"></div>
+    
+    <div class="guestBody indLocationGuestBody">
+            
+            <br>
+    
+            <div ng-repeat="artifact in vm.information.allArtifactsForLocation">
+                <div ng-if="artifact.main_photo"><img class="mainPhotoGuest" ng-src="{{artifact.media_url}}"/></div>
+            </div>
+    
+            <div class="sculptureGuest" ng-repeat="artifact in vm.information.allArtifactsForLocation">
+                    <div class="sculptureInfo" ng-if="artifact.type == 'sculpture'">{{artifact.author}}</div>
+                    <div class="sculptureInfo" ng-if="artifact.type == 'sculpture'">{{artifact.year}}</div>
+                    <div class="sculptureInfo" ng-bind-html="artifact.description"  ng-if="artifact.type == 'sculpture'">{{artifact.description}}</div>
+            </div>
+        <div ng-if="vm.indLocation.showMore == false"><hr>
+        <div class="moreInfo" ng-click="vm.indLocation.showMore = true"><i class="material-icons">keyboard_arrow_down</i></div>
+        <hr></div>
+    
+        <div ng-if="vm.indLocation.showMore == true">
+        <hr><div class="moreInfo" ng-click="vm.indLocation.showMore = false"><i class="material-icons">keyboard_arrow_up</i></div><hr>
+    
         <div ng-repeat="artifact in vm.information.allArtifactsForLocation">
-            <div ng-if="artifact.main_photo"><img class="mainPhotoGuest" ng-src="{{artifact.media_url}}"/></div>
+            <div ng-if="artifact.type == 'photo' && artifact.main_photo == false">
+                <img id="picture" ng-hide="description" ng-click="description=true" src="{{artifact.media_url}}">
+                <img id="description_picture" ng-src="{{artifact.media_url}}" ng-show="description" ng-click="description=false" height="200px">
+                <div id="image_description" ng-show="description" ng-bind-html="artifact.description">{{artifact.description}}</div>
+                <hr>
+            </div>
         </div>
-
-        <div class="sculptureGuest" ng-repeat="artifact in vm.information.allArtifactsForLocation">
-                <div class="sculptureInfo" ng-if="artifact.type == 'sculpture'">{{artifact.author}}</div>
-                <div class="sculptureInfo" ng-if="artifact.type == 'sculpture'">{{artifact.year}}</div>
-                <div class="sculptureInfo" ng-bind-html="artifact.description"  ng-if="artifact.type == 'sculpture'">{{artifact.description}}</div>
+    
+        <div ng-repeat="artifact in vm.information.allArtifactsForLocation">
+                <strong><div class="artifactTitle" ng-if="artifact.type != 'sculpture' && artifact.type != 'photo' && artifact.type != 'video'">{{artifact.title}}</div></strong>
+                <div ng-if="artifact.type != 'sculpture' && artifact.type != 'photo' && artifact.type != 'video'">{{artifact.year}}</div>
+                <div ng-bind-html="artifact.description" ng-if="artifact.type != 'sculpture'&& artifact.type != 'photo' && artifact.type != 'video'">{{artifact.description}}</div>
+                <div ng-if="artifact.type != 'sculpture' && artifact.type != 'photo' && artifact.type != 'video'"><hr></div>
+            </div>
+        <div ng-repeat="artifact in vm.information.allArtifactsForLocation">
+            <div ng-if="artifact.type == 'video'">
+                <iframe width="100%" height="200" ng-src="{{vm.trustSrc(artifact.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>            
+            </div>
         </div>
-    <div ng-if="vm.indLocation.showMore == false"><hr>
-    <div class="moreInfo" ng-click="vm.indLocation.showMore = true"><i class="material-icons">keyboard_arrow_down</i></div>
-    <hr></div>
-
-    <div ng-if="vm.indLocation.showMore == true">
-    <hr><div class="moreInfo" ng-click="vm.indLocation.showMore = false"><i class="material-icons">keyboard_arrow_up</i></div><hr>
-
-    <div ng-repeat="artifact in vm.information.allArtifactsForLocation">
-        <div ng-if="artifact.type == 'photo' && artifact.main_photo == false">
-            <img id="picture" ng-hide="description" ng-click="description=true" src="{{artifact.media_url}}">
-            <img id="description_picture" ng-src="{{artifact.media_url}}" ng-show="description" ng-click="description=false" height="200px">
-            <div id="image_description" ng-show="description" ng-bind-html="artifact.description">{{artifact.description}}</div>
-            <hr>
         </div>
     </div>
-
-    <div ng-repeat="artifact in vm.information.allArtifactsForLocation">
-            <strong><div class="artifactTitle" ng-if="artifact.type != 'sculpture' && artifact.type != 'photo' && artifact.type != 'video'">{{artifact.title}}</div></strong>
-            <div ng-if="artifact.type != 'sculpture' && artifact.type != 'photo' && artifact.type != 'video'">{{artifact.year}}</div>
-            <div ng-bind-html="artifact.description" ng-if="artifact.type != 'sculpture'&& artifact.type != 'photo' && artifact.type != 'video'">{{artifact.description}}</div>
-            <div ng-if="artifact.type != 'sculpture' && artifact.type != 'photo' && artifact.type != 'video'"><hr></div>
-        </div>
-    <div ng-repeat="artifact in vm.information.allArtifactsForLocation">
-        <div ng-if="artifact.type == 'video'">
-            <iframe width="100%" height="200" ng-src="{{vm.trustSrc(artifact.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>            
-        </div>
-    </div>
-    </div>
-</div>
 
 <!-- <iframe width="560" height="315" ng-src="{{vm.trustSrc(multimedia.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>             -->
