@@ -166,7 +166,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
                 reveal_type: location.reveal_type
             }
         }).then((response) =>{
-                swal("Location successfully uploaded!", "", "success")
+                swal("Location successfully uploaded!", "", "success");
                 location.name = '';
             })
             .catch((error) => {
@@ -579,7 +579,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.newText.editing = true;
             self.newMultimedia.id = result.data[0].id;
             self.newMultimedia.type = result.data[0].type;
-            // self.newMultimedia.media_url = result.data[0].media_url;
+            self.newMultimedia.media_url = result.data[0].media_url;
             self.newMultimedia.description = result.data[0].description;
             self.newMultimedia.extended_description = result.data[0].extended_description;
             self.newMultimedia.editing = true;

@@ -42,11 +42,11 @@
 <div class="greyText" id="or">Or</div>
 </div>
 <br>
-<md-input-container>
+<md-input-container ng-if="vm.newMultimedia.type == 'video'|| vm.newMultimedia.type == ''">
     <label>https://www.youtube.com/embed/</label>
-    <input type="text" style="width:auto;" size="50" ng-model="vm.newMultimedia.media_url">
+    <input type="text" style="width:auto;" size="50" ng-model="vm.newMultimedia.media_url.substring(30)"> 
 </md-input-container>
-<md-button class="md-raised" ng-click="vm.uploadNewVideo()">Preview Video</md-button><br>
+<md-button class="md-raised" ng-if="!vm.newMultimedia.editing" ng-click="vm.uploadNewVideo()">Preview Video</md-button><br>
 <div ng-if="vm.newMultimedia.uploaded && vm.newMultimedia.type=='video'">
     <p class="greyText">Preview</p>
     <iframe width="420" height="315" ng-src="{{vm.trustSrc(vm.newMultimedia.media_url)}}" frameborder="0" allowfullscreen></iframe>
