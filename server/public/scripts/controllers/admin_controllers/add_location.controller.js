@@ -36,14 +36,6 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
                 tilt: 0
             })
     
-            // this is the original map
-            // let bounds = new google.maps.LatLngBounds(
-            //     new google.maps.LatLng(44.8047000, -93.1550000),
-            //     new google.maps.LatLng(44.8090000, -93.1488500));
-    
-            // let srcImage = '../../styles/northMap.png';
-    
-            // this is the trail only map using google maps as the background
             let bounds = new google.maps.LatLngBounds(
                 new google.maps.LatLng(44.8000250, -93.157400000),
                 new google.maps.LatLng(44.8080250, -93.1460700));
