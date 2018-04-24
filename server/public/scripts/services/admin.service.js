@@ -704,4 +704,10 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         return path === $location.path();
     }
 
+    self.clearLocationInfo = function(){
+        console.log('in clearLocationInfo');
+        self.locations.currentLocationId = null;
+    }
+
+
 }]);
