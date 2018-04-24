@@ -808,4 +808,6 @@ md-content{
   font-size: 25px;
   font-weight: bold;
   margin-top: 10px;
+#submitLocation{
+  transform: translateY(11px);
 }

@@ -40,12 +40,12 @@
 <br>
 <div layout="row">
 <md-button class="md-raised" ng-click="vm.uploadnewPhoto()">Choose Photo</md-button>
-<div class="greyText" id="or">Or</div>
+<div ng-if="vm.newMultimedia.type == 'video'|| vm.newMultimedia.type == '' && !vm.newMultimedia.editing" class="greyText" id="or">Or</div>
 </div>
 <br>
-<md-input-container ng-if="vm.newMultimedia.type == 'video'|| vm.newMultimedia.type == ''">
+<md-input-container ng-if="vm.newMultimedia.type == 'video'|| vm.newMultimedia.type == '' && !vm.newMultimedia.editing">
     <label>https://www.youtube.com/embed/</label>
-    <input type="text" style="width:auto;" size="50" ng-model="vm.newMultimedia.media_url.substring(30)"> 
+    <input type="text" style="width:auto;" size="50" ng-model="vm.newMultimedia.media_url"> 
 </md-input-container>
 <md-button class="md-raised" ng-if="!vm.newMultimedia.editing" ng-click="vm.uploadNewVideo()">Preview Video</md-button><br>
 <div ng-if="vm.newMultimedia.uploaded && vm.newMultimedia.type=='video'">

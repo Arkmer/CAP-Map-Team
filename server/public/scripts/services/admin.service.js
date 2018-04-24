@@ -169,6 +169,10 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }).then((response) =>{
                 swal("Location successfully uploaded!", "", "success");
                 location.name = '';
+                self.currentLocationId = response.data[0].id;
+                self.indLocation.indTitle = response.data[0].location_name; //FROM LIZ!!!!!
+                console.log(response.data[0].id);
+                $location.url(`admin/location/${self.currentLocationId}`);
             })
             .catch((error) => {
                 console.log('/map/post', error);
@@ -631,19 +635,19 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         })
     }
 
-    self.addGuest = function(guest){
-        $http({
-            method: 'POST',
-            url: '/api/user/guest',
-            data: guest,
-        }).then((result)=>{
-            swal("Guest and email added.", "", "success");
-            self.getAllGuests();
-            self.emptyGuestInputs();
-        }).catch((error)=>{
-            console.log('/api/user/guest');
-        })
-    }
+    // self.addGuest = function(guest){
+    //     $http({
+    //         method: 'POST',
+    //         url: '/api/user/guest',
+    //         data: guest,
+    //     }).then((result)=>{
+    //         swal("Guest and email added.", "", "success");
+    //         self.getAllGuests();
+    //         self.emptyGuestInputs();
+    //     }).catch((error)=>{
+    //         console.log('/api/user/guest');
+    //     })
+    // }
 
     self.emptyGuestInputs = function(){
         self.locations.newGuest.name = '';
