@@ -145,7 +145,7 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
                     lat: 44.8049741120178,
                     lng: -93.1529663690302
                 },
-                zoom: 18,
+                zoom: 17,
                 mapTypeId: 'satellite',
                 streetViewControl: false,
                 rotateControleOptions: false,
