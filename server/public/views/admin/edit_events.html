@@ -163,7 +163,7 @@
                             <label>Title</label>
                             <input ng-model="event.title" ng-value="event.title">
                         </md-input-container>
-                <div ng-hide="event.editing">{{event.title}}</div>
+                <div ng-hide="event.editing" class="eventTitle"><strong>{{event.title}}</strong></div>
                         <md-input-container ng-show="event.editing">
                             <label>Date</label>
                             <input ng-model="event.date" ng-value="event.date">
@@ -190,17 +190,17 @@
                             <label>Category</label>
                             <input ng-model="event.category" ng-value="event.category">
                         </md-input-container>
-                <div ng-hide="event.editing"><strong>CATEGORY:</strong>{{event.category}}</div>
+                <div ng-hide="event.editing"><strong>CATEGORY: </strong>{{event.category}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Age Group</label>
                             <input ng-model="event.age_group" ng-value="event.age_group">
                         </md-input-container>
-                <div ng-hide="event.editing"><strong>AGE GROUP:</strong>{{event.age_group}}</div>
+                <div ng-hide="event.editing"><strong>AGE GROUP: </strong>{{event.age_group}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Price</label>
                             <input ng-model="event.price" ng-value="event.price">
                         </md-input-container>
-                <div ng-hide="event.editing"><strong>PRICE:</strong>{{event.price}}</div>
+                <div ng-hide="event.editing"><strong>PRICE: </strong>{{event.price}}</div>
             </span>
             
         </md-card-content>
