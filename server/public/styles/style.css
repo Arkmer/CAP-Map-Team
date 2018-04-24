@@ -814,6 +814,10 @@ md-content{
   transform: translateY(11px);
 }
 
+.minusMargin {
+  margin-top: -15px;
+}
+
 .centerArtifact{
   margin-left:170px;
   margin-right: 170px;
