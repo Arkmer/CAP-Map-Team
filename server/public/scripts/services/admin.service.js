@@ -20,7 +20,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         allAdmins: [],
         allRevealTypes: [{type:'static'}, {type:'proximity'}, {type:'bathroom'}],
         showMore: false,
-        locationToEdit: {}
+        locationToEdit: {},
+        currentEvent: {},
     }
     
     self.indLocation = {
@@ -63,6 +64,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }).then(function(result){
             self.newMultimedia.media_url = result.filesUploaded[0].url;
             self.locations.newEvent.photo_url = result.filesUploaded[0].url;
+            self.locations.currentEvent.photo_url = result.filesUploaded[0].url;
             self.newMultimedia.uploaded = true;
             swal("Successful upload!", "", "success")
         }).catch((error)=>{
@@ -87,7 +89,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             }
         }).then((result)=>{
             self.newMultimedia = {}
-            history.back();
+            $location.url('/admin/multimedia');
+            // history.back();
         }).catch((error)=>{
             console.log('error saving new multimedia', error);
         })
@@ -153,6 +156,12 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         self.locations.newEvent.age_group = '';
         self.locations.newEvent.price = '';
     }
+
+    self.viewEditEvents = function(event){
+        event.editing=true;
+        self.locations.currentEvent = event;
+    }
+    
     //-----END EVENTS AJAX----
     //-----Start Locations----
     self.addLocation = function(location){
@@ -233,8 +242,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.indLocation.indWritings = [];
             self.indLocation.indAnecdotes = [];
             self.indLocation.indVideos = [];
-            //self.indLocation.indTitle= '';
-            self.determineType();
+            self.indLocation.indTitle= '';
+            self.determineType(id);
         }).catch((error)=>{
             console.log(`map/artifact/${id}`, error);
         })
@@ -434,10 +443,24 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         self.newMultimedia.editing = false;
     }
     
-    self.determineType = function(){
+    self.determineType = function(id){
         console.log('in determineType', self.locations.allArtifactsForLocation[0]);
-        self.indLocation.indTitle = self.locations.allArtifactsForLocation[0].location_name;
-        self.indLocation.reveal_type = self.locations.allArtifactsForLocation[0].reveal_type;
+        if (self.locations.allArtifactsForLocation[0] == undefined){
+            console.log('in if statement');
+            $http({
+                method: 'GET',
+                url: `/map/getLocationName/${id}`
+            }).then((result)=>{
+                console.log('location_name:',result.data);
+                self.indLocation.indTitle = result.data[0].location_name;
+            }).catch((error)=>{
+                console.log('/map/getLocationName', error);
+            })
+        }
+        else{
+            self.indLocation.indTitle = self.locations.allArtifactsForLocation[0].location_name;
+            self.indLocation.reveal_type = self.locations.allArtifactsForLocation[0].reveal_type;
+        }
         for(let artifact of self.locations.allArtifactsForLocation){
             if(artifact.type == 'sculpture'){
                 self.indLocation.indSculpture = artifact;
@@ -680,5 +703,11 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
     self.isCurrentPage = function(path){
         return path === $location.path();
     }
+
+    self.clearLocationInfo = function(){
+        console.log('in clearLocationInfo');
+        self.locations.currentLocationId = null;
+    }
+
 
 }]);

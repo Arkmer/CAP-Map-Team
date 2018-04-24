@@ -7,4 +7,6 @@ capApp.controller('AdminMenuController', ['UserService', 'AdminService', functio
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
 }]);

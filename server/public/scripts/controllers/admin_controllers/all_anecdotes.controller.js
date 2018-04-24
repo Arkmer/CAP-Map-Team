@@ -20,4 +20,7 @@ capApp.controller('AnecdotesController', ['UserService', 'AdminService', functio
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

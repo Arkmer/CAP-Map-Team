@@ -29,4 +29,6 @@ capApp.controller('MultimediaController', ['UserService', 'AdminService', '$sce'
     self.isMainPhoto = AdminService.isMainPhoto;
     console.log(self.isMainPhoto);
 
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

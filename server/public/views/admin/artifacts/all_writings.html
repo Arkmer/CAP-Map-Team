@@ -45,14 +45,14 @@
     <div class="indent">
 
         <md-content class="md-padding" layout-xs="column" layout="row">
-            <div flex-xs flex layout="row" layout-wrap>
+            <div flex-xs flex layout="row" layout-wrap >
                 <md-card class="indCard" ng-repeat="writing in vm.locations.allWritings|filter:vm.searchWritings" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
                     md-theme-watch>
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline textTitle">{{writing.title}}</span>
                             <span class="md-subhead">{{writing.year}}</span>
-                            <span ng-bind-html="poem.description" style="overflow:scroll; height:150px;">{{writing.description}}</span>
+                            <span ng-bind-html="writing.description" style="overflow:scroll; height:150px;">{{writing.description}}</span>
                         </md-card-title-text>
 
                     </md-card-title>

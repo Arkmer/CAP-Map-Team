@@ -817,3 +817,37 @@ md-content{
 .minusMargin {
   margin-top: -15px;
 }
+
+.centerArtifact{
+  margin-left:170px;
+  margin-right: 170px;
+}
+
+.otherPhotos{
+  overflow-x: scroll;
+  overflow-y: hidden;    
+}
+
+.photo{
+  width: 200px;
+  height: 200px;
+}
+
+.eventTitle{
+  text-transform: uppercase;
+  float: center;
+}
+
+.smallEvents{
+  font-size: 13px;
+}
+
+.centerArtifactAnecdote{
+  margin-left: 340px;
+  margin-right: 340px;
+}
+
+.limitWidthDescriptionWritings{
+  margin-left:340px;
+  margin-right: 340px;
+}
