@@ -673,5 +673,4 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
     self.isCurrentPage = function(path){
         return path === $location.path();
     }
-
 }]);

@@ -36,12 +36,17 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
             url:'/api/user/guest',
             data: guest,
         }).then((result)=>{
+            self.clearGuest();
             swal("Welcome to the Caponi Art Park mailing list!", "", "success");
-            self.user.guest.name = '';
-            self.user.guest.email = '';
         }).catch((error)=>{
             console.log('/api/user/guest', error); 
         })
+    }
+
+    self.clearGuest = function(){
+        // self.user.guest.name = '';
+        // self.user.guest.email = '';
+        self.user.guest = {}
     }
 
     self.getInformation = function(){

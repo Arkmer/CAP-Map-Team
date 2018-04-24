@@ -15,6 +15,7 @@ capApp.controller('ManageAdminsController', ['UserService', 'AdminService', '$ht
             // console.log('success');
             self.getAllAdmins();
             swal("Administrator added.", "", "success");
+            self.clearRegister();
             $location.path('/admin/manageadmins');
           },
             function (response) {
@@ -25,6 +26,14 @@ capApp.controller('ManageAdminsController', ['UserService', 'AdminService', '$ht
       }
 
     self.getAllAdmins = AdminService.getAllAdmins;
+
+    self.clearRegister = function(){
+      self.user.username = ''
+      self.user.password = ''
+      self.user.first_name = ''
+      self.user.last_name = ''
+      self.user.email = ''
+    }
     
     self.getAllAdmins();
 
