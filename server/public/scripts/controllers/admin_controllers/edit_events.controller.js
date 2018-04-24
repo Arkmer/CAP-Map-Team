@@ -19,4 +19,7 @@ capApp.controller('EditEventsController', ['UserService', 'AdminService', functi
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

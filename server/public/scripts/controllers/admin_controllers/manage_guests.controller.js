@@ -13,4 +13,7 @@ capApp.controller('ManageGuestsController', ['UserService', 'AdminService', func
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

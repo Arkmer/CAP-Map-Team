@@ -33,4 +33,7 @@ capApp.controller('ManageAdminsController', ['UserService', 'AdminService', '$ht
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

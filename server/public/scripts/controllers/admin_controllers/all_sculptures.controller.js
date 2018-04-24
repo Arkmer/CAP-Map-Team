@@ -21,4 +21,7 @@ capApp.controller('SculpturesController', ['UserService', 'AdminService', functi
     self.isCurrentPage();
 
     self.locations = AdminService.locations;
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);
