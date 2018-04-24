@@ -813,3 +813,7 @@ md-content{
 #submitLocation{
   transform: translateY(11px);
 }
+
+.minusMargin {
+  margin-top: -15px;
+}
