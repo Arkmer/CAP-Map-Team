@@ -161,44 +161,44 @@
             <span class="md-subhead">
                         <md-input-container ng-show="event.editing">
                             <label>Title</label>
-                            <input ng-model="event.title" ng-value="event.title">
+                            <input size="50" ng-model="event.title" ng-value="event.title">
                         </md-input-container>
                 <div ng-hide="event.editing" class="eventTitle"><strong>{{event.title}}</strong></div>
                         <md-input-container ng-show="event.editing">
                             <label>Date</label>
-                            <input ng-model="event.date" ng-value="event.date">
+                            <input size="50" ng-model="event.date" ng-value="event.date">
                         </md-input-container>
                 <div ng-hide="event.editing">{{event.date | date: short}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Time</label>
-                            <input ng-model="event.time" ng-value="event.time">
+                            <input size="50" ng-model="event.time" ng-value="event.time">
                         </md-input-container>
                 <div ng-hide="event.editing"> {{event.time}}</div>
                 <md-divider></md-divider>
                         <md-input-container ng-show="event.editing">
                             <label>Description</label>
-                            <input ng-model="event.description" ng-value="event.description">
+                            <input size="50" ng-model="event.description" ng-value="event.description">
                         </md-input-container>
                 <div ng-hide="event.editing">{{event.description}}</div>
                 <md-divider></md-divider>
                         <md-input-container ng-show="event.editing">
                             <label>Notes (Admin Only)</label>
-                            <input ng-model="event.notes" ng-value="event.notes">
+                            <input size="50" ng-model="event.notes" ng-value="event.notes">
                         </md-input-container>
                 <div ng-hide="event.editing"><strong>NOTES:</strong> {{event.notes}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Category</label>
-                            <input ng-model="event.category" ng-value="event.category">
+                            <input size="50" ng-model="event.category" ng-value="event.category">
                         </md-input-container>
                 <div ng-hide="event.editing"><strong>CATEGORY: </strong>{{event.category}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Age Group</label>
-                            <input ng-model="event.age_group" ng-value="event.age_group">
+                            <input size="50" ng-model="event.age_group" ng-value="event.age_group">
                         </md-input-container>
                 <div ng-hide="event.editing"><strong>AGE GROUP: </strong>{{event.age_group}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Price</label>
-                            <input ng-model="event.price" ng-value="event.price">
+                            <input size="50" ng-model="event.price" ng-value="event.price">
                         </md-input-container>
                 <div ng-hide="event.editing"><strong>PRICE: </strong>{{event.price}}</div>
             </span>
