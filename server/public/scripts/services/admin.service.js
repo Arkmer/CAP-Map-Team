@@ -89,7 +89,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             }
         }).then((result)=>{
             self.newMultimedia = {}
-            $location.url('/admin/multimedia')
+            $location.url('/admin/multimedia');
             // history.back();
         }).catch((error)=>{
             console.log('error saving new multimedia', error);
@@ -242,8 +242,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.indLocation.indWritings = [];
             self.indLocation.indAnecdotes = [];
             self.indLocation.indVideos = [];
-            //self.indLocation.indTitle= '';
-            self.determineType();
+            self.indLocation.indTitle= '';
+            self.determineType(id);
         }).catch((error)=>{
             console.log(`map/artifact/${id}`, error);
         })
@@ -443,10 +443,24 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         self.newMultimedia.editing = false;
     }
     
-    self.determineType = function(){
+    self.determineType = function(id){
         console.log('in determineType', self.locations.allArtifactsForLocation[0]);
-        self.indLocation.indTitle = self.locations.allArtifactsForLocation[0].location_name;
-        self.indLocation.reveal_type = self.locations.allArtifactsForLocation[0].reveal_type;
+        if (self.locations.allArtifactsForLocation[0] == undefined){
+            console.log('in if statement');
+            $http({
+                method: 'GET',
+                url: `/map/getLocationName/${id}`
+            }).then((result)=>{
+                console.log('location_name:',result.data);
+                self.indLocation.indTitle = result.data[0].location_name;
+            }).catch((error)=>{
+                console.log('/map/getLocationName', error);
+            })
+        }
+        else{
+            self.indLocation.indTitle = self.locations.allArtifactsForLocation[0].location_name;
+            self.indLocation.reveal_type = self.locations.allArtifactsForLocation[0].reveal_type;
+        }
         for(let artifact of self.locations.allArtifactsForLocation){
             if(artifact.type == 'sculpture'){
                 self.indLocation.indSculpture = artifact;

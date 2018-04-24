@@ -107,4 +107,15 @@ router.get('/:id', (req, res) => {
     }
 })
 
+router.get('/getLocationName/:id', (req, res) => {
+        let id = req.params.id;
+        pool.query('SELECT * from map WHERE id = $1', [id])
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        })
+})
+
 module.exports = router;
