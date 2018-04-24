@@ -89,7 +89,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             }
         }).then((result)=>{
             self.newMultimedia = {}
-            history.back();
+            $location.url('/admin/multimedia')
+            // history.back();
         }).catch((error)=>{
             console.log('error saving new multimedia', error);
         })
