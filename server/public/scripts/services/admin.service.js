@@ -20,7 +20,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         allAdmins: [],
         allRevealTypes: [{type:'static'}, {type:'proximity'}, {type:'bathroom'}],
         showMore: false,
-        locationToEdit: {}
+        locationToEdit: {},
+        currentEvent: {},
     }
     
     self.indLocation = {
@@ -63,6 +64,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }).then(function(result){
             self.newMultimedia.media_url = result.filesUploaded[0].url;
             self.locations.newEvent.photo_url = result.filesUploaded[0].url;
+            self.locations.currentEvent.photo_url = result.filesUploaded[0].url;
             self.newMultimedia.uploaded = true;
             swal("Successful upload!", "", "success")
         }).catch((error)=>{
@@ -153,6 +155,12 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         self.locations.newEvent.age_group = '';
         self.locations.newEvent.price = '';
     }
+
+    self.viewEditEvents = function(event){
+        event.editing=true;
+        self.locations.currentEvent = event;
+    }
+    
     //-----END EVENTS AJAX----
     //-----Start Locations----
     self.addLocation = function(location){
