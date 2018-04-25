@@ -429,6 +429,12 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
 
     self.clearArtifact = function(){
         // self.newText.type = '';
+        self.newSculpture.title = '';
+        self.newSculpture.year = '';
+        self.newSculpture.material = '';
+        self.newSculpture.artist_name = '';
+        self.newSculpture.description = '';
+        self.newSculpture.extended_description = '';
         self.newText.year = '';
         self.newText.material = '';
         self.newText.artist_name = '';
