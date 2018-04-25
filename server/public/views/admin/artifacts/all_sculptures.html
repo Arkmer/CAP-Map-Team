@@ -18,7 +18,7 @@
     </md-input-container>
     <md-input-container>
         <label>Materials</label>
-        <input type="text" ng-model="vm.newSculpture.material">
+        <input type="text"  ng-model="vm.newSculpture.material">
     </md-input-container>
     <md-input-container>
         <label>Artist Name</label>
@@ -30,7 +30,7 @@
     <!-- <input ng-model="vm.newText.description"/> -->
     <p class="greyText">Description:</p>
     <text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]"
-        ng-model="vm.newSculpture.description"></text-angular>
+    ng-model="vm.newSculpture.description"></text-angular>
     <br>
     <div ng-if="vm.locations.showMore == false">
         <div class="moreSculptureDetails" ng-click="vm.locations.showMore = true">ADD EXTENDED DESCRIPTION</div>
@@ -40,7 +40,7 @@
         <div class="moreSculptureDetails" ng-click="vm.locations.showMore = false">LESS</div>
         <p class="greyText">Extended Description:</p>
         <text-angular ta-toolbar="[['bold','italics','underline','strikeThrough','undo','redo','justifyLeft','justifyCenter','justifyRight','justifyFull','indent','outdent']]"
-            ng-model="m.newSculpture.extended_description"></text-angular>
+            ng-model="m.newSculpture.extended_description" ></text-angular>
     </div>
 
     <br>

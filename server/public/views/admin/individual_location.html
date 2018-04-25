@@ -31,9 +31,9 @@
         <div layout="column" layout-align="center center" class="limitWidthDescription">
                 <div layout="row" layout-align="center center">
                         <strong>SCULPTURE INFORMATION</strong>
-                        <a ng-if="!vm.indLocation.indSculpture.title" class="add" href="/#!/admin/sculptures">
+                        <div ng-click="vm.changeEdit(vm.indLocation.indSculpture.id)"><a ng-if="!vm.indLocation.indSculpture.title" class="add" href="/#!/admin/sculptures">
                                 <i class="material-icons">add_circle</i>
-                        </a>
+                        </a></div>
                         <div ng-if="vm.indLocation.indSculpture.title" id="editSculpture" ng-click="vm.getArtifactToEdit(vm.indLocation.indSculpture.id)"><i class="material-icons">mode_edit</i></div>
                 </div><br>
         <div ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.title}}</div><br>

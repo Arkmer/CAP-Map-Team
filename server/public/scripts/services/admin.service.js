@@ -343,10 +343,21 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             swal("sculpture added!", "", "success")
             let artifact_id = result.data[0].id //return id from database!!!!
             self.saveAssociation(artifact_id, false);
-            self.newSculpture = {};
+            // self.newSculpture = {};
+            self.newSculpture.title = '';
+            self.newSculpture.year = '';
+            self.newSculpture.material = '';
+            self.newSculpture.artist_name = '';
+            self.newSculpture.description = '';
+            self.newSculpture.extended_description = '';
+            // self.clearArtifact();
         }).catch((error)=>{
             console.log('/artifacts/save', error);
         })
+    }
+
+    self.changeEdit = function(id){
+        self.newSculpture.editing = false;
     }
 
     self.getAllSculptures = function(){
@@ -423,6 +434,12 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }).then((result)=>{
             self.getDecider(artifact);
             self.clearArtifact();
+            self.newSculpture.title = '';
+            self.newSculpture.year = '';
+            self.newSculpture.material = '';
+            self.newSculpture.artist_name = '';
+            self.newSculpture.description = '';
+            self.newSculpture.extended_description = '';
             self.locations.currentLocationId = null;
             history.back();
         }).catch((error)=>{
@@ -432,12 +449,6 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
 
     self.clearArtifact = function(){
         // self.newText.type = '';
-        self.newSculpture.title = '';
-        self.newSculpture.year = '';
-        self.newSculpture.material = '';
-        self.newSculpture.artist_name = '';
-        self.newSculpture.description = '';
-        self.newSculpture.extended_description = '';
         self.newText.year = '';
         self.newText.material = '';
         self.newText.artist_name = '';
