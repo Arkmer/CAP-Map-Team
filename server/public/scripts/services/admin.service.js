@@ -18,7 +18,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         guestList: [],
         newGuest:{},
         allAdmins: [],
-        allRevealTypes: [{type:'static'}, {type:'proximity'}, {type:'bathroom'}],
+        allRevealTypes: [{type:'static'}, {type:'proximity'}, {type:'facilities'}],
         showMore: false,
         locationToEdit: {},
         currentEvent: {},
