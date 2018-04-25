@@ -91,6 +91,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.newMultimedia = {}
             $location.url('/admin/multimedia');
             // history.back();
+            self.locations.currentLocationId = null;
         }).catch((error)=>{
             console.log('error saving new multimedia', error);
         })
@@ -374,6 +375,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }).then((result)=>{
             self.clearArtifact();
             history.back();
+            self.locations.currentLocationId = null;
         }).catch((error)=>{
             console.log('/artifacts/save', error);
         })
@@ -421,6 +423,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }).then((result)=>{
             self.getDecider(artifact);
             self.clearArtifact();
+            self.locations.currentLocationId = null;
             history.back();
         }).catch((error)=>{
             console.log('/artifacts/edit', error);
