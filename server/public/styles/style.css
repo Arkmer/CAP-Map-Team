@@ -714,11 +714,11 @@ md-content{
   text-align: center;
 }
 
-/* .guidelineTitle{
+.guidelineTitle{
   float: left;
   margin-left: 10px;
   margin-bottom: 5px;
-} */
+}
 
 #eventsTable{
   margin-top: 30px;
