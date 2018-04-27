@@ -1,5 +1,4 @@
 capApp.service('GuestService', ['$http', '$location', function($http, $location){
-    console.log('GuestService Loaded');
     var self = this;
     
     self.user = {
@@ -41,7 +40,6 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
             self.user.guest.email = '';
             $location.url('/guidelines');
         }).catch((error)=>{
-            console.log('/api/user/guest', error); 
         })
     }
 
@@ -52,7 +50,6 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         }).then((result)=>{
             self.information.guidelines = result.data;
         }).catch((error)=>{
-            console.log('/information/get', error);
         })
     }
 
@@ -64,7 +61,6 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
             self.information.allEvents = result.data;
             self.information.allEvents.showMore = false;
         }).catch((error) => {
-            console.log('/events/get', error);
         })
     }
 
@@ -84,7 +80,6 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
                 }
             }
         }).catch((error)=>{
-            console.log(`/map/artifact/${locationid}`, error);
         })
     }
 

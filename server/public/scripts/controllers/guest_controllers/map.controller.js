@@ -1,5 +1,4 @@
 capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService', '$scope', '$timeout', function (UserService, GuestService, AdminService, $scope, $timeout) {
-    console.log('MapController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;
@@ -93,22 +92,14 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
     ////--------------location to get the guest's location, display it and display what hidden locations they see--------------
     self.findLocation = () => {
         $timeout(function () {
-            console.log('in find location map');
             success = (pos) => {
                 let crd = pos.coords;
-                console.log('your current position is: ');
-                console.log(`Latitude: ${crd.latitude}`);
-                console.log(`Longitude: ${crd.longitude}`);
-                console.log(`more or less ${crd.accuracy} meters`);
-
-
                 if (markerStore.marker !== null) {
                     markerStore.marker.setPosition(new google.maps.LatLng(crd.latitude, crd.longitude));
                 } else {
                     let personMarker = new google.maps.Marker({
                         position: new google.maps.LatLng(crd.latitude, crd.longitude),
                         map: $scope.map,
-                        // icon: '../../styles/maps_marker.png',
                         icon: markerImage,
                     })
                     markerStore.marker = personMarker;
@@ -180,12 +171,12 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
                     icon: self.locations.allLocations[i].reveal_type
                 })
                 //--------------creates the info windows and sets event listener to route to artifact pages on click--------------
-                google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                    return function () {
-                        self.infowindow.setContent(self.generateLink(self.locations.allLocations[i]));
-                        self.infowindow.open($scope.map, marker);
-                    }
-                })(marker, i));
+                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                        return function () {
+                            self.infowindow.setContent(self.generateLink(self.locations.allLocations[i]));
+                            self.infowindow.open($scope.map, marker);
+                        }
+                    })(marker, i));
             }
             //--------------overlay function for the overlay--------------
             overlay = new CaponiOverlay(bounds, srcImage, $scope.map);

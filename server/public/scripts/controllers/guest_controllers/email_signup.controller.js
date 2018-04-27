@@ -1,5 +1,4 @@
 capApp.controller('EmailSignupController', ['UserService', 'GuestService', 'AdminService', function (UserService, GuestService, AdminService) {
-    console.log('EmailSignupController created');
     var self = this;
     self.userService = UserService;
     self.guestService = GuestService;

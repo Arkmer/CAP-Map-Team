@@ -1,5 +1,4 @@
 capApp.controller('ManageAdminsController', ['UserService', 'AdminService', '$http', '$location', function (UserService, AdminService, $http, $location) {
-  console.log('ManageAdminsController created');
   var self = this;
   self.userService = UserService;
   self.adminService = AdminService;

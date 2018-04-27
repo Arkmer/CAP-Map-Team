@@ -1,5 +1,4 @@
 capApp.controller('MultimediaController', ['UserService', 'AdminService', '$sce', function (UserService, AdminService, $sce) {
-    console.log('MultimediaController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;

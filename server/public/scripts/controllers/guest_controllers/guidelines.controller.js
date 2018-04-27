@@ -1,5 +1,4 @@
 capApp.controller('GuidelinesController', ['UserService', 'GuestService', 'AdminService', function (UserService, GuestService, AdminService) {
-    console.log('GuidelinesController created');
     var self = this;
     self.userService = UserService;
     self.guestService = GuestService;
