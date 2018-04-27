@@ -25,6 +25,13 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
 
     const found = '../../styles/Blue_Marker.png';
 
+    //--------------instance of a marker that is centered --------------
+
+    let markerImage =  new google.maps.MarkerImage('../../styles/maps_marker_55px_halo.png', 
+        new google.maps.Size(55, 55), 
+        new google.maps.Point(0, 0),
+        new google.maps.Point(27.5, 27.5));
+
     //--------------for the marker info windows--------------
     self.generateLink = (location) => `<a href="#!/artifacts/${location.id}">${location.location_name}</a>`;
     self.infowindow = new google.maps.InfoWindow();
@@ -102,7 +109,7 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
                     position: new google.maps.LatLng(crd.latitude, crd.longitude),
                     map: $scope.map,
                     // icon: '../../styles/maps_marker.png',
-                    icon: '../../styles/maps_marker_55px_halo.png',
+                    icon: markerImage,
                 })
                 markerStore.marker = personMarker;
             }
@@ -117,6 +124,8 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
         }
         options = {
             enableHighAccuracy: true,
+            timeout: 7500,
+            maximumAge: 0
         }
 
         navigator.geolocation.watchPosition(success, error, options);
@@ -133,10 +142,10 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
         $timeout(function () {
             $scope.map = new google.maps.Map(document.getElementById('map'), {
                 center: {
-                    lat: 44.8049741120178,
+                    lat: 44.8053,
                     lng: -93.1529663690302
                 },
-                zoom: 18,
+                zoom: 17,
                 mapTypeId: 'satellite',
                 streetViewControl: false,
                 rotateControleOptions: false,

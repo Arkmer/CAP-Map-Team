@@ -13,4 +13,7 @@ capApp.controller('TextFormController', ['UserService', 'AdminService', function
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

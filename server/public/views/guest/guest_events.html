@@ -17,9 +17,9 @@
             <div ng-if="vm.information.allEvents.showMore == true">
                 <div class="eventDetails" ng-click="vm.information.allEvents.showMore = false">LESS</div>
                 <div>{{event.description}}</div>
-                <div>{{event.time}}</div>
-                <div>Adaptable for ages {{event.age_group}} </div>
-                <div>{{event.price}}/person</div>
+                <div class="smallEvents">{{event.time}}</div>
+                <div class="smallEvents"> Adaptable for ages {{event.age_group}} </div>
+                <div class="smallEvents">{{event.price}}/person</div> 
             </div>
         </div>
     </div>

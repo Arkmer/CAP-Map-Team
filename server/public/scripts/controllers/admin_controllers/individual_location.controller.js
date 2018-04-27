@@ -28,4 +28,8 @@ capApp.controller('IndividualLocationController', ['UserService', 'AdminService'
     self.isCurrentPage();
 
     self.isMainPhoto = AdminService.isMainPhoto;
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+    self.changeEdit = AdminService.changeEdit;
+
 }]);

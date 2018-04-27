@@ -20,4 +20,7 @@ capApp.controller('MultimediaFormController', ['UserService', 'AdminService', '$
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

@@ -19,4 +19,7 @@ capApp.controller('PoemsController', ['UserService', 'AdminService', function (U
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);
