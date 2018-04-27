@@ -453,7 +453,7 @@ img{
 }
 
 .guest-menu{
-  padding: 20px;
+  padding: 10px;
   font-family: 'Open Sans', sans-serif;
   text-transform: uppercase;
   font-size: 20px;
@@ -796,6 +796,10 @@ md-content{
   top: -8px;
   right: -45px;
   position: absolute;
+}
+
+.tinyShift {
+  transform: translate(0px, 10px);
 }
 
 .bottomMargin {
