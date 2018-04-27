@@ -45,6 +45,12 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         })
     }
 
+    self.clearGuest = function(){
+        // self.user.guest.name = '';
+        // self.user.guest.email = '';
+        self.user.guest = {}
+    }
+
     self.getInformation = function(){
         $http({
             method: 'GET',

@@ -677,19 +677,19 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         })
     }
 
-    // self.addGuest = function(guest){
-    //     $http({
-    //         method: 'POST',
-    //         url: '/api/user/guest',
-    //         data: guest,
-    //     }).then((result)=>{
-    //         swal("Guest and email added.", "", "success");
-    //         self.getAllGuests();
-    //         self.emptyGuestInputs();
-    //     }).catch((error)=>{
-    //         console.log('/api/user/guest');
-    //     })
-    // }
+    self.addGuest = function(guest){
+        $http({
+            method: 'POST',
+            url: '/api/user/guest',
+            data: guest,
+        }).then((result)=>{
+            swal("Guest and email added.", "", "success");
+            self.getAllGuests();
+            self.emptyGuestInputs();
+        }).catch((error)=>{
+            console.log('/api/user/guest');
+        })
+    }
 
     self.emptyGuestInputs = function(){
         self.locations.newGuest.name = '';
@@ -728,6 +728,4 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         console.log('in clearLocationInfo');
         self.locations.currentLocationId = null;
     }
-
-
 }]);
