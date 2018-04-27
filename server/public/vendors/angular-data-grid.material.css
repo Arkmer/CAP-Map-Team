@@ -1,0 +1,26 @@
+th:focus,
+a:focus {
+  outline: none; }
+
+.codepen-wrap {
+  margin-top: 15px; }
+
+.mdl-data-table {
+  width: 100%; }
+  .mdl-data-table th {
+    cursor: pointer; }
+
+.mdl-data-table tr {
+  transition: none !important; }
+
+th md-select {
+  margin: 0; }
+
+.md-errors-spacer {
+  display: none; }
+
+.material-icons, .sortable span:before, .sortable span:after {
+  font-family: 'Material Icons';
+  font-size: 18px;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased; }

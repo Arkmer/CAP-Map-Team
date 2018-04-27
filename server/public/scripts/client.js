@@ -2,7 +2,7 @@ let capApp = angular.module('capApp', ['ngRoute', 'ngSanitize', 'ngMaterial', 'm
 
 /// Routes ///
 capApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-  console.log('capApp -- config')
+  // console.log('capApp -- config')
   $routeProvider
     .when('/', {
       redirectTo: 'guidelines'
@@ -58,6 +58,15 @@ capApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
     .when('/admin/location/:locationid', {
       templateUrl: '/views/admin/individual_location.html',
       controller: 'IndividualLocationController as vm',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/admin/addlocation/:locationid', {
+      templaceUrl: '/views/admin/add_location.html',
+      controller: 'AddLocationController as vm',
       resolve: {
         getuser: function (UserService) {
           return UserService.getuser();
@@ -181,16 +190,6 @@ capApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $
         }
       }
     })
-
-    // .when('/info', {
-    //   templateUrl: '/views/templates/info.html',
-    //   controller: 'InfoController as vm',
-    //   resolve: {
-    //     getuser : function(UserService){
-    //       return UserService.getuser();
-    //     }
-    //   }
-    // })
     .otherwise({
       template: '<h1>404</h1>'
     });

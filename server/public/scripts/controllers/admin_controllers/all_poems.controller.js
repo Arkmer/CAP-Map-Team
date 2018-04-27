@@ -1,5 +1,4 @@
 capApp.controller('PoemsController', ['UserService', 'AdminService', function (UserService, AdminService) {
-    console.log('PoemsController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;
@@ -13,10 +12,13 @@ capApp.controller('PoemsController', ['UserService', 'AdminService', function (U
     self.saveAssociation = AdminService.saveAssociation;
     self.deleteArtifact = AdminService.deleteArtifact;
     self.getArtifactToEdit = AdminService.getArtifactToEdit;
-    
+
     self.clearArtifact = AdminService.clearArtifact;
     self.clearArtifact();
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

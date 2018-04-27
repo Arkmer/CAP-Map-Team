@@ -1,14 +1,15 @@
-
-<div ng-include="'/views/admin/admin_menu.html'"></div>
+<!-- <div ng-include="'/views/admin/admin_menu.html'">
+</div>
 <div class="pageDown"></div>
+<div class="adminBody">
+    <h2>Writings</h2>
 
-Search:
-<input type="text" ng-model="vm.searchWritings">
+    Search:
+    <input type="text" ng-model="vm.searchWritings">
 
-<div ng-repeat="writing in vm.locations.allWritings|filter:vm.searchWritings">
-    
-        {{writing.title}}
-        {{writing.year}}
+    <div ng-repeat="writing in vm.locations.allWritings|filter:vm.searchWritings">
+
+        {{writing.title}} {{writing.year}}
         <div ng-bind-html="writing.description">{{writing.description}}</div>
         <div ng-if="vm.locations.currentLocationId != ''">
             <button ng-click="vm.saveAssociation(writing.id, 'false')">Add to location</button>
@@ -17,4 +18,59 @@ Search:
         <button ng-click="vm.deleteArtifact(writing)">Delete</button>
     </div>
 
-<a href="/#!/admin/textform"><i class="material-icons">add_circle</i></a>
+    <a href="/#!/admin/textform">
+        <i class="material-icons">add_circle</i>
+    </a>
+</div> -->
+
+<div ng-include="'/views/admin/admin_menu.html'">
+</div>
+
+<div class="pageDown"></div>
+<div class="adminBody">
+    <div layout="row">
+        <h3 class="indent">WRITINGS</h3>
+        <a class="addArtifact" href="/#!/admin/textform">
+            <i class="material-icons">add_circle</i>
+        </a>
+    </div>
+    <md-divider></md-divider>
+    <br>
+    <div class="indent">
+        <i class="material-icons">search</i>
+        <input ype="text" ng-model="vm.searchWritings">
+    </div>
+    <br>
+
+    <div class="indent">
+
+        <md-content class="md-padding" layout-xs="column" layout="row">
+            <div flex-xs flex layout="row" layout-wrap>
+                <md-card class="indCard" ng-repeat="writing in vm.locations.allWritings|filter:vm.searchWritings" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
+                    md-theme-watch>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline textTitle">{{writing.title}}</span>
+                            <span class="md-subhead">{{writing.year}}</span>
+                            <span ng-bind-html="writing.description" style="overflow:scroll; height:150px;">{{writing.description}}</span>
+                        </md-card-title-text>
+
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <div ng-if="vm.locations.currentLocationId !== null">
+                            <div ng-click="vm.saveAssociation(writing.id, 'false')">
+                                <i class="material-icons">add</i>
+                            </div>
+                        </div>
+                        <div ng-click="vm.getArtifactToEdit(writing.id)">
+                            <i class="material-icons">mode_edit</i>
+                        </div>
+                        <div ng-click="vm.deleteArtifact(writing)">
+                            <i class="material-icons">delete</i>
+                        </div>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </md-content>
+    </div>
+</div>

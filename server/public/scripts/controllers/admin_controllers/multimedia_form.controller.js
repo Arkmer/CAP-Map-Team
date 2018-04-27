@@ -1,5 +1,4 @@
 capApp.controller('MultimediaFormController', ['UserService', 'AdminService', '$sce', '$mdDialog', 'Lightbox', function (UserService, AdminService, $sce, $mdDialog, Lightbox) {
-    console.log('MultimediaFormController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;
@@ -20,4 +19,7 @@ capApp.controller('MultimediaFormController', ['UserService', 'AdminService', '$
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

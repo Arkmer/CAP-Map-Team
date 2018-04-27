@@ -1,20 +1,49 @@
-
-<div ng-include="'/views/admin/admin_menu.html'"></div>
-
-<div class="pageDown"></div>
-Search:
-<input type="text" ng-model="vm.searchAnecdotes">
-
-<div ng-repeat="anecdote in vm.locations.allAnecdotes|filter:vm.searchAnecdotes">
-    
-        {{anecdote.title}}
-        {{anecdote.year}}
-        <div ng-bind-html="anecdote.description">{{anecdote.description}}</div>
-        <div ng-if="vm.locations.currentLocationId != ''">
-            <button ng-click="vm.saveAssociation(anecdote.id, 'false')">Add to location</button>
-        </div>
-        <button ng-click="vm.getArtifactToEdit(anecdote.id)">Edit</button>
-        <button ng-click="vm.deleteArtifact(anecdote)">Delete</button>
+<div ng-include="'/views/admin/admin_menu.html'">
 </div>
 
-<a href="/#!/admin/textform"><i class="material-icons">add_circle</i></a>
+<div class="pageDown"></div>
+<div class="adminBody">
+  <div layout="row">
+    <h3 class="indent">ANECDOTES</h3>
+    <a class="addArtifact" href="/#!/admin/textform">
+      <i class="material-icons">add_circle</i>
+    </a>
+  </div>
+  <md-divider></md-divider>
+  <br>
+  <div class="indent">
+    <i class="material-icons">search</i>
+    <input ype="text" ng-model="vm.searchAnecdotes">
+  </div>
+  <br>
+
+  <div class="indent">
+    <md-content class="md-padding" layout-xs="column" layout="row">
+      <div flex-xs flex layout="row" layout-wrap>
+        <md-card class="indCard" ng-repeat="anecdote in vm.locations.allAnecdotes|filter:vm.searchAnecdotes" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
+          md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline textTitle">{{anecdote.title}}</span>
+              <span class="md-subhead">{{anecdote.year}}</span>
+              <span ng-bind-html="anecdote.description" style="overflow:scroll; height:150px;">{{anecdote.description}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <div ng-if="vm.locations.currentLocationId !== null">
+              <div ng-click="vm.saveAssociation(anecdote.id, 'false')">
+                <i class="material-icons">add</i>
+              </div>
+            </div>
+            <div ng-click="vm.getArtifactToEdit(anecdote.id)">
+              <i class="material-icons">mode_edit</i>
+            </div>
+            <div ng-click="vm.deleteArtifact(anecdote)">
+              <i class="material-icons">delete</i>
+            </div>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </md-content>
+  </div>
+</div>

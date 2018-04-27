@@ -1,5 +1,4 @@
 capApp.controller('MultimediaController', ['UserService', 'AdminService', '$sce', function (UserService, AdminService, $sce) {
-    console.log('MultimediaController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;
@@ -28,5 +27,7 @@ capApp.controller('MultimediaController', ['UserService', 'AdminService', '$sce'
 
     self.isMainPhoto = AdminService.isMainPhoto;
     console.log(self.isMainPhoto);
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
 
 }]);

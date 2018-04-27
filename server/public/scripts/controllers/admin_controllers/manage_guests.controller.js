@@ -1,5 +1,4 @@
 capApp.controller('ManageGuestsController', ['UserService', 'AdminService', function (UserService, AdminService) {
-    console.log('ManageGuestsController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;
@@ -13,4 +12,7 @@ capApp.controller('ManageGuestsController', ['UserService', 'AdminService', func
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

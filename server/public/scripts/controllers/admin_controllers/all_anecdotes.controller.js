@@ -1,5 +1,4 @@
 capApp.controller('AnecdotesController', ['UserService', 'AdminService', function (UserService, AdminService) {
-    console.log('AnecdotesController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;
@@ -20,4 +19,7 @@ capApp.controller('AnecdotesController', ['UserService', 'AdminService', functio
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

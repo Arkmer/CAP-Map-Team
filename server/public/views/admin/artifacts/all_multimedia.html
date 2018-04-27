@@ -1,34 +1,53 @@
-
-<div ng-include="'/views/admin/admin_menu.html'"></div>
-<div class="pageDown"></div>
-
-Search:
-<input type="text" ng-model="vm.searchMultimedia">
-
-<div ng-repeat="multimedia in vm.locations.allMultimedia|filter:vm.searchMultimedia">
-        <div ng-if="multimedia.type == 'photo'">
-                <img width="200" height="200" src="{{multimedia.media_url}}" />
-                <div ng-bind-html="multimedia.description">{{multimedia.description}}</div>
-                <div ng-if="vm.locations.currentLocationId != ''">
-                    <button ng-click="vm.saveAssociation(multimedia.id, vm.isMainPhoto.boolean)">Add to location</button>
-                </div>
-                <button ng-click="vm.getArtifactToEdit(multimedia.id)">Edit</button>
-                <button ng-click="vm.deleteArtifact(multimedia)">Delete</button>
-        </div>
-
-        <div ng-if="multimedia.type == 'video'">
-            
-                <iframe width="200" height="200" ng-src="{{vm.trustSrc(multimedia.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>            
-                <div ng-bind-html="multimedia.description">{{multimedia.description}}</div>
-        <div ng-if="vm.locations.currentLocationId != ''; vm.isMainPhoto.type == multimedia.type">
-            <button ng-click="vm.saveAssociation(multimedia.id, 'false')">Add to location</button>
-        </div>
-        <button ng-click="vm.getArtifactToEdit(multimedia.id)">Edit</button>
-        <button ng-click="vm.deleteArtifact(multimedia)">Delete</button>
-    </div>
-    </div>
-
-
-   
+<div ng-include="'/views/admin/admin_menu.html'">
 </div>
-<a href="/#!/admin/multimediaform"><i class="material-icons">add_circle</i></a>
+
+<div class="pageDown"></div>
+<div class="adminBody">
+    <div layout="row">
+    <h3 class="indent">MULTIMEDIA</h3>
+    <a class="addArtifact" href="/#!/admin/multimediaform">
+        <i class="material-icons">add_circle</i>
+    </a>
+    </div>
+    <md-divider></md-divider><br>
+    <div class="indent">
+    <i class="material-icons">search</i>
+    <input ype="text" ng-model="vm.searchMultimedia"></div>
+    <br>
+
+<div class="indent">
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex layout="row" layout-wrap>
+          <md-card ng-repeat="multimedia in vm.locations.allMultimedia|filter:vm.searchMultimedia" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch class="indMultimediaCard margin">
+            <md-card-title>
+              <md-card-title-media >
+                <div class="md-media-lg card-media">
+                    <div ng-if="multimedia.type == 'photo'">
+                        <img class="cardImg" src="{{multimedia.media_url}}" />
+                    </div>
+                    <div ng-if="multimedia.type == 'video'">
+                        <iframe class="cardImg" width="100%" height="60%" ng-src="{{vm.trustSrc(multimedia.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+                    </div>
+                </div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-divider></md-divider>
+            <br>
+              <md-card-content class="cardText" >
+                <span class="md-subhead"><div style="overflow:scroll; height:60px;" ng-bind-html="multimedia.description">{{multimedia.description}}</div></span>
+              </md-card-content>
+            
+            <md-card-actions layout="row" layout-align="end center">
+                    <div ng-if="vm.locations.currentLocationId !== null && multimedia.type == vm.isMainPhoto.type">
+                            <div ng-click="vm.saveAssociation(multimedia.id, 'false')"><i class="material-icons">add</i></div>
+                    </div>
+                    <div ng-click="vm.getArtifactToEdit(multimedia.id)"><i class="material-icons">mode_edit</i></div>
+                    <div ng-click="vm.deleteArtifact(multimedia)"><i class="material-icons">delete</i></div>
+            </md-card-actions>
+          </md-card>
+        </div>
+</md-content>
+
+</div>
+</div>

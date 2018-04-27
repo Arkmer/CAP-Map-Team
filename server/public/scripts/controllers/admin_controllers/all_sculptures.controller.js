@@ -1,5 +1,4 @@
 capApp.controller('SculpturesController', ['UserService', 'AdminService', function (UserService, AdminService) {
-    console.log('SculpturesController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;
@@ -19,4 +18,9 @@ capApp.controller('SculpturesController', ['UserService', 'AdminService', functi
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();
+
+    self.locations = AdminService.locations;
+
+    self.clearLocationInfo = AdminService.clearLocationInfo;
+
 }]);

@@ -1,8 +1,9 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+  background-color: white;
 }
 
 .instructions .container h1 {
@@ -92,102 +93,93 @@ a{
   color: #c60008; }
 
 .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+}
 
-  /* end modal */
-/* 
-  img{
-    object-fit: cover;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    width: 200px;
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-  } */
-
-  #map {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      z-index: 1;
-      /* width: 100%; */
-
-  }
-
-  #map-container {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-  }
-
-  .menuBardemoBasicUsage .page-container {
-    padding: 32px; }
-  
-  .menuBardemoBasicUsage .page {
-    margin: 0 auto;
-    padding: 24px;
-    max-width: 680px;
-    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25); }
-  
-  .menuBardemoBasicUsage .page h1 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-top: 0;
-    font-weight: normal; }
-  
-  .menuBardemoBasicUsage .page p {
-    line-height: 1.6rem; }
-
-  .is-active{
-    background-color: #548c8c;
-  }
-
-  .md-indent{
-    margin-left: 20px;
-  }
-
-  /* not working */
-  .subNav{
-    max-width: 50%;
-  }
-
-  .eventPhoto {
-    width: 20%;
-    height: 20%;
-    border-radius: 20px;
-    float: right;
-  }
-
-  .event {
-    padding: 10px;
-    margin-top: 20px;
-  }
-
-  .menuIcon{
-    float:right;
-  }
-
-  .guestMenu {
-    /* background-color: #A7C463; */
-    /* background-color: #EFE32F; */
-    height: 20px;
-    margin-top: 0px;
-    padding-top: 0px;
-  }
-
-  .banner {
-    height: 90px;
-    width: 100%;
-  }
+img{
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
 
 #map {
-
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
+    z-index: 1;
+    /* position:absolute; */
     /* width: 100%; */
+}
+
+#map-container-admin {
+  height: 78%;
+  width: 100%;
+  position: absolute;
+}
+
+#map-container-guest {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.menuBardemoBasicUsage .page-container {
+  padding: 32px;
+}
+
+.menuBardemoBasicUsage .page {
+  margin: 0 auto;
+  padding: 24px;
+  max-width: 680px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.25);
+}
+
+.menuBardemoBasicUsage .page h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-top: 0;
+  font-weight: normal;
+}
+
+.menuBardemoBasicUsage .page p {
+  line-height: 1.6rem;
+}
+
+.md-indent{
+  margin-left: 5px;
+  content: center;
+}
+
+.adminEventPhoto {
+  height: 150px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.event {
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.guestMenu {
+  /* background-color: #A7C463; */
+  /* background-color: #EFE32F; */
+  height: 20px;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+#map {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  position:static;
+  /* width: 100%; */
 }
 
 #map-container {
@@ -220,10 +212,24 @@ a{
   border-style: solid;
   border-color: purple;
 }
+
 #map_format {
     height: 100%;
-    margin: 0;
+    /* margin-top: 50px; */
     padding: 0;
+    z-index: 1;
+    position:relative;
+}
+
+.mapMenu {
+  float:right;
+  color: white;
+  margin-top: 15px;
+}
+
+.menuPosition {
+  position: relative;
+  z-index: 1000;
 }
 
 .menuBardemoBasicUsage .page-container {
@@ -241,81 +247,119 @@ a{
   margin-top: 0;
   font-weight: normal; }
 
-  .navBardemoBasicUsage md-content .ext-content {
-    padding: 50px;
-    margin: 20px;
-    background-color: #FFF2E0; 
-  }
+.navBardemoBasicUsage md-content .ext-content {
+  padding: 50px;
+  margin: 20px;
+  background-color: #FFF2E0; 
+}
 
-  .indent{
-    margin-left: 40px;
-  }
+.indent{
+  margin-left: 40px;
+}
 
-  .extraIndent{
-    margin-left: 40px;
-  }
+.extraIndent{
+  margin-left: 40px;
+}
 
-  .locationName{
-    padding: 20px;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    text-transform: uppercase;
-    font-size: larger;
-  }
+.locationName{
+  padding: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: larger;
+}
 
-  .searchBar{
-    width: 40%;
-  }
+.locationName:hover{
+  color: white;
+}
 
-  .location-list:hover{
-    background-color: #548c8c;
-  }
+.searchBar{
+  width: 40%;
+  margin: 15px;
+}
 
-  .searchIcon{
-    position: relative;
-    transform: translateY(10px);
-  }
+.location-list:hover{
+  background-color: #548c8c;
+}
 
-  #mainPhoto{
-    width: 100%;
-    height: 250px;
-    transform: translateY(16px);
-  }
+.searchIcon{
+  position: relative;
+}
 
-  #adminMenu{
-    position: fixed;
-    background-color: darkslategrey;
-    opacity: .85;
-    margin-bottom: 40px;
-  }
+#adminMenu{
+  position: fixed;
+  background-color: #f6f6f6;
+  opacity: 1;
+  margin-bottom: 40px;
+  border-bottom: 5px ridge #e9e9e9;
+}
 
-  #menu-item{
-    color: white;
-  }
+/* #menu-item{ COMMENTED OUT ON MERGE*/
+/*   color: white; */
+/* } */
 
 .menuBardemoBasicUsage .page p {
-  line-height: 1.6rem; }
+  line-height: 1.6rem;
+}
 
+.menu {
+  font-size: 30px;
+  font-weight: 800;
+  padding:10px;
+}
+
+.welcome {
+  padding: 5px;
+  margin-top: 80px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  color: white;
+  background-color:#365c63;
+}
+
+.adminWelcome {
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  color: white;
+  background-color:#365c63;
+}
   .eventDate {
     font-weight: bold;
-  }
-
-  .menuIcon{
+    text-transform: uppercase;
     float:right;
-    color: lightgrey;
+    color: darkgrey;
   }
-
-  .guestMenu {
-    height: 100px;
-    background-image: url("/styles/banner.png");
-    background-size: cover;
-    background-repeat:no-repeat;
-    background-position: center;
-    
+  
+  .eventTitle{
+    text-transform: uppercase;
   }
+   
+  .mapSearch {
+    float:left;
+    z-index: 2;
+    margin-top: -10px;
+    margin-right: 35px;
+  }
+  /* .menuIcon{
+    float:right;
+    color: grey;
+    z-index: 2;
+    margin-top: -10px;
+    margin-right: 35px;
+  } */
+  
 
-  .banner {
-    height: 20px;
+  .headerBackground{
+    width:100%;
+    height: 80px;
+    background-color:white;
+    position: fixed;
+    top:0;
+    opacity: 40%;
   }
 
   .menu {
@@ -328,62 +372,40 @@ a{
   .guestBody {
     padding: 10px;
     font-size: 17px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
-  .guideline {
-    padding-bottom: 10px;
+  .welcome {
+    padding: 5px;
+    margin-top: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    color: white;
+    background-color:#365c63;
   }
+  
+  .button{
+    text-align:center;
+    width: 95%;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
 .is-active{
-  background-color: gainsboro;
+  background-color: #e9e9e9;
 }
 
-.md-indent{
-  margin-left: 20px;
-}
-
-/* not working */
-.subNav{
-  max-width: 50%;
+.marginTop {
+  margin-top: 25px;
 }
 
 .eventPhoto {
-  width: 20%;
-  height: 20%;
-  border-radius: 20px;
-  float: right;
-}
-
-.event {
-  padding: 10px;
-  margin-top: 20px;
-}
-
-.menuIcon{
-  float:right;
-  z-index: 2;
-}
-
-.guestMenu {
-  /* background-color: #A7C463; */
-  /* background-color: #EFE32F; */
-  height: 20px;
-  margin-top: 0px;
-  padding-top: 0px;
-  height:90px;
-}
-
-.banner {
-  height: 10px;
+  height: 200px;
   width: 100%;
-  margin: 0;
-  z-index:3;
-}
-
-.redDiv {
-  /* border-style: solid; */
-  /* border-color:red; */
-  margin: 0;
-  height: 90px;
+  border-radius: 4px;
+  margin: auto;
 }
 
 .navBardemoBasicUsage md-content .ext-content {
@@ -394,4 +416,442 @@ a{
 
 .pageDown{
   padding-top: 80px;
+}
+
+.coverPhoto{
+  object-fit: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  top: 0px;
+  width: 50%;
+  height: 250px;
+  transform: translateY(10px);
+  z-index: 1;
+  position: relative;
+}
+
+.fixed{
+  position: fixed;
+}
+
+.leftFloat {
+  float: left;
+}
+
+.rightFloat {
+  float: right;
+}
+
+.add-location{
+  /* padding-top: 30px; */
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+  
+.hard-break{
+  margin-top: -1px;
+}
+
+.guest-menu{
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.guest-menu:active{
+  color: gray;
+}
+
+.banner {
+  /* text-align:left; */
+  font-size: 20px;
+  position: fixed;
+  text-align: center;
+  top: 27px;
+  left: 28px;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  height: 10px;
+  width: 100%;
+  margin: 0;
+}
+
+
+.menuIcon{
+  float:right;
+  color:grey;
+  margin-top: -10px;
+  margin-right: 30px;
+}
+
+.indLocationGuestBody{
+  margin-top: 70px;
+}
+
+.mainPhotoGuest{
+  width: 100%;
+  height: 200px;
+}
+
+.sculptureGuest{
+  text-align: center;
+  margin-top: 13px;
+}
+
+.moreInfo{
+  text-align: center;
+}
+
+.eventDetails{
+  text-align: center;
+  font-size:10px;
+  color: grey;
+  text-decoration: underline;
+}
+
+ .email {
+    padding: 10px;
+    font-size: 17px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .emailButton {
+    float: right;
+  }
+  
+.headerLine{
+  margin-top: 90px;
+}
+
+.headerBackground{
+  width:100%;
+  height: 90px;
+  background-color: white;
+  position: fixed;
+  top:0;
+  z-index: 99;
+}
+
+.artifactTitle{
+    text-transform: uppercase;
+}
+
+.sculptureInfo{
+    font-size: 20px;
+}
+
+#description_picture{
+  opacity: 0.3;
+  float: center;
+  border-style: groove;
+  border-color:#afbdd4;
+  border-width: 0.5px;
+  height: 200px;
+  width: 100%;
+}
+
+#picture{
+  width: 100%;
+  height: 200px;
+}
+
+#image_description{
+  height: 200px;
+  text-align: center;
+  margin-top: -220px;
+  font-size: 20px;
+  font-family:  'Lucida Grande', 'sans-serif';
+  color: black;
+  text-shadow: 0.5px 0.5px 1px  #3b5998;
+  vertical-align: middle;
+}
+.centerPage{
+  float: center;
+}
+
+#xbutton{
+  float: right;
+  vertical-align: top;
+  width: 8px;
+  height:8px;
+  transform: translateY(-38px);
+}
+
+#slash{
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: left;
+  background-color: rgb(162, 196, 99);
+  margin-bottom: -10px;
+  /* padding-right: 15px; */
+}
+
+/* .plus_icon{
+    vertical-align: middle;
+    margin-top: 111px;
+} */
+
+.material-icons{
+  vertical-align: middle;
+} 
+
+.adminBody {
+  padding: 10px;
+}
+
+.hover:hover{
+  color: black;
+  background: whitesmoke;
+  transition: background 500ms;
+}
+
+.subNavPadding{
+  /* margin-right:20px; */
+  background: white;
+  text-align: left;
+  vertical-align: middle;
+  content: center;
+}
+
+.changeMainPhoto{
+  /* margin-right: 240px; */
+  position: relative;
+  transform: translateY(15px);
+}
+
+#removeButton{
+  position: relative;
+  transform: translateY(15px);
+}
+
+#editSculpture{
+  margin-left: 10px;
+}
+
+.add{
+  margin-left: 10px;
+}
+
+.minus{
+  position: relative;
+}
+
+.short{
+  width: 60%;
+}
+
+.markerType {
+  margin-top: 49px;
+}
+
+td{
+  border-bottom: 1px solid #e9e9e9; 
+  padding: 10px;
+}
+
+.indCard{
+  width: 30%;
+}
+
+.addArtifact{
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.textTitle{
+  text-transform: uppercase;
+}
+
+.indMultimediaCard{
+  width: 275px;
+}
+
+.cardText{
+width: 260px;
+}
+
+md-content{
+  flex-wrap: wrap;
+}
+
+.cardImg{
+  width: 160%; 
+  height: 150px;
+}
+
+.margin {
+  margin:10px;
+}
+
+.tableFit{
+  width:300px;
+}
+
+.eventInput{
+  text-align: center;
+  padding: 20px;
+}
+
+.guideline{
+  text-transform: uppercase;
+  font-size: 15px;
+  color: black;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.guidelineList{
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+
+#textSlash{
+  text-align: center;
+}
+
+.guidelineTitle{
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+#eventsTable{
+  margin-top: 30px;
+}
+
+.guestCard{
+  width: 15%;
+}
+.editLocationLable{
+  float: right;
+  padding-right: 50px;
+  font-family:  'Lucida Grande', 'sans-serif';
+  text-transform: uppercase;
+  font-size: 24px;
+  margin-top: 35px;
+  color: black;
+}
+
+.textFormPage{
+  margin-left: 100px;
+  margin-right: 100px;
+  border-style: solid;
+  border-color: #dbdbdb;
+  border-width: 1px;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.moreSculptureDetails{
+  text-align: center;
+  font-size:10px;
+  color: grey;
+  text-decoration: underline;
+}
+
+.greyText{
+  color: #939393;
+}
+
+#or{
+  margin-top: 14px;
+  margin-left: 10px;
+}
+
+.limitWidthDescription{
+  margin-left:350px;
+  margin-right: 350px;
+}
+
+#limitWidth{
+  margin-left: 80px;
+  margin-right: 775px;
+}
+
+.eventCard {
+  width: 30%;
+}
+
+.guestArtifact {
+  font-size: 20px;
+  position: fixed;
+  text-align: left;
+  top: 27px;
+  left: 24px;
+  font-weight: bold;
+  height: 10px;
+  width: 80%;
+  padding: -10px;
+  
+}
+
+.artifactIcon{
+  float:right;
+  color:grey;
+  top: -8px;
+  right: -45px;
+  position: absolute;
+}
+
+.tinyShift {
+  transform: translate(0px, 10px);
+}
+
+.bottomMargin {
+  margin-bottom: 10px;
+}
+
+.locationTitle {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#submitLocation{
+  transform: translateY(11px);
+}
+
+.minusMargin {
+  margin-top: -15px;
+}
+
+.centerArtifact{
+  margin-left:170px;
+  margin-right: 170px;
+}
+
+.otherPhotos{
+  overflow-x: scroll;
+  overflow-y: hidden;    
+}
+
+.photo{
+  width: 200px;
+  height: 200px;
+}
+
+.eventTitle{
+  text-transform: uppercase;
+  float: center;
+}
+
+.smallEvents{
+  font-size: 13px;
+}
+
+.centerArtifactAnecdote{
+  margin-left: 340px;
+  margin-right: 340px;
+}
+
+.limitWidthDescriptionWritings{
+  margin-left:340px;
+  margin-right: 340px;
 }

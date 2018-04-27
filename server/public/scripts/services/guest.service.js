@@ -1,9 +1,11 @@
-capApp.service('GuestService', ['$http', '$location', function($http, $location){
-    console.log('GuestService Loaded');
+capApp.service('GuestService', ['$http', '$location', function ($http, $location) {
     var self = this;
-    
+
     self.user = {
-        guest: { }
+        guest: {
+            name: '',
+            email: '',
+        }
     }
 
     self.information = {
@@ -11,6 +13,7 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         guidelines: [],
         allArtifactsForLocation: [],
         currentLocationId: '',
+        mapInfo: true,
     }
 
     self.indLocation = {
@@ -22,86 +25,67 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         indAnecdotes: [],
         indVideos: [],
         isBeingEdited: false,
+        showMore: false,
+        sculptureTitle: '',
     }
-    
-    self.addGuest = function(guest){
-        console.log('In addGuest');
-        console.log(guest);
+
+    self.addGuest = function (guest) {
         $http({
             method: 'POST',
-            url:'/api/user/guest',
+            url: '/api/user/guest',
             data: guest,
-        }).then((result)=>{
-            // console.log('guest email added');
-            self.emptyGuestInputs();
-            alert("Thank you for joining the Caponi Art Park Email List!");
-            // self.emptyGuestInputs();
-        }).catch((error)=>{
-            console.log('Could not add guest email'); 
-        })
+        }).then((result) => {
+            swal("Thank you for signing up for the Caponi Art Park mailing list!", "", "success");
+            self.user.guest.name = '';
+            self.user.guest.email = '';
+            $location.url('/guidelines');
+        }).catch((error) => {})
     }
 
-    self.emptyGuestInputs = function(){
-        self.user.guest.name = '';
-        self.user.guest.email = '';
+    self.clearGuest = function () {
+        self.user.guest = {}
     }
 
-    self.getInformation = function(){
-        console.log('Get Guidelines');
+    self.getInformation = function () {
         $http({
             method: 'GET',
             url: `/information/get`,
-        }).then((result)=>{
-            console.log('Information:', result.data);
+        }).then((result) => {
             self.information.guidelines = result.data;
-        }).catch((error)=>{
-            console.log('guidelines', error);
-        })
+        }).catch((error) => {})
     }
 
-    self.getEvents = function(){
-        console.log('getEvents');
+    self.getEvents = function () {
         $http({
             method: 'GET',
             url: `/events/get`,
-        }).then((result)=>{
-            console.log('Events:', result.data);
+        }).then((result) => {
             self.information.allEvents = result.data;
-        }).catch((error)=>{
-            console.log('getEvents', error);
-        })
+            self.information.allEvents.showMore = false;
+        }).catch((error) => {})
     }
 
-    self.getIndividualLocation = function(locationid){
-        console.log('in getIndividualLocation function');
+    self.getIndividualLocation = function (locationid) {
         $http({
             method: 'GET',
-            url: `map/artifact/${locationid}`
-        }).then((result)=>{
+            url: `/map/artifact/${locationid}`
+        }).then((result) => {
             self.information.allArtifactsForLocation = result.data;
             self.information.currentLocationId = locationid;
-            console.log('current location id:', self.information.currentLocationId);
-            console.log(`success getting artifacts for location id:${locationid}`, self.information.allArtifactsForLocation);
-            // self.determineMain(self.information.allArtifactsForLocation);
-            // console.log('main', self.mainArtifact);
-            
-        }).catch((error)=>{
-            console.log('error getting all locations', error);
-        })
+            self.indLocation.showMore = true;
+            self.indLocation.sculptureTitle = '';
+            for (let artifact of self.information.allArtifactsForLocation) {
+                if (artifact.type == 'sculpture') {
+                    self.indLocation.showMore = false;
+                    self.indLocation.sculptureTitle = artifact.title.toUpperCase();
+                }
+            }
+        }).catch((error) => {})
     }
 
-    // self.mainAritfact = [];
-    // self.supportingArtifacts = [];
+    self.xoutofalert = function () {
+        self.information.mapInfo = false;
+    }
 
-    // self.determineMain = function (information) {
-    //     for (i = 0; i < information.length; i++){
-    //         if (i==0){
-    //             self.mainArtifact.push(information[i]);
-    //         }
-    //         else {
-    //             self.supportingArtifacts.push(information[i]);
-    //         }
-    //     }    
-    // }
 
 }]);

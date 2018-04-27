@@ -1,27 +1,43 @@
 <div ng-include="'/views/admin/admin_menu.html'"></div>
 <div class="pageDown"></div>
-<form>
-    <input ng-model="vm.locations.newGuest.name" placeholder="Name" />
-    <input ng-model="vm.locations.newGuest.email" placeholder="Email" />
-    <input type="submit" ng-click="vm.addGuest(vm.locations.newGuest)" value="Submit" />
+<br>
+<h3 class="indent">ADD GUEST</h3>
+<md-divider></md-divider>
+<br>
+<form class="indent">
+    <md-input-container>
+        <label>Name</label>
+        <input ng-model="vm.locations.newGuest.name" />
+    </md-input-container>
+    <md-input-container>
+        <label>Email</label>
+        <input ng-model="vm.locations.newGuest.email" />
+    </md-input-container>
+    <md-button type="submit" class="md-raised" ng-click="vm.addGuest(vm.locations.newGuest)" value="Submit">Submit</md-button>
 </form>
-
+<br>
+<h3 class="indent">ALL GUESTS</h3>
+<md-divider></md-divider>
+<br>
 <div>
-    <table>
-        <thread>
-            <th>Name</th>
-            <th>Email</th>
-        </thread>
+    <table class="indent">
+        <thead>
+            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric">Email</th>
+            <tr></tr>
+        </thead>
         <tbody>
             <tr ng-repeat="guest in vm.locations.guestList">
-                <td>
+                <td class="mdl-data-table__cell--non-numeric">
                     <div>{{guest.name}}</div>
                 </td>
-                <td>
+                <td class="mdl-data-table__cell--non-numeric">
                     <div>{{guest.email}}</div>
                 </td>
-                <td>
-                    <button ng-click="vm.deleteGuest(guest)">Delete</button>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <div layout="row" layout-align="center center" ng-click="vm.deleteGuest(guest)">
+                        <i class="material-icons">remove_circle</i>
+                    </div>
                 </td>
             </tr>
         </tbody>

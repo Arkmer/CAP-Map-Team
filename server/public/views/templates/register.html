@@ -1,29 +1,26 @@
-<div class="container">
-  <h1 class="lead">Register Admin</h1>
-  <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
-  <form ng-submit="vm.registerUser()">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" ng-model="vm.user.username" />
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" ng-model="vm.user.password" />
-    </div>
-    <div>
-        <label for="password">First Name:</label>
-        <input  type="text" ng-model="vm.user.first_name" />
-    </div>
-    <div>
-        <label for="password">Last Name:</label>
-        <input  type="text" ng-model="vm.user.last_name" />
-    </div>
-    <div>
-        <label for="password">Email:</label>
-        <input  type="text" ng-model="vm.user.email" />
-    </div>
-    <input class="btn btn-default" type="submit" name="submit" value="Register" />
-    <a href="#!home">Cancel</a>
-  </form>
-
-</div>
+<h3 class="lead indent">REGISTER AN ADMIN</h3>
+<md-divider></md-divider>
+<h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
+    <form class="indent" ng-submit="vm.registerUser()">
+        <md-input-container>
+            <label for="username">Username</label>
+            <input type="text" ng-model="vm.user.username" />
+        </md-input-container>
+        <md-input-container>
+            <label for="password">Password</label>
+            <input type="password" ng-model="vm.user.password" />
+        </md-input-container>
+        <md-input-container>
+            <label for="password">First Name</label>
+            <input type="text" ng-model="vm.user.first_name" />
+        </md-input-container>
+        <md-input-container>
+            <label for="password">Last Name</label>
+            <input type="text" ng-model="vm.user.last_name" />
+        </md-input-container>
+        <md-input-container>
+            <label for="password">Email</label>
+            <input type="text" ng-model="vm.user.email" />
+        </md-input-container>
+        <input type="submit" name="submit" value="Register" />
+    </form>

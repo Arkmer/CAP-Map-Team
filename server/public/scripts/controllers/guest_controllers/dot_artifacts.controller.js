@@ -1,27 +1,18 @@
-capApp.controller('DotArtifactsController', ['UserService', 'GuestService', '$sce', function (UserService, GuestService, $sce) {
-    console.log('DotArtifactsController created');
+capApp.controller('DotArtifactsController', ['UserService', 'GuestService', '$sce', '$routeParams', function (UserService, GuestService, $sce, $routeParams) {
     var self = this;
     self.userService = UserService;
     self.guestService = GuestService;
 
     self.getIndividualLocation = GuestService.getIndividualLocation;
     self.information = GuestService.information;
+    self.indLocation = GuestService.indLocation;
 
-//VVVVVVVVVVVVVV///
-    self.getIndividualLocation(2);//-------THIS IS A HARD CODED LOCATION ID PLEASE CHANGE WHEN APPLICABLE--------//
-//^^^^^^^^^^^^^^//
+    let locationid = $routeParams.locationid;
+    self.getIndividualLocation(locationid);
+    self.getIndividualLocation(locationid);
 
     self.trustSrc = function(src) {
         return $sce.trustAsResourceUrl(src);
     }
-
-    // self.mainAritfact[];
-    // self.supportingArtifacts
-    
-    // self.determineMain = function(information){
-    //     for (info of information)
-    //     if info[0] 
-        
-    // }
 
 }]);

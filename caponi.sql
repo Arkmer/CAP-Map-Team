@@ -77,7 +77,6 @@ priority INTEGER
 --------Data import---------
 ----------------------------
 
-
 --INSERT ARTIFACT--
 BEGIN;
 INSERT INTO ARTIFACT (id,type,year,material,artist_name,title,description,extended_description,media_url,view_count) VALUES (9,'','year...','','','poem title here','poem description here...','','',0);

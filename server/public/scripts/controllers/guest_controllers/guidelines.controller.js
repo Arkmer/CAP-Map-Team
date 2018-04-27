@@ -1,5 +1,4 @@
 capApp.controller('GuidelinesController', ['UserService', 'GuestService', 'AdminService', function (UserService, GuestService, AdminService) {
-    console.log('GuidelinesController created');
     var self = this;
     self.userService = UserService;
     self.guestService = GuestService;
@@ -8,13 +7,9 @@ capApp.controller('GuidelinesController', ['UserService', 'GuestService', 'Admin
     self.information = GuestService.information
 
     self.getInformation = GuestService.getInformation;
+    self.xoutofalert = GuestService.xoutofalert;
 
     self.getInformation();
-
-    self.getAllLocations = AdminService.getAllLocations;
-
-    self.getAllLocations();
-    
 }]);
 
 

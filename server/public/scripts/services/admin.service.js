@@ -1,11 +1,13 @@
-capApp.service('AdminService', ['$http', '$location',  function($http, $location){
-    console.log('AdminService Loaded');
+capApp.service('AdminService', ['$http', '$location', function ($http, $location) {
     var self = this;
+    self.currentPage = {
+        list: []
+    };
     self.locations = {
         newLocation: {},
         allLocations: [],
         allEvents: [],
-        newEvent:{},
+        newEvent: {},
         events: [],
         allArtifactsForLocation: [],
         allAnecdotes: [],
@@ -13,13 +15,22 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         allPoems: [],
         allMultimedia: [],
         information: {},
-        currentLocationId: '',
+        currentLocationId: null,
         guestList: [],
-        newGuest:{},
+        newGuest: {},
         allAdmins: [],
-        allRevealTypes: [{type:'static'}, {type:'proximity'}, {type:'bathroom'}],
+        allRevealTypes: [{
+            type: 'static'
+        }, {
+            type: 'proximity'
+        }, {
+            type: 'facilities'
+        }],
+        showMore: false,
+        locationToEdit: {},
+        currentEvent: {},
     }
-    
+
     self.indLocation = {
         indSculpture: {},
         indMainPhoto: {},
@@ -28,6 +39,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         indWritings: [],
         indAnecdotes: [],
         indVideos: [],
+        indTitle: '',
         isBeingEdited: false,
         reveal_type: '',
     }
@@ -51,32 +63,28 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
 
     self.client = filestack.init("AI5OhtlsWSsiO7mmCbw06z");
 
-    self.uploadnewPhoto = function(){
-        console.log('in uploadNewPhoto');
+    self.uploadnewPhoto = function () {
         self.newMultimedia.type = 'photo';
         self.client.pick({
             accept: 'image/*',
             maxFiles: 1
-        }).then(function(result){
-            console.log('in upload,', result.filesUploaded[0].url);
+        }).then(function (result) {
             self.newMultimedia.media_url = result.filesUploaded[0].url;
             self.locations.newEvent.photo_url = result.filesUploaded[0].url;
+            self.locations.currentEvent.photo_url = result.filesUploaded[0].url;
             self.newMultimedia.uploaded = true;
-            alert("successful upload!");
-        }).catch((error)=>{
-            alert("Please try again.");
+            swal("Successful upload!", "", "success")
+        }).catch((error) => {
         })
     }
 
-    self.uploadNewVideo = function(){
-        console.log('in uploadNewVideo', self.newMultimedia.media_url);
+    self.uploadNewVideo = function () {
         self.newMultimedia.type = 'video';
         self.newMultimedia.uploaded = true;
         self.newMultimedia.media_url = `https://www.youtube.com/embed/${self.newMultimedia.media_url}`
     }
 
-    self.saveMultimedia = function(){
-        console.log('in save media,', self.newMultimedia);
+    self.saveMultimedia = function () {
         $http({
             method: 'POST',
             url: '/artifacts/save',
@@ -85,74 +93,60 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
                 media_url: self.newMultimedia.media_url,
                 description: self.newMultimedia.description
             }
-        }).then((result)=>{
-            console.log('new multimedia saved');
+        }).then((result) => {
             self.newMultimedia = {}
-            history.back();
-        }).catch((error)=>{
-            console.log('error saving new multimedia', error);
+            $location.url('/admin/multimedia');
+            self.locations.currentLocationId = null;
+        }).catch((error) => {
         })
     }
-
-//---START EVENTS AJAX---
-    self.getEvents = function(){
-        console.log('getEvents');
+    //---START EVENTS AJAX---
+    self.getEvents = function () {
         $http({
-            method:'GET', 
-            url:`/events/get`,
-        }).then((result)=>{
-            console.log('Events:', result.data);
+            method: 'GET',
+            url: `/events/get`,
+        }).then((result) => {
             self.locations.allEvents = result.data;
-        }).catch((error)=>{
-            console.log('getEvents', error);
+            self.locations.currentLocationId = null;
+        }).catch((error) => {
         })
     }
 
-    self.addEvent = function(dataObj){
-        console.log('Add Event', dataObj);
-        console.log(self.locations.newEvent);
-        
+    self.addEvent = function (dataObj) {
         dataObj.time = dataObj.time.toString().substring(16, 24);
         $http({
             method: 'POST',
-            url:`/events/post`,
+            url: `/events/post`,
             data: dataObj
-        }).then((result)=>{
-            console.log('Event added');
+        }).then((result) => {
             self.getEvents();
             self.emptyEventsInputs();
-        }).catch((error)=>{
-            console.log('addEvent error', error);
+        }).catch((error) => {
         })
     }
 
-    self.editEvent = function(dataObj){
-        console.log('Edited item', dataObj);
+    self.editEvent = function (dataObj) {
         $http({
             method: 'PUT',
             url: `/events/edit`,
             data: dataObj
-        }).then((result)=>{
-            // Redisplay DOM
+        }).then((result) => {
             self.getEvents();
-        }).catch((error)=>{
-            console.log('editEvent', error);
+        }).catch((error) => {
         })
     }
 
-    self.deleteEvent = function(dataObj){
+    self.deleteEvent = function (dataObj) {
         $http({
             method: 'DELETE',
             url: `/events/delete/${dataObj.id}`
-        }).then((result)=>{
-            // Redisplay DOM
+        }).then((result) => {
             self.getEvents();
-        }).catch((error)=>{
-            console.log('Delete Event', error);
+        }).catch((error) => {
         })
     }
 
-    self.emptyEventsInputs = function(){
+    self.emptyEventsInputs = function () {
         self.locations.newEvent.title = '';
         self.locations.newEvent.date = '';
         self.locations.newEvent.time = '';
@@ -163,77 +157,80 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         self.locations.newEvent.age_group = '';
         self.locations.newEvent.price = '';
     }
+
+    self.viewEditEvents = function (event) {
+        event.editing = true;
+        self.locations.currentEvent = event;
+    }
+
     //-----END EVENTS AJAX----
     //-----Start Locations----
-
-    self.addLocation = function(location){
+    self.addLocation = function (location) {
         $http({
-            method: 'POST',
-            url: '/map/post',
-            data: {
-                location_name: location.name,
-                lat: location.lat,
-                long: location.long
-            }
-        }).then((response) =>{
-                console.log('location sent to the database');
-                alert('Location successfully uploaded!');
+                method: 'POST',
+                url: '/map/post',
+                data: {
+                    location_name: location.name,
+                    lat: location.lat,
+                    long: location.long,
+                    reveal_type: location.reveal_type
+                }
+            }).then((response) => {
+                swal("Location successfully uploaded!", "", "success");
                 location.name = '';
+                self.currentLocationId = response.data[0].id;
+                self.indLocation.indTitle = response.data[0].location_name;
+                $location.url(`admin/location/${self.currentLocationId}`);
             })
             .catch((error) => {
-                console.log('error on post: ', error); 
-                alert('That did not work. Try refreshing and running again');
             })
-    }//end addd location
+    }
 
-    self.getAllLocations = function(){
+    self.getAllLocations = function () {
         self.locations.allLocations = [];
-        console.log('in getAllLocations function');
         $http({
             method: 'GET',
             url: '/map/all'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allLocations = result.data;
             self.indLocation.isBeingEdited = false;
-            console.log('success getting all locations', self.locations.allLocations);
-        }).catch((error)=>{
-            console.log('error getting all locations');
+            self.locations.currentLocationId = null;
+        }).catch((error) => {
         })
     }
 
-    self.deleteLocation = function(){
+    self.deleteLocation = function (id) {
         $http({
             method: 'DELETE',
             url: `/map/delete/${id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getAllLocations();
-        }).catch((error)=>{
-            console.log('/map/delete/:id', error);
+            $location.url('/admin/editlocation');
+            self.locations.currentLocationId = null;
+        }).catch((error) => {
         })
-    } // ---------------------I don't have a button---------------------
+    } 
 
-    self.editLocation = function(){
+    self.editLocation = function (location) {
         $http({
             method: 'PUT',
             url: `/map/edit`,
-            data: putObj
-        }).then((result)=>{
+            data: location
+        }).then((result) => {
+            alert('Location Edited Successfully');
+            $location.url('/admin/editlocation');
             self.getAllLocations();
-        }).catch((error)=>{
-            console.log('/map/edit', error);
+        }).catch((error) => {
         })
-    } // ---------------------I don't have a button---------------------
+    } 
 
-    self.getIndividualLocation = function(id){
-        console.log('in getIndividualLocation function');
+    self.getIndividualLocation = function (id) {
         $http({
             method: 'GET',
             url: `map/artifact/${id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allArtifactsForLocation = result.data;
             self.locations.currentLocationId = id;
-            console.log('current location id:', self.locations.currentLocationId)
-            console.log(`success getting artifacts for location id:${id}`, self.locations.allArtifactsForLocation);
             self.indLocation.indSculpture = {};
             self.indLocation.indMainPhoto = {};
             self.indLocation.indPhotos = [];
@@ -241,86 +238,81 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.indLocation.indWritings = [];
             self.indLocation.indAnecdotes = [];
             self.indLocation.indVideos = [];
-            self.indLocation.reveal_type = '';
-            self.determineType();
-        }).catch((error)=>{
-            console.log('error getting all locations');
+            self.indLocation.indTitle = '';
+            self.determineType(id);
+        }).catch((error) => {
+        })
+    }
+
+    self.getMapLocation = (id) => {
+        $http({
+            method: 'GET',
+            url: `map/${id}`
+        }).then((result) => {
+            self.locations.locationToEdit = result.data;
+        }).catch((error) => {
         })
     }
     //-----End Locations----
     //----BEGIN Information AJAX-----//
-    self.addInformation = function(dataObj){
+    self.addInformation = function (dataObj) {
         $http({
-            method:'POST', 
+            method: 'POST',
             url: `/information/post`,
             data: dataObj
-        }).then((result)=>{
-            console.log('Information added');
+        }).then((result) => {
             self.getInformation();
-        }).catch((error)=>{
-            console.log('Add information', error);
+        }).catch((error) => {
         })
     }
 
-    self.getInformation = function(){
+    self.getInformation = function () {
         $http({
             method: 'GET',
             url: `/information/get`,
-        }).then((result)=>{
-            console.log('Information:', result.data);
+        }).then((result) => {
             self.locations.information = result.data;
-        }).catch((error)=>{
-            console.log('guidelines', error);
+            self.locations.currentLocationId = null;
+        }).catch((error) => {
         })
     }
 
-    self.editInformation = function(dataObj){
+    self.editInformation = function (dataObj) {
         $http({
             method: 'PUT',
             url: `/information/edit/${dataObj.id}`,
             data: dataObj,
-        }).then((result)=>{
-            console.log('Information updated');
+        }).then((result) => {
             self.getInformation();
-        }).catch((error)=>{
-            console.log('Information', error);
+        }).catch((error) => {
         })
     }
 
-    self.deleteInformation = function(dataObj){
+    self.deleteInformation = function (dataObj) {
         $http({
             method: 'DELETE',
             url: `/information/delete/${dataObj.id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getInformation();
-        }).catch((error)=>{
-            console.log('delete information', error);
+        }).catch((error) => {
         })
     }
-//-----END INFORMATION AJAX-------
-//-----Start Artifacts-------
+    //-----END INFORMATION AJAX-------
+    //-----Start Artifacts-------
     //-----Start Multimedia------
-
-
-    self.getAllMultimedia = function(){
-        console.log('in getAllMultimedia function');
+    self.getAllMultimedia = function () {
         $http({
             method: 'GET',
             url: '/artifacts/media'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allMultimedia = result.data;
-        }).catch((error)=>{
-            console.log('/artifacts/media', error);
+        }).catch((error) => {
         })
     }
-
-
-   
     //-----End Multimedia------
     //-----Start Sculptures------
-    self.saveSculpture = function(){
-        let newSculpture = self.newSculpture; 
-        console.log('in saveSculpture,', newSculpture);
+    self.saveSculpture = function () {
+        let newSculpture = self.newSculpture;
         $http({
             method: 'POST',
             url: `/artifacts/save`,
@@ -333,32 +325,39 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
                 extended_description: newSculpture.extended_description,
                 type: 'sculpture',
             }
-        }).then((result)=>{
-            console.log('new sculpture saved');
-            alert('sculpture added!');
+        }).then((result) => {
+            swal("sculpture added!", "", "success")
             let artifact_id = result.data[0].id //return id from database!!!!
-            console.log('artifact_id:' , artifact_id)
             self.saveAssociation(artifact_id, false);
-        }).catch((error)=>{
-            console.log('error saving new sculpture', error);
+            // self.newSculpture = {};
+            self.newSculpture.title = '';
+            self.newSculpture.year = '';
+            self.newSculpture.material = '';
+            self.newSculpture.artist_name = '';
+            self.newSculpture.description = '';
+            self.newSculpture.extended_description = '';
+            // self.clearArtifact();
+        }).catch((error) => {
         })
     }
 
-    self.getAllSculptures = function(){
+    self.changeEdit = function (id) {
+        self.newSculpture.editing = false;
+    }
+
+    self.getAllSculptures = function () {
         $http({
             method: 'GET',
             url: '/artifacts/sculpture'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allSculptures = result.data;
-        }).catch((error)=>{
-            console.log('/artifacts/sculpture', error);
+        }).catch((error) => {
         })
     }
     //-----End Sculptures------
     //-----Start Other Artifacts-----
-    self.saveText = function(){
+    self.saveText = function () {
         let newText = self.newText;
-        console.log('in saveText,', newText);
         $http({
             method: 'POST',
             url: `/artifacts/save`,
@@ -368,72 +367,66 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
                 description: newText.description,
                 type: newText.type,
             }
-        }).then((result)=>{
-            console.log('new text saved');
+        }).then((result) => {
             self.clearArtifact();
             history.back();
-        }).catch((error)=>{
-            console.log('error saving new text', error);
+            self.locations.currentLocationId = null;
+        }).catch((error) => {
         })
     }
 
-    self.getAllWritings = function(){
-        console.log('in getAllWritings function');
+    self.getAllWritings = function () {
         $http({
             method: 'GET',
             url: '/artifacts/writing'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allWritings = result.data;
-        }).catch((error)=>{
-            console.log('/artifacts/writing', error);
+        }).catch((error) => {
         })
     }
 
-    self.getAllAnecdotes = function(){
-        console.log('in getAllAnecdotes function');
+    self.getAllAnecdotes = function () {
         $http({
             method: 'GET',
             url: '/artifacts/anecdote'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allAnecdotes = result.data;
-        }).catch((error)=>{
-            console.log('/artifacts/anecdote', error);
+        }).catch((error) => {
         })
     }
 
-    self.getAllPoems = function(){
-        console.log('in getAllPoems function');
+    self.getAllPoems = function () {
         $http({
             method: 'GET',
             url: '/artifacts/poem'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allPoems = result.data;
-            console.log(self.locations.allPoems);
-        }).catch((error)=>{
-            console.log('/artifacts/poem', error);
+        }).catch((error) => {
         })
     }
     //-----End Other Artifacts-----
     //-----Start Misc Artifact Functions-----
-
-    self.editArtifact = function(artifact){
-        console.log('Edit Artifact', artifact);
-        
+    self.editArtifact = function (artifact) {
         $http({
             method: 'PUT',
             url: '/artifacts/edit',
             data: artifact
-        }).then((result)=>{
+        }).then((result) => {
             self.getDecider(artifact);
-            console.log('Artifact updated', result);
             self.clearArtifact();
+            self.newSculpture.title = '';
+            self.newSculpture.year = '';
+            self.newSculpture.material = '';
+            self.newSculpture.artist_name = '';
+            self.newSculpture.description = '';
+            self.newSculpture.extended_description = '';
+            self.locations.currentLocationId = null;
             history.back();
-        }).catch((error)=>{
-            console.log('/artifacts/edit', error);
+        }).catch((error) => {
         })
     }
 
-    self.clearArtifact = function(){
+    self.clearArtifact = function () {
         // self.newText.type = '';
         self.newText.year = '';
         self.newText.material = '';
@@ -448,69 +441,73 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         self.newMultimedia.extended_description = '';
         self.newMultimedia.editing = false;
     }
-    
-    self.determineType = function(){
-        self.indLocation.reveal_type = self.locations.allArtifactsForLocation[0].reveal_type;
-        for(let artifact of self.locations.allArtifactsForLocation){
-            if(artifact.type == 'sculpture'){
+
+    self.determineType = function (id) {
+        if (self.locations.allArtifactsForLocation[0] == undefined) {
+            $http({
+                method: 'GET',
+                url: `/map/getLocationName/${id}`
+            }).then((result) => {
+                self.indLocation.indTitle = result.data[0].location_name;
+            }).catch((error) => {
+            })
+        } else {
+            self.indLocation.indTitle = self.locations.allArtifactsForLocation[0].location_name;
+            self.indLocation.reveal_type = self.locations.allArtifactsForLocation[0].reveal_type;
+        }
+        for (let artifact of self.locations.allArtifactsForLocation) {
+            if (artifact.type == 'sculpture') {
                 self.indLocation.indSculpture = artifact;
-            }else if(artifact.type == 'photo' && !artifact.main_photo){
+            } else if (artifact.type == 'photo' && !artifact.main_photo) {
                 self.indLocation.indPhotos.push(artifact);
-            }else if(artifact.type == 'poem'){
+            } else if (artifact.type == 'poem') {
                 self.indLocation.indPoems.push(artifact);
-            }else if(artifact.type == 'writing'){
+            } else if (artifact.type == 'writing') {
                 self.indLocation.indWritings.push(artifact);
-            }else if(artifact.type == 'anecdote'){
+            } else if (artifact.type == 'anecdote') {
                 self.indLocation.indAnecdotes.push(artifact);
-            }else if(artifact.type == 'video'){
+            } else if (artifact.type == 'video') {
                 self.indLocation.indVideos.push(artifact);
-            }else if(artifact.main_photo){
+            } else if (artifact.main_photo) {
                 self.indLocation.indMainPhoto = artifact;
             }
+
         }
     }
 
 
-    self.getAllWritings = function(){
-        console.log('in getAllWritings function');
+    self.getAllWritings = function () {
         $http({
             method: 'GET',
             url: '/artifacts/writing'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allWritings = result.data;
-        }).catch((error)=>{
-            console.log('/artifacts/writing', error);
+        }).catch((error) => {
         })
     }
 
-    self.getAllAnecdotes = function(){
-        console.log('in getAllAnecdotes function');
+    self.getAllAnecdotes = function () {
         $http({
             method: 'GET',
             url: '/artifacts/anecdote'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allAnecdotes = result.data;
-        }).catch((error)=>{
-            console.log('/artifacts/anecdote', error);
+        }).catch((error) => {
         })
     }
 
-    self.getAllPoems = function(){
-        console.log('in getAllPoems function');
+    self.getAllPoems = function () {
         $http({
             method: 'GET',
             url: '/artifacts/poem'
-        }).then((result)=>{
+        }).then((result) => {
             self.locations.allPoems = result.data;
-            console.log(self.locations.allPoems);
-        }).catch((error)=>{
-            console.log('/artifacts/poem', error);
+        }).catch((error) => {
         })
     }
 
-    self.saveAssociation = function(artifact_id, main_photo){
+    self.saveAssociation = function (artifact_id, main_photo) {
         let location_id = Number(self.locations.currentLocationId);
-        console.log('in saveAssociation function--artifact_id, main_photo, location_id:', artifact_id, main_photo, location_id);
         $http({
             method: 'POST',
             url: '/map/join/insert',
@@ -519,44 +516,40 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
                 location_id: self.locations.currentLocationId,
                 main_photo: self.isMainPhoto.boolean,
             }
-        }).then((result)=>{
-            console.log('association saved');
+        }).then((result) => {
+            self.getIndividualLocation(location_id);
             history.back();
-        }).catch((error)=>{
-            console.log('error saving association', error);
+        }).catch((error) => {
         })
     }
 
-    self.deleteAssociation = function(artifact_id){
+    self.deleteAssociation = function (artifact_id) {
         let location_id = Number(self.locations.currentLocationId);
-        console.log('in deleteAssociation', artifact_id, location_id);
         $http({
             method: 'DELETE',
             url: `/artifacts/join/delete/${artifact_id}/${location_id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getIndividualLocation(location_id);
-        }).catch((error)=>{
-            console.log(`/artifacts/join/delete/${id}: ${result}`);
+        }).catch((error) => {
         })
     }
-    
-    self.saveRevealType = function(reveal_type){
+
+    self.saveRevealType = function (reveal_type) {
 
     }
 
-    self.deleteArtifact = function(artifact){
+    self.deleteArtifact = function (artifact) {
         $http({
             method: 'DELETE',
             url: `/artifacts/delete/${artifact.id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getDecider(artifact);
-        }).catch((error)=>{
-            console.log('/artifacts/delete/:id', error);
+        }).catch((error) => {
         })
     }
 
-    self.getDecider = function(artifact){
-        switch(artifact.type){
+    self.getDecider = function (artifact) {
+        switch (artifact.type) {
             case 'photo':
             case 'video':
                 self.getAllMultimedia();
@@ -573,8 +566,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }
     }
 
-    self.formDecider = function(artifact){
-        switch(artifact.type){
+    self.formDecider = function (artifact) {
+        switch (artifact.type) {
             case 'photo':
             case 'video':
                 $location.path('/admin/multimediaform');
@@ -590,13 +583,11 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }
     }
 
-    self.getArtifactToEdit = function(id){
-        console.log('Editing artifact', id);
+    self.getArtifactToEdit = function (id) {
         $http({
             method: 'GET',
             url: `/artifacts/single/${id}`,
-        }).then((result)=>{
-            console.log('individual result:', result.data);
+        }).then((result) => {
             self.newText.id = result.data[0].id;
             self.newText.type = result.data[0].type;
             self.newText.title = result.data[0].title;
@@ -621,50 +612,45 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.newSculpture.media_url = result.data[0].media_url;
             self.newSculpture.editing = true;
             self.formDecider(result.data[0]);
-        }).catch((error)=>{
-            console.log('Could not get individual artifact', error);
+        }).catch((error) => {
         })
     }
     //-----End Misc Artifact Functions-----
-//-----End Artifacts-------
-//----Start Guest Management----
-    self.getAllGuests = function(){
+    //-----End Artifacts-------
+    //----Start Guest Management----
+    self.getAllGuests = function () {
         $http({
-            method:'GET', 
+            method: 'GET',
             url: `/api/user/guest/all`
-        }).then((result)=>{
-            console.log('guest emails', result.data);
+        }).then((result) => {
             self.locations.guestList = result.data;
-        }).catch((error)=>{
-            console.log('could not get guest emails', error);
+            self.locations.currentLocationId = null;
+        }).catch((error) => {
         })
     }
 
-    self.deleteGuest = function(guest){
+    self.deleteGuest = function (guest) {
         $http({
-            method:'DELETE',
-            url:`/api/user/guest/delete/${guest.id}`
-        }).then((result)=>{
-            console.log('Guest deleted',);
+            method: 'DELETE',
+            url: `/api/user/guest/delete/${guest.id}`
+        }).then((result) => {
             self.getAllGuests();
         }).catch((error)=>{
-            console.log('Could not delete guest');
+            console.log(`/api/user/guest/delete/${guest.id}`, error);
         })
     }
 
     self.addGuest = function(guest){
-        console.log('In addGuest');
-        console.log(guest);
         $http({
             method: 'POST',
             url: '/api/user/guest',
             data: guest,
         }).then((result)=>{
-            console.log('guest email added');
+            swal("Guest and email added.", "", "success");
             self.getAllGuests();
             self.emptyGuestInputs();
         }).catch((error)=>{
-            console.log('Could not add guest email');
+            console.log('/api/user/guest');
         })
     }
 
@@ -672,33 +658,34 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         self.locations.newGuest.name = '';
         self.locations.newGuest.email = '';
     }
-//------End Guest Management----
-//-----Begin Admin Management----
-    self.getAllAdmins = function(){
+    //------End Guest Management----
+    //-----Begin Admin Management----
+    self.getAllAdmins = function () {
         $http({
             method: 'GET',
             url: '/api/user/admin/all'
         }).then((result) => {
-            console.log('Got all admins', result.data);
             self.locations.allAdmins = result.data;
-        }).catch((error)=>{
-            console.log('/api/user/admin/all', error);
+            self.locations.currentLocationId = null;
+        }).catch((error) => {
         })
     }
 
-    self.deleteAdmin = function(id){
+    self.deleteAdmin = function (id) {
         $http({
             method: 'DELETE',
             url: `/api/user/admin/delete/${id.id}`
-        }).then((result)=>{
+        }).then((result) => {
             self.getAllAdmins();
-        }).catch((error)=>{
-            console.log(`/api/user/admin/delete/${id.id}`, error);
+        }).catch((error) => {
         })
     }
-//-----End Admin Management----
-    self.isCurrentPage = function(path){
+    //-----End Admin Management----
+    self.isCurrentPage = function (path) {
         return path === $location.path();
     }
 
+    self.clearLocationInfo = function () {
+        self.locations.currentLocationId = null;
+    }
 }]);

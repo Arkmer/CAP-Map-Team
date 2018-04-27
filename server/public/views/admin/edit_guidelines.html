@@ -1,21 +1,31 @@
+<div ng-include="'/views/admin/admin_menu.html'">
 
-
-<div ng-include="'/views/admin/admin_menu.html'"></div>
+</div>
 <div class="pageDown"></div>
-
-<div>
+<br>
+<h3 class="indent">EDIT GUIDELINES</h3>
+<md-divider></md-divider>
+<br>
+<div class="indent">
     <form>
-        New Information:<input ng-model="vm.locations.information.newInformation.description"/>
-        <!-- Category:<input ng-model="vm.locations.information.newInformation.category"/> -->
-        <input type="submit" ng-click="vm.addInformation(vm.locations.information.newInformation)"/>
+        <md-input-container class="md-block">
+            <label>NEW GUIDELINE</label>
+            <input style="width:auto;" size="50" ng-model="vm.locations.information.newInformation.description" />
+        </md-input-container>
+        <md-button class="md-raised" type="submit" ng-click="vm.addInformation(vm.locations.information.newInformation)">Submit</md-button>
     </form>
 </div>
-
+<br>
+<md-divider></md-divider>
+<br>
+<br>
 <div>
-    <table>
+    <table class="indent">
         <thread>
-            <th>Information</th>
-            <!-- <th>Category</th> -->
+            <th class="guidelineTitle">
+                <h3>ALL GUIDELINES</h3>
+            </th>
+
             <th></th>
             <th></th>
         </thread>
@@ -23,19 +33,26 @@
             <tr ng-repeat="information in vm.locations.information">
                 <td>
                     <div ng-hide="information.editing">{{information.description}}</div>
-                    <input ng-show="information.editing" ng-model="information.description" ng-value="information.description"/>
-                    <!-- <text-angular ng-show="information.editing" ng-value="information.description" ng-model="information.description"></text-angular> -->
+                    <md-input-container ng-show="information.editing" class="md-block">
+                        <label>Guideline</label>
+                        <input ng-model="information.description" ng-value="information.description" />
+                    </md-input-container>
+
                 </td>
-                <!-- <td>
-                    <div ng-hide="information.editing">{{information.category}}</div>
-                    <input ng-show="information.editing" ng-model="information.category" ng-value="information.category"/>
-                </td> -->
+
                 <td>
-                    <button ng-hide="information.editing" ng-click="vm.viewEditInformation(information)">Edit</button>
-                    <button ng-show="information.editing" ng-click="vm.editInformation(information)">Save</button>
+
+                    <div layout="row" layout-align="center center" ng-hide="information.editing" ng-click="vm.viewEditInformation(information)">
+                        <i class="material-icons">mode_edit</i>
+                    </div>
+                    <div layout="row" layout-align="center center" ng-show="information.editing" ng-click="vm.editInformation(information)">
+                        <i class="material-icons">save</i>
+                    </div>
                 </td>
                 <td>
-                    <button ng-click="vm.deleteInformation(information)">Delete</button>
+                    <div layout="row" layout-align="center center" ng-click="vm.deleteInformation(information)">
+                        <i class="material-icons">remove_circle</i>
+                    </div>
                 </td>
             </tr>
         </tbody>

@@ -1,193 +1,205 @@
 <div ng-include="'/views/admin/admin_menu.html'"></div>
+
 <div class="pageDown"></div>
-<br>
-<br>
 
-<div ng-if="!vm.indLocation.isBeingEdited">
-        <img id="mainPhoto" src="{{vm.indLocation.indMainPhoto.media_url}}" />
-        <br>
-        <br>
-        <div>
-                <strong>Sculpture</strong>
-        </div>
-        <div ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.title}}</div>
-        <div ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.artist_name}}</div>
-        <div ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.year}}</div>
-        <div ng-bind-html="vm.indLocation.indSculpture.description" ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.description}}</div>
-        <div ng-bind-html="vm.indLocation.indSculpture.extended_description" ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.extended_description}}</div>
-        <br>
-
-     
-        <br>
-        <div>
-                <strong>Historical Photos</strong>
-        </div>
-        <div ng-repeat="photo in vm.indLocation.indPhotos">
-                <img src="{{photo.media_url}}" height="100px" width="100px" />
-        </div>
-        <br>
-        <div>
-                <strong>Poems</strong>
-        </div>
-        <div ng-repeat="poem in vm.indLocation.indPoems">
-                <div>{{poem.title}}</div>
-                <div>{{poem.artist_name}}</div>
-                <div ng-bind-html="poem.description">{{poem.description}}</div>
-        </div>
-        <br>
-        <div>
-                <strong>Writings</strong>
-        </div>
-        <div ng-repeat="writing in vm.indLocation.indWritings">
-                <div>{{writing.title}}</div>
-                <div>{{writing.artist_name}}</div>
-                <div ng-bind-html="writing.description">{{writing.description}}</div>
-        </div>
-        <br>
-        <div>
-                <strong>Anecdotes</strong>
-        </div>
-        <div ng-repeat="anecdote in vm.indLocation.indAnecdotes">
-                <div>{{anecdote.title}}</div>
-                <div>{{anecdote.artist_name}}</div>
-                <div ng-bind-html="anecdote.description">{{anecdote.description}}</div>
-        </div>
-        <br>
-        <div>
-                <strong>Videos</strong>
-        </div>
-        <div ng-repeat="video in vm.indLocation.indVideos">
-                <iframe width="560" height="315" ng-src="{{vm.trustSrc(video.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div>Reveal Type: {{vm.indLocation.reveal_type}}</div>
-        <button ng-click="vm.indLocation.isBeingEdited=true">Edit</button>
+<div layout="row" layout-align="center center">
 
 </div>
+<div class="locationTitle">{{vm.indLocation.indTitle}}</div>
 
-<div ng-if="vm.indLocation.isBeingEdited">
-        <br><br>
-        <div>
-                <strong>Sculpture</strong>
+<hr>
+<div class="divCoverPhoto" layout="column" layout-align="center center" ng-if="vm.indLocation.indMainPhoto.media_url != undefined">
+        <img layout="row" layout-align="center center" class="coverPhoto" src="{{vm.indLocation.indMainPhoto.media_url}}" />
+        <div layout="row" layout-align="center end">
+                <a class="changeMainPhoto" href="/#!/admin/multimedia">
+                        <div class="md-raised" ng-click="vm.isMainPhoto.boolean = true; vm.isMainPhoto.type = 'photo'">
+                                <i class="material-icons">add_circle</i>
+                        </div>
+                </a>
+                <div id="removeButton" ng-click="vm.deleteAssociation(vm.indLocation.indMainPhoto.id)">
+                        <i class="material-icons">remove_circle</i>
+                </div>
         </div>
-        <div>
-
+</div>
+<br>
+<div layout="row" layout-align="center center" ng-if="vm.indLocation.indMainPhoto.media_url == undefined">
+        <a href="/#!/admin/multimedia">
+                <md-button class="md-raised" ng-click="vm.isMainPhoto.boolean = true; vm.isMainPhoto.type = 'photo'">
+                        Add Main Photo
+                </md-button>
+        </a>
+</div>
+<br>
+<hr>
+<br>
+<div layout="column" layout-align="center center" class="limitWidthDescription">
+        <div layout="row" layout-align="center center">
+                <strong>SCULPTURE INFORMATION</strong>
+                <div ng-click="vm.changeEdit(vm.indLocation.indSculpture.id)">
+                        <a ng-if="!vm.indLocation.indSculpture.title" class="add" href="/#!/admin/sculptures">
+                                <i class="material-icons">add_circle</i>
+                        </a>
+                </div>
+                <div ng-if="vm.indLocation.indSculpture.title" id="editSculpture" ng-click="vm.getArtifactToEdit(vm.indLocation.indSculpture.id)">
+                        <i class="material-icons">mode_edit</i>
+                </div>
         </div>
+        <br>
         <div ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.title}}</div>
+        <br>
         <div ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.artist_name}}</div>
+        <br>
         <div ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.year}}</div>
+        <br>
+        <div ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.material}}</div>
+        <br>
         <div ng-bind-html="vm.indLocation.indSculpture.description" ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.description}}</div>
+        <br>
         <div ng-bind-html="vm.indLocation.indSculpture.extended_description" ng-if="vm.indLocation.indSculpture">{{vm.indLocation.indSculpture.extended_description}}</div>
-        <button ng-if="vm.indLocation.indSculpture.title" ng-click="vm.getArtifactToEdit(vm.indLocation.indSculpture.id)">Edit</button>
-        <a ng-if="!vm.indLocation.indSculpture.title" href="/#!/admin/sculptures">
-                <i class="material-icons">add_circle</i>
-        </a>
         <br>
-
-        <div>
-                <strong>Main Photo</strong>
-        </div>
-        <a href="/#!/admin/multimedia">
-                <button ng-click="vm.isMainPhoto.boolean = true; vm.isMainPhoto.type = 'photo'">
-                        <i class="material-icons">add_circle</i>
-                </button>
-        </a>
-        <!-- save as main_photo -->
-        <div ng-if="vm.indLocation.indMainPhoto">
-                <img src="{{vm.indLocation.indMainPhoto.media_url}}" />
-        </div>
-        <button ng-click="vm.deleteAssociation(vm.indLocation.indMainPhoto.id)">Remove</button>
-        <br>
-
-        <div>
-                <strong>Historical Photos</strong>
-        </div>
-        <a href="/#!/admin/multimedia">
-                <button ng-click="vm.isMainPhoto.boolean = false; vm.isMainPhoto.type = 'photo'">
-                <i class="material-icons">add_circle</i>
-                </button>
-
-        </a>
-        <div ng-repeat="photo in vm.indLocation.indPhotos">
-                <img src="{{photo.media_url}}" height="100px" width="100px" />
-                <button ng-click="vm.deleteAssociation(photo.id)">Remove</button>
+</div>
+<hr class="short">
+<br>
+<div layout="column" layout-align="center center" class="bottomMargin">
+        <div layout="row" layout-align="center center">
+                <strong>OTHER PHOTOS</strong>
+                <br>
+                <br>
+                <a href="/#!/admin/multimedia">
+                        <div class="add" ng-click="vm.isMainPhoto.boolean = false; vm.isMainPhoto.type = 'photo'">
+                                <i class="material-icons">add_circle</i>
+                        </div>
+                </a>
         </div>
 
-        <div>
-                <strong>Poems</strong>
+        <div layout="row" layout-align="center center" class="bottomMargin centerArtifact otherPhotos">
+                <div ng-repeat="photo in vm.indLocation.indPhotos" layout="column" layout-align="center center">
+                        <img src="{{photo.media_url}}" class="photo" />
+                        <div class="minus" ng-click="vm.deleteAssociation(photo.id)">
+                                <i class="material-icons">remove_circle</i>
+                        </div>
+                </div>
         </div>
-        <a href="/#!/admin/poems">
-
-                <button ng-click="vm.isMainPhoto.boolean=false">
-                <i class="material-icons">add_circle</i>
-                </button>
-
-        </a>
-        <div ng-repeat="poem in vm.indLocation.indPoems">
-                <div>{{poem.title}}</div>
+</div>
+<br>
+<hr class="short">
+<br>
+<div layout="column" layout-align="center center" class="bottomMargin">
+        <div layout="row" layout-align="center center">
+                <strong>POEMS</strong>
+                <br>
+                <a href="/#!/admin/poems">
+                        <div class="add" ng-click="vm.isMainPhoto.boolean=false">
+                                <i class="material-icons">add_circle</i>
+                        </div>
+                </a>
+        </div>
+</div>
+<div layout="column" layout-align="center center" class="bottomMargin centerArtifact">
+        <div ng-repeat="poem in vm.indLocation.indPoems" layout="column" layout-align="center center">
+                <div>
+                        <strong>{{poem.title}}</strong>
+                </div>
                 <div>{{poem.artist_name}}</div>
-                <div ng-bind-html="poem.description">{{poem.description}}</div>
-                <button ng-click="vm.deleteAssociation(poem.id)">Remove</button>
+                <div>{{poem.year}}</div>
+                <div class="centerArtifact" ng-bind-html="poem.description">{{poem.description}}</div>
+                <div class="minusWriting" ng-click="vm.deleteAssociation(poem.id)">
+                        <i class="material-icons">remove_circle</i>
+                </div>
+                <br>
         </div>
-
-        <div>
-                <strong>Writings</strong>
+</div>
+<br>
+<hr class="short">
+<br>
+<div layout="column" layout-align="center center" class="bottomMargin">
+        <div layout="row" layout-align="center center">
+                <strong>WRITINGS</strong>
+                <br>
+                <a href="/#!/admin/writings">
+                        <div class="add" ng-click="vm.isMainPhoto.boolean=false">
+                                <i class="material-icons">add_circle</i>
+                        </div>
+                </a>
         </div>
-        <a href="/#!/admin/writings">
-
-                <button ng-click="vm.isMainPhoto.boolean=false">
-                <i class="material-icons">add_circle</i>
-                </button>
-
-        </a>
-        <div ng-repeat="writing in vm.indLocation.indWritings">
-                <div>{{writing.title}}</div>
+</div>
+<div layout="column" layout-align="center center" class="bottomMargin limitWidthDescriptionWritings">
+        <div ng-repeat="writing in vm.indLocation.indWritings" layout="column" layout-align="center center">
+                <div>
+                        <strong>{{writing.title}}</strong>
+                </div>
                 <div>{{writing.artist_name}}</div>
+                <div>{{writing.year}}</div>
                 <div ng-bind-html="writing.description">{{writing.description}}</div>
-                <button ng-click="vm.deleteAssociation(writing.id)">Remove</button>
+                <div class="minusWriting" ng-click="vm.deleteAssociation(writing.id)">
+                        <i class="material-icons">remove_circle</i>
+                </div>
+                <br>
         </div>
-        <br>
-
-        <div>
-                <strong>Anecdotes</strong>
+</div>
+<br>
+<hr class="short">
+<br>
+<div layout="column" layout-align="center center" class="bottomMargin">
+        <div layout="row" layout-align="center center">
+                <strong>ANECDOTES</strong>
+                <br>
+                <a href="/#!/admin/anecdotes">
+                        <div class="add" ng-click="vm.isMainPhoto.boolean=false">
+                                <i class="material-icons">add_circle</i>
+                        </div>
+                </a>
         </div>
-        <a href="/#!/admin/anecdotes">
-
-                <button ng-click="vm.isMainPhoto.boolean=false">
-                <i class="material-icons">add_circle</i>
-                </button>
-        </a>
-        <div ng-repeat="anecdote in vm.indLocation.indAnecdotes">
-                <div>{{anecdote.title}}</div>
+</div>
+<div layout="column" layout-align="center center" class="centerArtifactAnecdote">
+        <div ng-repeat="anecdote in vm.indLocation.indAnecdotes" layout="column" layout-align="center center">
+                <div>
+                        <strong>{{anecdote.title}}</strong>
+                </div>
                 <div>{{anecdote.artist_name}}</div>
+                <div>{{anecdote.year}}</div>
                 <div ng-bind-html="anecdote.description">{{anecdote.description}}</div>
-                <button ng-click="vm.deleteAssociation(anecdote.id)">Remove</button>
+                <div class="minusAnecdoteWriting" ng-click="vm.deleteAssociation(anecdote.id)">
+                        <i class="material-icons">remove_circle</i>
+                </div>
+                <br>
         </div>
-
-        <div>
-                <strong>Videos</strong>
+</div>
+<br>
+<hr class="short">
+<br>
+<div layout="column" layout-align="center center" class="bottomMargin">
+        <div layout="row" layout-align="center center">
+                <strong>VIDEOS</strong>
+                <a href="/#!/admin/multimedia">
+                        <div class="add" ng-click="vm.isMainPhoto.boolean=false; vm.isMainPhoto.type = 'video'">
+                                <i class="material-icons">add_circle</i>
+                        </div>
+                </a>
         </div>
-        <a href="/#!/admin/multimedia">
-
-                <button ng-click="vm.isMainPhoto.boolean = false; vm.isMainPhoto.type = 'video'">
-                <i class="material-icons">add_circle</i>
-                </button>
+</div>
+<br>
+<div layout="column" layout-align="center center" class="bottomMargin centerArtifact">
+        <div ng-repeat="video in vm.indLocation.indVideos" layout="column" layout-align="center center">
+                <iframe width="200" height="200" ng-src="{{vm.trustSrc(video.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+                <div ng-click="vm.deleteAssociation(video.id)">
+                        <i class="material-icons">remove_circle</i>
+                </div>
+        </div>
+</div>
+<br>
+<md-divider></md-divider>
+<br>
+<div layout="column" layout-align="center center">
+        <a href="/#!/admin/addlocation">
+                <md-button class="md-raised">Edit Map Location</md-button>
         </a>
-        <div ng-repeat="video in vm.indLocation.indVideos">
-                <iframe width="560" height="315" ng-src="{{vm.trustSrc(video.media_url)}}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
-                <button ng-click="vm.deleteAssociation(video.id)">Remove</button>
-        </div>
+</div>
 <br>
 
-        <md-select ng-model="vm.indLocation.reveal_type">
-                <md-option ng-selected="vm.indLocation.reveal_type" ng-repeat="types in vm.locations.allRevealTypes"
-                ng-value={{types.type}}>{{ types.type }}</md-option>
-        </md-select>
-
-        <!-- <select value="{{vm.indLocation.reveal_type}}">
-                <option value="static">Static</option>
-                <option value="proximity">Proximity</option>
-                <option value="bathroom">Bathroom</option>
-        </select> -->
-        
-
+<div layout="column" layout-align="center center">
+        <md-button class="md-warn md-raised md-hue-2" ng-click="vm.deleteLocation(vm.locations.currentLocationId)">Delete Location</md-button>
 </div>
+<br>
+<br>
+<br>

@@ -3,16 +3,21 @@
     <head>
         <title>CAP MAP</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Google Maps API [INSERT YOUR API KEY below] -->
         <script defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyCO_7-h561XHIkv_gujZWUK_QfKRFVCvns"></script>
+        <!-- angular sources -->
         <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
         <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+        <!-- styles -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="vendors/material/angular-material.css">
+        <!-- js config -->
         <script type="text/javascript" src="scripts/client.js"></script>
+        <!-- MD Tables -->
+        <link rel="stylesheet" href="vendors/angular-data-grid.material.css">
         <!-- Angular Sanitize -->
         <script src="/vendors/angular-sanitize.min.js"></script>
-
         <!-- Angular Material -->
         <link rel="stylesheet" href="vendors/material/angular-material-advanced-lightbox.min.css">
         <script src="vendors/material/angular-material-advanced-lightbox.min.js"></script>
@@ -21,7 +26,7 @@
         <script type="text/javascript" src="vendors/material/angular-messages.min.js"></script>
         <script type="text/javascript"src="vendors/material/angular-material.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- <script type="text/javascript" src="scripts/controllers/info.controller.js"></script> -->
+      
         <!-- Text Angular -->
         <link rel='stylesheet' href='vendors/text-angular/textAngular.css'>
         <script src='vendors/text-angular/textAngular-rangy.min.js'></script>
@@ -32,6 +37,9 @@
 
         <!-- filestack -->
         <script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+
+        <!-- Sweet Alerts -->
+        <script src="vendors/sweetalert/dist/sweetalert.min.js"></script>
         
         <!-- user controller -->
         <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
@@ -49,11 +57,10 @@
         <script type="text/javascript" src="scripts/controllers/admin_controllers/manage_admins.controller.js"></script>
         <script type="text/javascript" src="scripts/controllers/admin_controllers/manage_guests.controller.js"></script>
         <script type="text/javascript" src="scripts/controllers/admin_controllers/multimedia_form.controller.js"></script>
-        <!-- <script type="text/javascript" src="scripts/controllers/admin_controllers/name_location.controller.js"></script> -->
         <script type="text/javascript" src="scripts/controllers/admin_controllers/text_form.controller.js"></script>
         <script type="text/javascript" src="scripts/controllers/admin_controllers/all_sculptures.controller.js"></script>
         <script type="text/javascript" src="scripts/controllers/admin_controllers/edit_guidelines.controller.js"></script>
-        <!-- <script type="text/javascript" src="scripts/controllers/admin_controllers/location_preview.controller.js"></script> -->
+
 
         
         <!-- guest controllers -->
@@ -71,7 +78,7 @@
 
     </head>
 
-    <body ng-app="capApp">
+    <body ng-app="capApp" ng-cloak>
       <!-- <header ng-include="'/views/partials/header.html'"></header> -->
 
       <main ng-view></main>
