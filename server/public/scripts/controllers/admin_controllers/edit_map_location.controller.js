@@ -4,9 +4,7 @@ capApp.controller('EditMapLocationController', ['UserService', 'AdminService', '
     
 
     self.userService = UserService;
-    // self.adminService = AdminService;
 
-    // self.locations = AdminService.locations;
 
 
 }]);

@@ -1,8 +1,10 @@
 <div class="container">
-    <div class="adminWelcome"><h1>WELCOME  TO  CAPONI  ART  PARK</h1></div>
+  <div class="adminWelcome">
+    <h1>WELCOME TO CAPONI ART PARK</h1>
+  </div>
 
- 
-    <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
+
+  <h1 class="lead alert alert-danger" role="alert" ng-if="vm.message != ''">{{vm.message}}</h2>
     <form ng-submit="vm.login()" class="eventInput">
       <div>
         <h1 class="guestBody">Login</h1>
@@ -18,8 +20,7 @@
         </md-input-container>
       </div>
       <div>
-          <md-button class="btn btn-default md-raised" type="submit" name="submit" value="Log In">Log In</md-button>
-          <!-- <a href="#!register">Register</a> -->
+        <md-button class="btn btn-default md-raised" type="submit" name="submit" value="Log In">Log In</md-button>
       </div>
     </form>
 </div>

@@ -1,17 +1,29 @@
-<div class="headerBackground"><div class="banner"> CAPONI ART PARK<a href=#!menu ><i class="material-icons menuIcon" style="font-size: 50px">menu</i></a></div></div>
+<div class="headerBackground">
+    <div class="banner"> CAPONI ART PARK
+        <a href=#!menu>
+            <i class="material-icons menuIcon" style="font-size: 50px">menu</i>
+        </a>
+    </div>
+</div>
 
-<div class="welcome"><h1>Events</h1></div>
+<div class="welcome">
+    <h1>Events</h1>
+</div>
 
 <div class="guestBody">
     <div>
         <div ng-repeat="event in vm.information.allEvents" class="event">
-                <div><img class="eventPhoto" src="{{event.photo_url}}"></div>
-                <div class="eventDate">{{event.date | date: short }}</div>
-                <div class="eventTitle"><strong>{{event.title}}</strong></div>
-            
-            <div  ng-if="vm.information.allEvents.showMore == false">
+            <div>
+                <img class="eventPhoto" src="{{event.photo_url}}">
+            </div>
+            <div class="eventDate">{{event.date | date: short }}</div>
+            <div class="eventTitle">
+                <strong>{{event.title}}</strong>
+            </div>
+
+            <div ng-if="vm.information.allEvents.showMore == false">
                 <div class="eventDetails" ng-click="vm.information.allEvents.showMore = true">DETAILS</div>
-           
+
             </div>
 
             <div ng-if="vm.information.allEvents.showMore == true">
@@ -19,7 +31,7 @@
                 <div>{{event.description}}</div>
                 <div class="smallEvents">{{event.time}}</div>
                 <div class="smallEvents"> Adaptable for ages {{event.age_group}} </div>
-                <div class="smallEvents">{{event.price}}/person</div> 
+                <div class="smallEvents">{{event.price}}/person</div>
             </div>
         </div>
     </div>

@@ -30,20 +30,4 @@ capApp.controller('LoginController', ['$http', '$location', 'UserService', funct
       }
     };
 
-    // self.registerUser = function () {
-    //   if (self.user.username === '' || self.user.password === '' || self.user.first_name === '' || self.user.last_name === '' || self.user.email === '') {
-    //     self.message = "Please complete all fields.";
-    //   } else {
-    //     console.log('sending to server...', self.user);
-    //     $http.post('/api/user/register', self.user).then(function (response) {
-    //       console.log('success');
-    //       $location.path('/admin');
-    //     },
-    //       function (response) {
-    //         console.log('error');
-    //         self.message = "Something went wrong. Please try again."
-    //       });
-    //   }
-    // }
-
 }]);

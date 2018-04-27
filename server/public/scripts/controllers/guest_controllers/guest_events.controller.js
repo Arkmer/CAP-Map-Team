@@ -4,8 +4,8 @@ capApp.controller('GuestEventsController', ['UserService', 'GuestService','Admin
     self.userService = UserService;
     self.guestService = GuestService;
     self.adminService = AdminService;
-    // self.getEvents = AdminService.getEvents;
-    // self.locations = AdminService.locations;
+  
+    
     self.getEvents = GuestService.getEvents;
     self.information = GuestService.information;
 

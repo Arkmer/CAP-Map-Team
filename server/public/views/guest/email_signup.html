@@ -1,19 +1,28 @@
-<div class="headerBackground"><div class="banner"> CAPONI ART PARK<a href=#!menu ><i class="material-icons menuIcon" style="font-size: 50px">menu</i></a></div></div>
+<div class="headerBackground">
+    <div class="banner"> CAPONI ART PARK
+        <a href=#!menu>
+            <i class="material-icons menuIcon" style="font-size: 50px">menu</i>
+        </a>
+    </div>
+</div>
 
-<div class="welcome"><h1>Register for Emails</h1></div>
+<div class="welcome">
+    <h1>Register for Emails</h1>
+</div>
 
 <div class="guestBody">
-   
-    <md-input-container class="indent" >
-    <label>Name</label>
+
+    <md-input-container class="indent">
+        <label>Name</label>
         <input ng-model="vm.user.guest.name" />
     </md-input-container>
     <br>
     <md-input-container class="indent">
         <label>Email</label>
         <input type="email" ng-model="vm.user.guest.email" />
-    </md-input-container><br>
-   
-    <md-button class="md-raised emailButton"  ng-click="vm.addGuest(vm.user.guest);">Submit</md-button>
-    
+    </md-input-container>
+    <br>
+
+    <md-button class="md-raised emailButton" ng-click="vm.addGuest(vm.user.guest);">Submit</md-button>
+
 </div>

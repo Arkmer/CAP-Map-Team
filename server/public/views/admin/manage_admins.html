@@ -3,7 +3,8 @@
 <div class="pageDown"></div>
 <br>
 <h3 class="indent">ALL ADMINS</h3>
-<md-divider></md-divider><br>
+<md-divider></md-divider>
+<br>
 
 <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
     <thead>
@@ -29,19 +30,22 @@
                 <span layout="row" layout-align="center center">{{admin.first_name}}</span>
             </td>
             <td class="mdl-data-table__cell--non-numeric">
-                <span layout="row"  layout-align="center center">{{admin.last_name}}</span>
+                <span layout="row" layout-align="center center">{{admin.last_name}}</span>
             </td>
             <td class="mdl-data-table__cell--non-numeric">
-                <span layout="row"  layout-align="center center">{{admin.email}}</span>
+                <span layout="row" layout-align="center center">{{admin.email}}</span>
             </td>
             <td class="mdl-data-table__cell--non-numeric">
-                <span layout="row"  layout-align="center center">{{admin.username}}</span>
+                <span layout="row" layout-align="center center">{{admin.username}}</span>
             </td>
             <td ng-if="vm.locations.allAdmins.length > 1">
-                <div layout="row"  layout-align="center center" ng-click="vm.deleteAdmin(admin)"><i class="material-icons">remove_circle</i></div>
+                <div layout="row" layout-align="center center" ng-click="vm.deleteAdmin(admin)">
+                    <i class="material-icons">remove_circle</i>
+                </div>
             </td>
         </tr>
     </tbody>
 </table>
-<br><br>
-<div ng-include="'views/templates/register.html'"></div> 
+<br>
+<br>
+<div ng-include="'views/templates/register.html'"></div>

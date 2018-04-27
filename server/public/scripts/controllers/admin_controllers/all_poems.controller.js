@@ -13,7 +13,7 @@ capApp.controller('PoemsController', ['UserService', 'AdminService', function (U
     self.saveAssociation = AdminService.saveAssociation;
     self.deleteArtifact = AdminService.deleteArtifact;
     self.getArtifactToEdit = AdminService.getArtifactToEdit;
-    
+
     self.clearArtifact = AdminService.clearArtifact;
     self.clearArtifact();
 

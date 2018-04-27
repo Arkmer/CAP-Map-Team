@@ -1,226 +1,144 @@
-
-<div ng-include="'/views/admin/admin_menu.html'"></div>
+<div ng-include="'/views/admin/admin_menu.html'">
+</div>
 <div class="pageDown"></div>
 <br>
 <h3 class="indent">ADD A NEW EVENT</h3>
 <md-divider></md-divider>
 <br>
 
-    <div class="eventInput">
-        <form>
-            <md-input-container>
-                <label>Event Title</label>
-                <input ng-model="vm.locations.newEvent.title"/>
-            </md-input-container>
-            <md-input-container>
-                <label>Date</label>
-                <input type="date" ng-model="vm.locations.newEvent.date"/>
-            </md-input-container>
-            <md-input-container>
-                <label>Time</label>
-                <input type="time" ng-model="vm.locations.newEvent.time"/>
-            </md-input-container>
-            <md-input-container>
-                <label>Description</label>
-                <input ng-model="vm.locations.newEvent.description" />
-            </md-input-container>
-            <br>
-            <md-input-container>
-                <label>Notes (Admin Only)</label>
-                <input ng-model="vm.locations.newEvent.notes"/>
-            </md-input-container>
-            <md-input-container>
-                <label>Category</label> 
-                <input ng-model="vm.locations.newEvent.category"/>
-            </md-input-container>
-            <md-input-container>
-                <label>Age Group</label>
-                <input ng-model="vm.locations.newEvent.age_group"/>
-            </md-input-container>
-            <md-input-container>
-                <label>Price</label>
-                <input ng-model="vm.locations.newEvent.price"/>
-            </md-input-container>
-            <br>
-            <md-input-container>
-                <md-button class="md-raised" ng-click="vm.uploadnewPhoto()">Choose Photo</md-button>
-            </md-input-container>
-            <md-input-container>
-           <md-button class="md-raised" ng-click="vm.addEvent(vm.locations.newEvent)" value="Submit">Submit</md-button>
-        </form>
-    </div>
+<div class="eventInput">
+    <form>
+        <md-input-container>
+            <label>Event Title</label>
+            <input ng-model="vm.locations.newEvent.title" />
+        </md-input-container>
+        <md-input-container>
+            <label>Date</label>
+            <input type="date" ng-model="vm.locations.newEvent.date" />
+        </md-input-container>
+        <md-input-container>
+            <label>Time</label>
+            <input type="time" ng-model="vm.locations.newEvent.time" />
+        </md-input-container>
+        <md-input-container>
+            <label>Description</label>
+            <input ng-model="vm.locations.newEvent.description" />
+        </md-input-container>
+        <br>
+        <md-input-container>
+            <label>Notes (Admin Only)</label>
+            <input ng-model="vm.locations.newEvent.notes" />
+        </md-input-container>
+        <md-input-container>
+            <label>Category</label>
+            <input ng-model="vm.locations.newEvent.category" />
+        </md-input-container>
+        <md-input-container>
+            <label>Age Group</label>
+            <input ng-model="vm.locations.newEvent.age_group" />
+        </md-input-container>
+        <md-input-container>
+            <label>Price</label>
+            <input ng-model="vm.locations.newEvent.price" />
+        </md-input-container>
+        <br>
+        <md-input-container>
+            <md-button class="md-raised" ng-click="vm.uploadnewPhoto()">Choose Photo</md-button>
+        </md-input-container>
+        <md-input-container>
+            <md-button class="md-raised" ng-click="vm.addEvent(vm.locations.newEvent)" value="Submit">Submit</md-button>
+    </form>
+</div>
 <br>
 <h3 class="indent">ALL EVENTS</h3>
-<md-divider></md-divider><br><br>
+<md-divider></md-divider>
+<br>
+<br>
 <i class="material-icons indent extra-indent searchIcon">search</i>
 <input class="indent" type="text" ng-model="vm.searchEvents">
 <br>
-    <div>
-        <!-- <table id="eventsTable">
-            <thread>
-                <th class="tableFit">Photo</th>
-                <th>Event Title</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Description</th>
-                <th>Notes</th>
-                <th>Category</th>
-                <th>Age Group</th>
-                <th>Price</th>
-                <th></th>
-                <th></th>
-            </thread>
-            <tbody>
-                <tr ng-repeat="event in vm.locations.allEvents|filter:vm.searchEvents">
-                    <td class="tableFit">
-                        <div ng-hide="event.editing">
-                            <img class="adminEventPhoto" src="{{event.photo_url}}" altSrc="favicon.icn" />
-                        </div>
-                        <md-input-container ng-show="event.editing">
-                            <md-button class="md-raised" ng-click="vm.uploadnewPhoto()">Choose Photo</md-button>
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div ng-hide="event.editing">{{event.title}}</div>
-                        <md-input-container ng-show="event.editing">
-                            <label>Title</label>
-                        <input ng-model="event.title" ng-value="event.title">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div ng-hide="event.editing">{{event.date | date: short}}</div>
-                        <md-input-container ng-show="event.editing">
-                            <label>Date</label>
-                        <input ng-model="event.date" ng-value="event.date">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div ng-hide="event.editing"> {{event.time}}</div>
-                        <md-input-container ng-show="event.editing">
-                            <label>Time</label>
-                        <input ng-model="event.time" ng-value="event.time">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div ng-hide="event.editing">{{event.description}}</div>
-                        <md-input-container ng-show="event.editing">
-                            <label>Description</label>
-                        <input ng-model="event.description" ng-value="event.description">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div ng-hide="event.editing">{{event.notes}}</div>
-                        <md-input-container ng-show="event.editing">
-                            <label>Notes (Admin Only)</label>
-                        <input ng-model="event.notes" ng-value="event.notes">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div ng-hide="event.editing">{{event.category}}</div>
-                        <md-input-container ng-show="event.editing">
-                            <label>Category</label>
-                        <input ng-model="event.category" ng-value="event.category">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div ng-hide="event.editing">{{event.age_group}}</div>
-                        <md-input-container ng-show="event.editing">
-                            <label>Age Group</label>
-                        <input ng-model="event.age_group" ng-value="event.age_group">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div ng-hide="event.editing">{{event.price}}</div>
-                        <md-input-container ng-show="event.editing">
-                            <label>Price</label>
-                        <input ng-model="event.price" ng-value="event.price">
-                        </md-input-container>
-                    </td>
-                    <td>
-                        <div layout="row"  layout-align="center center" ng-hide="event.editing" ng-click="vm.viewEditEvents(event)"><i class="material-icons">mode_edit</i></div>
-                        <div layout="row"  layout-align="center center" ng-show="event.editing" ng-click="vm.editEvent(event)"><i class="material-icons">check</i></div>
-                    </td>
-                    <td>
-                     <div layout="row"  layout-align="center center" ng-click="vm.deleteEvent(event)"><i class="material-icons">remove_circle</i></div>
-                </td>
-                    </td>
-            </tbody>
-        </table> -->
+<div>
 
-<md-content class="md-padding" layout-xs="column" layout="row">
-<div flex-xs flex layout="row" layout-wrap>
-    <md-card class="eventCard" ng-repeat="event in vm.locations.allEvents|filter:vm.searchEvents" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"  md-theme-watch>
-        <md-card-title>
-            <md-input-container ng-show="event.editing">
-                <md-button class="md-raised" ng-click="vm.uploadnewPhoto()">Choose Photo</md-button>
-            </md-input-container>
-            <img  ng-hide="event.editing" class="adminEventPhoto" src="{{event.photo_url}}" altSrc="favicon.icn" />
-        </md-card-title>
-        <br>
-        <md-card-content >
-            <span class="md-subhead">
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex layout="row" layout-wrap>
+            <md-card class="eventCard" ng-repeat="event in vm.locations.allEvents|filter:vm.searchEvents" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
+                md-theme-watch>
+                <md-card-title>
+                    <md-input-container ng-show="event.editing">
+                        <md-button class="md-raised" ng-click="vm.uploadnewPhoto()">Choose Photo</md-button>
+                    </md-input-container>
+                    <img ng-hide="event.editing" class="adminEventPhoto" src="{{event.photo_url}}" altSrc="favicon.icn" />
+                </md-card-title>
+                <br>
+                <md-card-content>
+                    <span class="md-subhead">
                         <md-input-container ng-show="event.editing">
                             <label>Title</label>
                             <input size="50" ng-model="event.title" ng-value="event.title">
                         </md-input-container>
-                <div ng-hide="event.editing" class="eventTitle"><strong>{{event.title}}</strong></div>
+                        <div ng-hide="event.editing" class="eventTitle">
+                            <strong>{{event.title}}</strong>
+                        </div>
                         <md-input-container ng-show="event.editing">
                             <label>Date</label>
                             <input size="50" ng-model="event.date" ng-value="event.date">
                         </md-input-container>
-                <div ng-hide="event.editing">{{event.date | date: short}}</div>
+                        <div ng-hide="event.editing">{{event.date | date: short}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Time</label>
                             <input size="50" ng-model="event.time" ng-value="event.time">
                         </md-input-container>
-                <div ng-hide="event.editing"> {{event.time}}</div>
-                <md-divider></md-divider>
+                        <div ng-hide="event.editing"> {{event.time}}</div>
+                        <md-divider></md-divider>
                         <md-input-container ng-show="event.editing">
                             <label>Description</label>
                             <input size="50" ng-model="event.description" ng-value="event.description">
                         </md-input-container>
-                <div ng-hide="event.editing">{{event.description}}</div>
-                <md-divider></md-divider>
+                        <div ng-hide="event.editing">{{event.description}}</div>
+                        <md-divider></md-divider>
                         <md-input-container ng-show="event.editing">
                             <label>Notes (Admin Only)</label>
                             <input size="50" ng-model="event.notes" ng-value="event.notes">
                         </md-input-container>
-                <div ng-hide="event.editing"><strong>NOTES:</strong> {{event.notes}}</div>
+                        <div ng-hide="event.editing">
+                            <strong>NOTES:</strong> {{event.notes}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Category</label>
                             <input size="50" ng-model="event.category" ng-value="event.category">
                         </md-input-container>
-                <div ng-hide="event.editing"><strong>CATEGORY: </strong>{{event.category}}</div>
+                        <div ng-hide="event.editing">
+                            <strong>CATEGORY: </strong>{{event.category}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Age Group</label>
                             <input size="50" ng-model="event.age_group" ng-value="event.age_group">
                         </md-input-container>
-                <div ng-hide="event.editing"><strong>AGE GROUP: </strong>{{event.age_group}}</div>
+                        <div ng-hide="event.editing">
+                            <strong>AGE GROUP: </strong>{{event.age_group}}</div>
                         <md-input-container ng-show="event.editing">
                             <label>Price</label>
                             <input size="50" ng-model="event.price" ng-value="event.price">
                         </md-input-container>
-                <div ng-hide="event.editing"><strong>PRICE: </strong>{{event.price}}</div>
-            </span>
-            
-        </md-card-content>
+                        <div ng-hide="event.editing">
+                            <strong>PRICE: </strong>{{event.price}}</div>
+                    </span>
 
-        <md-card-actions layout="row" layout-align="end center">
-            <div >
-                <div layout="row" layout-align="center center" ng-show="event.editing" ng-click="vm.editEvent(event)">
-                    <i class="material-icons">save</i>
-                </div>
-            </div>
-            <div ng-hide="event.editing" ng-click="vm.viewEditEvents(event)">
-                <i class="material-icons">mode_edit</i>
-            </div>
-            <div ng-click="vm.deleteEvent(event)">
-                <i class="material-icons">delete</i>
-            </div>
-        </md-card-actions>
-    </md-card>
+                </md-card-content>
+
+                <md-card-actions layout="row" layout-align="end center">
+                    <div>
+                        <div layout="row" layout-align="center center" ng-show="event.editing" ng-click="vm.editEvent(event)">
+                            <i class="material-icons">save</i>
+                        </div>
+                    </div>
+                    <div ng-hide="event.editing" ng-click="vm.viewEditEvents(event)">
+                        <i class="material-icons">mode_edit</i>
+                    </div>
+                    <div ng-click="vm.deleteEvent(event)">
+                        <i class="material-icons">delete</i>
+                    </div>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
+
 </div>
-</md-content>
-
-</div>
-

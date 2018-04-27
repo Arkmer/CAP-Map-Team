@@ -93,18 +93,4 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
       }
     
 
-    // self.mainAritfact = [];
-    // self.supportingArtifacts = [];
-
-    // self.determineMain = function (information) {
-    //     for (i = 0; i < information.length; i++){
-    //         if (i==0){
-    //             self.mainArtifact.push(information[i]);
-    //         }
-    //         else {
-    //             self.supportingArtifacts.push(information[i]);
-    //         }
-    //     }    
-    // }
-
 }]);

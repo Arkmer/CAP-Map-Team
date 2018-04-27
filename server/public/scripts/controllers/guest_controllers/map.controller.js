@@ -8,7 +8,9 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
     self.getAllLocations = AdminService.getAllLocations;
     self.locations = AdminService.locations;
     //--------------for the person marker--------------
-    let markerStore = { marker: null };
+    let markerStore = {
+        marker: null
+    };
     //--------------for map overlay--------------
     let overlay;
     CaponiOverlay.prototype = new google.maps.OverlayView();
@@ -27,8 +29,8 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
 
     //--------------instance of a marker that is centered --------------
 
-    let markerImage =  new google.maps.MarkerImage('../../styles/maps_marker_55px_halo.png', 
-        new google.maps.Size(55, 55), 
+    let markerImage = new google.maps.MarkerImage('../../styles/maps_marker_55px_halo.png',
+        new google.maps.Size(55, 55),
         new google.maps.Point(0, 0),
         new google.maps.Point(27.5, 27.5));
 
@@ -91,45 +93,43 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
     ////--------------location to get the guest's location, display it and display what hidden locations they see--------------
     self.findLocation = () => {
         $timeout(function () {
-        console.log('in find location map');
-        success = (pos) => {
-            let crd = pos.coords;
-            console.log('your current position is: ');
-            console.log(`Latitude: ${crd.latitude}`);
-            console.log(`Longitude: ${crd.longitude}`);
-            console.log(`more or less ${crd.accuracy} meters`);
+            console.log('in find location map');
+            success = (pos) => {
+                let crd = pos.coords;
+                console.log('your current position is: ');
+                console.log(`Latitude: ${crd.latitude}`);
+                console.log(`Longitude: ${crd.longitude}`);
+                console.log(`more or less ${crd.accuracy} meters`);
 
 
-            if (markerStore.marker !== null) {
-                markerStore.marker.setPosition(new google.maps.LatLng(crd.latitude, crd.longitude));
+                if (markerStore.marker !== null) {
+                    markerStore.marker.setPosition(new google.maps.LatLng(crd.latitude, crd.longitude));
+                } else {
+                    let personMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(crd.latitude, crd.longitude),
+                        map: $scope.map,
+                        // icon: '../../styles/maps_marker.png',
+                        icon: markerImage,
+                    })
+                    markerStore.marker = personMarker;
+                }
+                self.triggerMarkerShow(crd);
+                self.triggerMarkerHide(crd);
+                $scope.$apply();
+
+            }
+            error = (err) => {
+                console.log('error in finding location: ', err);
+                alert("We were\'t able to get your location. Make sure you\'re on an HTTPS webpage!", "", "error");
+            }
+            options = {
+                enableHighAccuracy: true,
+                timeout: 7500,
+                maximumAge: 0
             }
 
-            else {
-                let personMarker = new google.maps.Marker({
-                    position: new google.maps.LatLng(crd.latitude, crd.longitude),
-                    map: $scope.map,
-                    // icon: '../../styles/maps_marker.png',
-                    icon: markerImage,
-                })
-                markerStore.marker = personMarker;
-            }
-            self.triggerMarkerShow(crd);
-            self.triggerMarkerHide(crd);
-            $scope.$apply();
-           
-        }
-        error = (err) => {
-            console.log('error in finding location: ', err);
-            alert("We were\'t able to get your location. Make sure you\'re on an HTTPS webpage!", "", "error");
-        }
-        options = {
-            enableHighAccuracy: true,
-            timeout: 7500,
-            maximumAge: 0
-        }
-
-        navigator.geolocation.watchPosition(success, error, options);
-    }, 700);
+            navigator.geolocation.watchPosition(success, error, options);
+        }, 700);
     }
 
     self.findLocation();
@@ -171,7 +171,7 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
                 } else {
                     self.locations.allLocations[i].reveal_type = facility;
                 }
-                
+
                 //--------------creates markers for each location--------------
                 let marker = new google.maps.Marker({
                     position: new google.maps.LatLng(self.locations.allLocations[i].lat, self.locations.allLocations[i].long),
