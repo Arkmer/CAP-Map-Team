@@ -70,20 +70,12 @@ capApp.controller('AddLocationController', ['UserService', 'AdminService', funct
                     animation: google.maps.Animation.DROP
                 })
 
-                // google.maps.event.addListener(marker, 'dragstart', function () {
-                // })
-
-                // google.maps.event.addListener(marker, 'drag', function () {
-                // })
-
                 google.maps.event.addListener(marker, 'dragend', function () {
                     self.locations.newLocation.lat = marker.getPosition().lat();
                     self.locations.newLocation.long = marker.getPosition().lng();    
 
                 })
             }
-
-
 
             overlay = new CaponiOverlay(bounds, srcImage, map);
 

@@ -110,7 +110,6 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
 
             }
             error = (err) => {
-                console.log('error in finding location: ', err);
                 alert("We were\'t able to get your location. Make sure you\'re on an HTTPS webpage!", "", "error");
             }
             options = {
@@ -183,7 +182,7 @@ capApp.controller('MapController', ['UserService', 'GuestService', 'AdminService
         }, 700)
 
     }
-    //--------------everything from here- ln 258 is for the map overlay --------------
+    //--------------everything from here down is for the map overlay --------------
 
     /** @constructor */
     function CaponiOverlay(bounds, image, map) {

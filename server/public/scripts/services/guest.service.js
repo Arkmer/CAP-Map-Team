@@ -1,6 +1,6 @@
-capApp.service('GuestService', ['$http', '$location', function($http, $location){
+capApp.service('GuestService', ['$http', '$location', function ($http, $location) {
     var self = this;
-    
+
     self.user = {
         guest: {
             name: '',
@@ -28,35 +28,31 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         showMore: false,
         sculptureTitle: '',
     }
-    
-    self.addGuest = function(guest){
+
+    self.addGuest = function (guest) {
         $http({
             method: 'POST',
-            url:'/api/user/guest',
+            url: '/api/user/guest',
             data: guest,
-        }).then((result)=>{
+        }).then((result) => {
             swal("Thank you for signing up for the Caponi Art Park mailing list!", "", "success");
             self.user.guest.name = '';
             self.user.guest.email = '';
             $location.url('/guidelines');
-        }).catch((error)=>{
-        })
+        }).catch((error) => {})
     }
 
-    self.clearGuest = function(){
-        // self.user.guest.name = '';
-        // self.user.guest.email = '';
+    self.clearGuest = function () {
         self.user.guest = {}
     }
 
-    self.getInformation = function(){
+    self.getInformation = function () {
         $http({
             method: 'GET',
             url: `/information/get`,
-        }).then((result)=>{
+        }).then((result) => {
             self.information.guidelines = result.data;
-        }).catch((error)=>{
-        })
+        }).catch((error) => {})
     }
 
     self.getEvents = function () {
@@ -66,32 +62,30 @@ capApp.service('GuestService', ['$http', '$location', function($http, $location)
         }).then((result) => {
             self.information.allEvents = result.data;
             self.information.allEvents.showMore = false;
-        }).catch((error) => {
-        })
+        }).catch((error) => {})
     }
 
-    self.getIndividualLocation = function(locationid){
+    self.getIndividualLocation = function (locationid) {
         $http({
             method: 'GET',
             url: `/map/artifact/${locationid}`
-        }).then((result)=>{
+        }).then((result) => {
             self.information.allArtifactsForLocation = result.data;
             self.information.currentLocationId = locationid;
             self.indLocation.showMore = true;
             self.indLocation.sculptureTitle = '';
-            for (let artifact of self.information.allArtifactsForLocation){
-                if (artifact.type == 'sculpture'){
+            for (let artifact of self.information.allArtifactsForLocation) {
+                if (artifact.type == 'sculpture') {
                     self.indLocation.showMore = false;
                     self.indLocation.sculptureTitle = artifact.title.toUpperCase();
                 }
             }
-        }).catch((error)=>{
-        })
+        }).catch((error) => {})
     }
 
     self.xoutofalert = function () {
         self.information.mapInfo = false;
-      }
-    
+    }
+
 
 }]);
