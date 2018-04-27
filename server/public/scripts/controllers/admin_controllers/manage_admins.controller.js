@@ -1,47 +1,35 @@
 capApp.controller('ManageAdminsController', ['UserService', 'AdminService', '$http', '$location', function (UserService, AdminService, $http, $location) {
-    console.log('ManageAdminsController created');
-    var self = this;
-    self.userService = UserService;
-    self.adminService = AdminService;
+  var self = this;
+  self.userService = UserService;
+  self.adminService = AdminService;
 
-    self.locations = AdminService.locations;
+  self.locations = AdminService.locations;
 
-    self.registerUser = function () {
-        if (self.user.username === '' || self.user.password === '' || self.user.first_name === '' || self.user.last_name === '' || self.user.email === '') {
-          self.message = "Please complete all fields.";
-        } else {
-          // console.log('sending to server...', self.user);
-          $http.post('/api/user/register', self.user).then(function (response) {
-            // console.log('success');
-            self.getAllAdmins();
-            swal("Administrator added.", "", "success");
-            self.user = {};
-            $location.path('/admin/manageadmins');
-          },
-            function (response) {
-              // console.log('error');
-              self.message = "Something went wrong. Please try again."
-            });
-        }
-      }
-
-    self.getAllAdmins = AdminService.getAllAdmins;
-
-    self.clearRegister = function(){
-      self.user.username = ''
-      self.user.password = ''
-      self.user.first_name = ''
-      self.user.last_name = ''
-      self.user.email = ''
+  self.registerUser = function () {
+    if (self.user.username === '' || self.user.password === '' || self.user.first_name === '' || self.user.last_name === '' || self.user.email === '') {
+      self.message = "Please complete all fields.";
+    } else {
+      $http.post('/api/user/register', self.user).then(function (response) {
+          self.getAllAdmins();
+          swal("Administrator added.", "", "success");
+          self.user = {};
+          $location.path('/admin/manageadmins');
+        },
+        function (response) {
+          self.message = "Something went wrong. Please try again."
+        });
     }
-    
-    self.getAllAdmins();
+  }
 
-    self.deleteAdmin = AdminService.deleteAdmin;
+  self.getAllAdmins = AdminService.getAllAdmins;
 
-    self.isCurrentPage = AdminService.isCurrentPage;
-    self.isCurrentPage();
+  self.getAllAdmins();
 
-    self.clearLocationInfo = AdminService.clearLocationInfo;
+  self.deleteAdmin = AdminService.deleteAdmin;
+
+  self.isCurrentPage = AdminService.isCurrentPage;
+  self.isCurrentPage();
+
+  self.clearLocationInfo = AdminService.clearLocationInfo;
 
 }]);

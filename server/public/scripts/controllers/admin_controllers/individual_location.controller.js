@@ -1,5 +1,4 @@
 capApp.controller('IndividualLocationController', ['UserService', 'AdminService', '$routeParams', '$sce', function (UserService, AdminService, $routeParams, $sce) {
-    console.log('IndividualLocationController created');
     var self = this;
     self.userService = UserService;
     self.adminService = AdminService;
@@ -11,8 +10,6 @@ capApp.controller('IndividualLocationController', ['UserService', 'AdminService'
 
     let locationid = $routeParams.locationid;
     self.getIndividualLocation(locationid);
-    console.log('locationid', locationid);
-    console.log(self.locations);
     
 
     self.trustSrc = function(src) {
@@ -22,7 +19,7 @@ capApp.controller('IndividualLocationController', ['UserService', 'AdminService'
     self.deleteAssociation = AdminService.deleteAssociation;
     self.saveAssociation = AdminService.saveAssociation;
     self.isMainPhoto = AdminService.isMainPhoto;
-    self.getArtifactToEdit = AdminService.getArtifactToEdit; //getArtifactToEdit
+    self.getArtifactToEdit = AdminService.getArtifactToEdit; 
 
     self.isCurrentPage = AdminService.isCurrentPage;
     self.isCurrentPage();

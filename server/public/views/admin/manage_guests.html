@@ -11,9 +11,9 @@
     </md-input-container>
     <md-input-container>
         <label>Email</label>
-        <input ng-model="vm.locations.newGuest.email"/>
+        <input ng-model="vm.locations.newGuest.email" />
     </md-input-container>
-    <md-button type="submit" class="md-raised" ng-click="vm.addGuest(vm.locations.newGuest)" value="Submit" >Submit</md-button>
+    <md-button type="submit" class="md-raised" ng-click="vm.addGuest(vm.locations.newGuest)" value="Submit">Submit</md-button>
 </form>
 <br>
 <h3 class="indent">ALL GUESTS</h3>
@@ -35,34 +35,11 @@
                     <div>{{guest.email}}</div>
                 </td>
                 <td class="mdl-data-table__cell--non-numeric">
-                    <div layout="row"  layout-align="center center" ng-click="vm.deleteGuest(guest)"><i class="material-icons">remove_circle</i></div>
+                    <div layout="row" layout-align="center center" ng-click="vm.deleteGuest(guest)">
+                        <i class="material-icons">remove_circle</i>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
-
-    <!-- <md-content class="md-padding" layout-xs="column" layout="row">
-        <div flex-xs flex layout="row">
-            <md-card class="guestCard" ng-repeat="guest in vm.locations.guestList" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}"
-                md-theme-watch>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{guest.name}}</span>
-                        <span class="md-subhead">{{guest.email}}</span>
-                    </md-card-title-text>
-    
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="end center">
-                    <div ng-if="vm.locations.currentLocationId !== null">
-                        <div ng-click="vm.saveAssociation(writing.id, 'false')">
-                            <i class="material-icons">add</i>
-                        </div>
-                    </div>
-                    <div ng-click="vm.deleteGuest(guest)">
-                        <i class="material-icons">delete</i>
-                    </div>
-                </md-card-actions>
-            </md-card>
-        </div>
-    </md-content> -->
 </div>
