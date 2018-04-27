@@ -2,7 +2,7 @@
 
 The Caponi Art Park application is a mobile-friendly, full-stack web application that allows guests of the Caponi Art Park to explore the park without the aid of a printed map or tour guide. The app consists of a guest side and an admin side. On the guest side a user can interact with the map, which tracks their location and allows them to click on sites to see more information. The sites they see is updated based on their location in the park. Additionally a guest can read about upcoming events at the park, read the rules of the park or sign up for the email list. On the admin side, an employee of the park can place markers on the map and add information to tie it to a location. They can also add another admin, add events and see the email list. 
 
-Heroku link: https://boiling-oasis-78196.herokuapp.com
+Heroku link: https://caponiartpark.herokuapp.com
 
 ## Built With
 
@@ -25,7 +25,7 @@ Link to software that is required before you attempt to start the app (e.g. node
 
 - [Node.js](https://nodejs.org/en/)
 - [PostgreSQL] (https://www.postgresql.org/download/)
-- [google maps api key] (https://developers.google.com/maps/documentation/javascript/get-api-key)
+- [Google Maps API key] (https://developers.google.com/maps/documentation/javascript/get-api-key)
 
 ### Installing
 
