@@ -10,7 +10,7 @@
                 <md-option ng-repeat="types in vm.locations.allRevealTypes" ng-value="types.type">{{ types.type }}</md-option>
             </md-select>
         </md-input-container>
-        <md-button ng-click='vm.addLocation(vm.locations.newLocation)' class="md-raised md-indent tinyShift">Submit Location</md-button>
+        <md-button id="submitLocation" ng-click='vm.addLocation(vm.locations.newLocation)' class="md-raised md-indent">Submit Location</md-button>
     </div>
     <div class="row" align-content="center center" ng-if="vm.locations.currentLocationId !== null">
         <md-input-container class="md-indent add-location">

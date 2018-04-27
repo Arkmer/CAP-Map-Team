@@ -14,8 +14,8 @@ router.get('/get', (req,res)=>{
 router.post('/post', (req,res)=>{
     if(req.isAuthenticated()){
         const guideline = req.body;
-        pool.query('INSERT INTO information (description, category) VALUES ($1, $2);',
-        [guideline.description, guideline.category])
+        pool.query("INSERT INTO information (description, category) VALUES ($1, 'guideline');",
+        [guideline.description])
         .then(function(result){
             res.sendStatus(201);
         }).catch(function(error){

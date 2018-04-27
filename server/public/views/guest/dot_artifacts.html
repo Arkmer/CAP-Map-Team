@@ -12,8 +12,9 @@
             </div>
     
             <div class="sculptureGuest" ng-repeat="artifact in vm.information.allArtifactsForLocation">
-                    <div class="sculptureInfo" ng-if="artifact.type == 'sculpture'">{{artifact.author}}</div>
+                    <div class="sculptureInfo" ng-if="artifact.type == 'sculpture'">{{artifact.artist_name}}</div>
                     <div class="sculptureInfo" ng-if="artifact.type == 'sculpture'">{{artifact.year}}</div>
+                    <div class="sculptureInfo" ng-if="artifact.type == 'sculpture'">{{artifact.material}}</div>
                     <div class="sculptureInfo" ng-bind-html="artifact.description"  ng-if="artifact.type == 'sculpture'">{{artifact.description}}</div>
             </div>
         <div ng-if="vm.indLocation.showMore == false"><hr>

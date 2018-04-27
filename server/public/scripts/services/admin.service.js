@@ -31,6 +31,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         indWritings: [],
         indAnecdotes: [],
         indVideos: [],
+        indTitle: '',
         isBeingEdited: false,
         reveal_type: '',
     }
@@ -168,6 +169,9 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         }).then((response) =>{
                 swal("Location successfully uploaded!", "", "success");
                 location.name = '';
+                self.currentLocationId = response.data[0].id;
+                self.indLocation.indTitle = response.data[0].location_name; 
+                $location.url(`admin/location/${self.currentLocationId}`);
             })
             .catch((error) => {
                 console.log('/map/post', error);
@@ -229,6 +233,7 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
             self.indLocation.indWritings = [];
             self.indLocation.indAnecdotes = [];
             self.indLocation.indVideos = [];
+            //self.indLocation.indTitle= '';
             self.determineType();
         }).catch((error)=>{
             console.log(`map/artifact/${id}`, error);
@@ -430,7 +435,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
     }
     
     self.determineType = function(){
-        console.log('in determineType');
+        console.log('in determineType', self.locations.allArtifactsForLocation[0]);
+        self.indLocation.indTitle = self.locations.allArtifactsForLocation[0].location_name;
         self.indLocation.reveal_type = self.locations.allArtifactsForLocation[0].reveal_type;
         for(let artifact of self.locations.allArtifactsForLocation){
             if(artifact.type == 'sculpture'){
@@ -447,7 +453,8 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
                 self.indLocation.indVideos.push(artifact);
             }else if(artifact.main_photo){
                 self.indLocation.indMainPhoto = artifact;
-            }
+            } 
+
         }
         console.log('main photo:',self.indLocation.indMainPhoto);
     }
@@ -627,19 +634,19 @@ capApp.service('AdminService', ['$http', '$location',  function($http, $location
         })
     }
 
-    self.addGuest = function(guest){
-        $http({
-            method: 'POST',
-            url: '/api/user/guest',
-            data: guest,
-        }).then((result)=>{
-            swal("Guest and email added.", "", "success");
-            self.getAllGuests();
-            self.emptyGuestInputs();
-        }).catch((error)=>{
-            console.log('/api/user/guest');
-        })
-    }
+    // self.addGuest = function(guest){
+    //     $http({
+    //         method: 'POST',
+    //         url: '/api/user/guest',
+    //         data: guest,
+    //     }).then((result)=>{
+    //         swal("Guest and email added.", "", "success");
+    //         self.getAllGuests();
+    //         self.emptyGuestInputs();
+    //     }).catch((error)=>{
+    //         console.log('/api/user/guest');
+    //     })
+    // }
 
     self.emptyGuestInputs = function(){
         self.locations.newGuest.name = '';
