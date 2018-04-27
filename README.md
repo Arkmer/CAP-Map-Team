@@ -7,17 +7,13 @@ Heroku link: https://boiling-oasis-78196.herokuapp.com/#!/admin/
 
 ## Built With
 
-google map api
-filestack
-JavaScript
-AngularJS
-postgrsql
-AngularJS Materials 
-Node
-Express
-Passport
-textangular
-sweetalerts
+- AngularJS
+- NodeJS
+- Express
+- SQL
+- Angular-Material
+- Google Maps API
+- Filestack API
 
 ## Getting Started
 
@@ -73,33 +69,14 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Name of author(s)
+Christiana Routon
+Elizabeth Wong
+Louis Heim
+Sam Standing
+Ryan Udlehoven
 
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
+Thank you to Mary Mosman for creating the map.
 
-
-
-# Caponi Art Park Interactive Map
-
-The Caponi Art Park app is a mobile-friendly full-stack web application that uses geolocation to allow park visitors to learn about sites near them in the park as well as upcoming park events. Park administrators will be able to upload site information via a separate interface.
-
-## Technologies
-
-- AngularJS
-- NodeJS
-- Express
-- SQL
-- Angular-Material
-- Google Maps API
-- Filestack API
-
-## Authors
-
-* Louis Heim
-* Christiana Routon
-* Sam Standing
-* Ryan Udelhoven
-* Elizabeth Wong
