@@ -1,7 +1,6 @@
 capApp.service('UserService', ['$http', '$location', function($http, $location){
   var self = this;
   self.userObject = {};
-  
 
   self.getuser = function(){
     $http.get('/api/user').then(function(response){
