@@ -61,7 +61,7 @@ capApp.service('AdminService', ['$http', '$location', function ($http, $location
         type: '',
     };
 
-    self.client = filestack.init("AI5OhtlsWSsiO7mmCbw06z");
+    self.client = filestack.init("AEJTEv3LSS0iEXB5JB7swz");
 
     self.uploadnewPhoto = function () {
         self.newMultimedia.type = 'photo';
